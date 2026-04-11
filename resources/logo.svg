@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none" role="img" aria-label="Spike Security Logo">
+  <!-- Shield body -->
+  <path class="shield-body" d="M100 6 L184 46 L180 164 L100 230 L20 164 L16 46 Z" fill="#F0A500"/>
+  <!-- 3D top bevel (darker gold) -->
+  <path class="shield-bevel" d="M16 46 L100 6 L184 46 L164 56 L100 18 L36 56 Z" fill="#C8880A"/>
+  <!-- Upper S cutout -->
+  <polygon class="shield-cut" points="136,78 136,106 64,126 64,98" fill="#0D1B2E"/>
+  <!-- Lower S cutout -->
+  <polygon class="shield-cut" points="136,134 136,162 64,182 64,154" fill="#0D1B2E"/>
+</svg>
