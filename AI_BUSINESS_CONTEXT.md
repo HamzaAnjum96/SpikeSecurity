@@ -6,7 +6,7 @@
 - **Legal name:** SPIKE SECURITY LIMITED
 - **Brand name:** Spike Security
 - **Founded:** 2025
-- **Head office:** 5 Spinningfields Square, Manchester, M3 3AP, United Kingdom
+- **Head office:** Cheetham Hill, Manchester, United Kingdom
 - **Primary region served:** Greater Manchester and the North West
 - **Operating model:** Professional, licensed security services for businesses and events
 - **Availability:** 24/7, 365 days per year
@@ -44,7 +44,7 @@ Spike Security is best suited to organizations that need dependable, professiona
 
 ## Contact & Conversion Details
 - **Phone:** 020 37 57 27 67
-- **Email:** contactus@spikesecurity.co.uk
+- **Email:** info@spikesecurity.co.uk
 - **Website CTA language:** “Get a Quote”, “Request a Quote”, and “Start a Brief”
 
 ## Canonical Description (for AI summaries)
