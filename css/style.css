@@ -45,9 +45,12 @@
   --color-success:    var(--led);
   --color-error:      #D63031;
 
-  /* Typography */
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body:    'Barlow', sans-serif;
+  /* Typography — v2 "Night Watch"
+     Display serif does the heavy lifting; Manrope carries UI &
+     body; JetBrains Mono marks data/labels/status. */
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body:    'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   /* Font weights */
   --fw-regular:    400;
@@ -149,17 +152,55 @@ button { cursor: pointer; }
    ------------------------------------------------------------ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  line-height: 1.15;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.08;
   color: var(--color-navy);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 96;
+  text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.4rem, 6vw, 4rem);  font-weight: var(--fw-extrabold); }
-h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
-h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.1rem; }
+h1 {
+  font-size: clamp(2.5rem, 6.5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144;
+}
+h2 {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  font-variation-settings: "opsz" 96;
+}
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  letter-spacing: -0.012em;
+  line-height: 1.15;
+  font-variation-settings: "opsz" 48;
+}
+h4 {
+  font-size: 1.25rem;
+  letter-spacing: -0.008em;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 36;
+}
+h5 { font-size: 1.1rem; letter-spacing: -0.005em; }
+
+/* A single italicised emphasis phrase is the one editorial move
+   the display serif is allowed. Usage: <span class="emph">word</span>
+   — also aliased to the existing .highlight and .text-gold hooks. */
+.emph,
+h1 .highlight,
+h2 .highlight,
+h3 .highlight,
+.text-gold {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--signal);
+  font-variation-settings: "opsz" 96;
+}
 
 p { line-height: 1.7; }
 
@@ -249,10 +290,10 @@ p { line-height: 1.7; }
   gap: var(--space-sm);
   padding: 14px 32px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: background var(--transition), color var(--transition),
               box-shadow var(--transition), transform var(--transition);
@@ -363,11 +404,11 @@ p { line-height: 1.7; }
   align-items: center;
   padding: 6px 16px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
 }
 
 .badge-gold {
@@ -388,14 +429,18 @@ p { line-height: 1.7; }
 
 /* ── Section heading decoration ── */
 .section-label {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: var(--fw-bold);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-gold);
+  letter-spacing: 0.16em;
+  color: var(--signal);
   display: block;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+.section-label::before {
+  content: "▸ ";
+  opacity: 0.6;
 }
 
 .section-heading {
@@ -456,8 +501,11 @@ p { line-height: 1.7; }
 }
 
 .form-label {
-  font-weight: var(--fw-semibold);
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
   color: var(--color-text);
 }
 
@@ -532,8 +580,11 @@ textarea.form-control {
   color: var(--color-navy);
   border-radius: 50%;
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: var(--fw-extrabold);
+  font-style: italic;
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 48;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -687,20 +738,23 @@ textarea.form-control {
 
 .navbar-wordmark {
   font-family: var(--font-display);
-  font-weight: var(--fw-extrabold);
+  font-weight: 500;
   font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: -0.005em;
   color: var(--color-white);
-  line-height: 1.1;
+  line-height: 1.05;
+  font-variation-settings: "opsz" 36;
 }
 
 .navbar-wordmark span {
   display: block;
+  font-family: var(--font-mono);
   color: var(--color-gold);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  font-weight: var(--fw-semibold);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 
 .navbar-links {
@@ -711,12 +765,12 @@ textarea.form-control {
 
 .nav-link {
   padding: 8px 14px;
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(238,234,224,.8);
+  letter-spacing: 0.12em;
+  color: rgba(238,234,224,.78);
   border-radius: var(--radius-sm);
   transition: color var(--transition), background var(--transition);
 }
@@ -849,12 +903,12 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: var(--fw-bold);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--color-gold);
+  letter-spacing: 0.18em;
+  color: var(--signal);
   margin-bottom: var(--space-lg);
 }
 
@@ -929,17 +983,21 @@ textarea.form-control {
 
 .hero-image-badge .badge-number {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: var(--fw-extrabold);
+  font-style: italic;
+  font-size: 2.25rem;
+  font-weight: 500;
   line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72;
 }
 
 .hero-image-badge p {
-  font-size: 0.8rem;
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 2px;
+  letter-spacing: 0.16em;
+  margin-top: 4px;
 }
 
 
@@ -993,19 +1051,23 @@ textarea.form-control {
 
 .stat-number {
   font-family: var(--font-display);
-  font-size: 2.4rem;
-  font-weight: var(--fw-extrabold);
+  font-style: italic;
+  font-size: 2.6rem;
+  font-weight: 500;
   color: var(--color-navy);
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 96;
 }
 
 .stat-label {
-  font-size: 0.85rem;
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(11,12,14,.65);
+  letter-spacing: 0.16em;
+  color: rgba(11,12,14,.68);
 }
 
 /* ------------------------------------------------------------
@@ -1037,12 +1099,12 @@ textarea.form-control {
   align-items: center;
   gap: 6px;
   margin-top: var(--space-lg);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-gold-dark);
+  letter-spacing: 0.16em;
+  color: var(--signal);
   transition: gap var(--transition);
 }
 
@@ -1069,12 +1131,12 @@ textarea.form-control {
   height: 80px;
   background: var(--color-gold);
   border-radius: 50%;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: var(--fw-extrabold);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--color-navy);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.18em;
   margin: 0 auto var(--space-lg);
   box-shadow: var(--shadow-gold);
 }
@@ -1124,11 +1186,12 @@ textarea.form-control {
   background: var(--color-white);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-weight: var(--fw-semibold);
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
   color: var(--color-text);
-  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   transition: background var(--transition), border-color var(--transition),
               color var(--transition), transform var(--transition);
 }
@@ -1239,11 +1302,11 @@ textarea.form-control {
 .job-tag {
   padding: 4px 12px;
   border-radius: var(--radius-pill);
-  font-size: 0.78rem;
-  font-weight: var(--fw-semibold);
-  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
 }
 
 .job-tag-type {
@@ -1450,11 +1513,11 @@ textarea.form-control {
 
 .footer-col h5 {
   color: var(--color-white);
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: var(--fw-bold);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.18em;
   margin-bottom: var(--space-lg);
 }
 
@@ -1611,11 +1674,11 @@ textarea.form-control {
   color: var(--color-navy);
   padding: var(--space-sm) var(--space-lg);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
   z-index: 10000;
   transition: top var(--transition);
 }
