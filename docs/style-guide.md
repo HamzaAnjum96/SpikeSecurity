@@ -1,304 +1,435 @@
 # Spike Security — Brand Style Guide
 
-> Version 1.0 | April 2025
+> Version 2.0 · "The Night Watch" · April 2026
+> Editorial surveillance. Obsidian, bone, signal.
 
 ---
 
-## 1. Brand Overview
+## 1. Design Concept
 
-**Company:** Spike Security Ltd  
-**Tagline:** *Protecting What Matters Most*  
-**Positioning:** Manchester's trusted, SIA-approved provider of professional security personnel for businesses across the North West.
+**Codename:** *The Night Watch*
+**Aesthetic:** Editorial surveillance — the gravity of a British broadsheet crossed with the operational calm of a modern control room.
 
-**Brand Personality:**
-- Authoritative but approachable
-- Professional without being cold
-- Trustworthy and reliable
-- Locally rooted, nationally capable
+Spike Security protects venues, events and commercial sites twenty-four hours a day. The brand expression should feel the same way at 3am as it does at 3pm: composed, legible, disciplined, never theatrical. The site is not a billboard — it is an operations desk rendered in type.
+
+### Tone
+
+- Editorial, not corporate
+- Operational, not gimmicky
+- Disciplined, not cold
+- British restraint, not American salesmanship
+- A single warm signal amber does the heavy lifting; everything else earns its space
+
+### The Three Moves
+
+Every page leans on three recurring gestures:
+
+1. **The serif headline.** Fraunces at display size, set tight, set serious.
+2. **The mono readout.** JetBrains Mono small-caps for timestamps, unit codes, section labels, status pills. These read like a dispatcher's log.
+3. **The hairline rule.** 1px rules separate everything. The grid is quiet but always visible.
 
 ---
 
 ## 2. Logo
 
-### Primary Logo
-The Spike Security logo consists of:
-1. **Shield icon** — a geometric shield with a stylised angular "S" formed by two parallelogram cutouts. The 3D bevel on the top edge conveys solidity and strength.
-2. **Wordmark** — "SPIKE SECURITY" in Barlow Condensed ExtraBold, all-caps, with "SIA Approved Contractor" in smaller text beneath.
+No change from v1. The Spike shield and wordmark remain intact.
 
-### Files
-| File | Usage |
-|------|-------|
-| `resources/logo.svg` | Primary SVG logo (scalable, recommended for all digital use) |
-| `resources/logo.png` | Full branding PNG (gold on navy with wordmark) |
+- `resources/SPIKE SECURITY LOGO.svg` — primary
+- `resources/logo.svg` — fallback
+- `resources/logo.png` — print / heavy composite use
 
-### Logo Variants
-| Variant | When to Use |
-|---------|-------------|
-| Gold shield on navy | Primary use — website navbar, print on dark backgrounds |
-| White shield on navy | Alternative for dark backgrounds where gold is unavailable |
-| Full logo PNG (gold on navy with text) | Formal documents, presentations, large display |
-
-### Clear Space
-Maintain a minimum clear space of **1× the shield height** on all sides of the logo. Never crowd the logo with other elements.
-
-### Logo Don'ts
-- Do not rotate, skew or distort the logo
-- Do not change the logo colours outside of approved variants
-- Do not place the gold logo on a gold or very light background
-- Do not add drop shadows, outlines or effects to the logo
-- Do not recreate the logo in a different typeface
+The wordmark pairs with the Fraunces display serif in the site navigation — the logo supplies the geometry, the type supplies the voice. Maintain 1× shield-height clear space on all sides.
 
 ---
 
-## 3. Colour Palette
+## 3. Colour — "Obsidian & Bone"
 
-### Primary Colours
+The palette is dominant-dark. Roughly 70% obsidian, 25% bone, 5% signal. Do not equalise; the asymmetry is the point.
 
-| Name | Hex | RGB | Usage |
-|------|-----|-----|-------|
-| **Navy** | `#0D1B2E` | 13, 27, 46 | Primary backgrounds, navbar, footer, dark sections |
-| **Gold** | `#F0A500` | 240, 165, 0 | Accents, CTA buttons, highlights, stats bar |
+### Core Tokens
 
-### Secondary Colours
+| Name | Hex | Role |
+|------|-----|------|
+| **Obsidian** | `#0B0C0E` | Primary background. Near-black with a warm cast. |
+| **Obsidian 2** | `#131417` | Elevated panel, card surface on dark. |
+| **Obsidian 3** | `#1C1E23` | Accent/hover surface on dark. |
+| **Bone** | `#EEEAE0` | Primary light surface. Warm off-white paper. |
+| **Bone 2** | `#E4DFD2` | Subtle light variation — alternating sections. |
+| **Ink** | `#0B0C0E` | Body text on bone. Same value as Obsidian. |
+| **Signal** | `#FF5B1A` | The one accent. Amber-orange. |
+| **Signal Dim** | `#C9440F` | Signal in hover/pressed state. |
+| **LED** | `#34D399` | Live status dot only. Never for text. |
 
-| Name | Hex | Usage |
-|------|-----|-------|
-| Navy Light | `#162640` | Hover states, card backgrounds on dark |
-| Navy Dark | `#080F1A` | Footer background, deepest dark |
-| Gold Dark | `#C8880A` | Hover state for gold, bevel detail in logo |
-| Gold Light | `#FFB733` | Light accents, hover glow |
-| White | `#FFFFFF` | Text on dark, card backgrounds |
-| Off-White | `#F5F7FA` | Alternating section backgrounds |
-| Text | `#1C2B3A` | Body text on light backgrounds |
-| Muted | `#6B7C93` | Secondary/supporting text, placeholders |
-| Border | `#DDE3EC` | Subtle dividers, card borders |
+### Derived Tokens
 
-### Colour Usage Rules
-- **Navy + Gold** is the primary pairing — it defines the brand
-- On dark (navy) backgrounds: use white for body text, gold for accents
-- On light backgrounds: use `--color-text` for body, navy for headings
-- Gold is never used as a background for body text (readability)
-- The gold CTA button always uses navy text for contrast compliance (WCAG AA)
+| Name | Value | Role |
+|------|-------|------|
+| `--hairline-dark` | `rgba(238,234,224,0.12)` | 1px rules on obsidian |
+| `--hairline-light` | `rgba(11,12,14,0.12)` | 1px rules on bone |
+| `--mute-dark` | `rgba(238,234,224,0.62)` | Secondary text on obsidian |
+| `--mute-light` | `rgba(11,12,14,0.60)` | Secondary text on bone |
+| `--grid-dark` | `rgba(238,234,224,0.04)` | Graph-paper background on obsidian |
+| `--grid-light` | `rgba(11,12,14,0.04)` | Graph-paper background on bone |
+
+### Usage Rules
+
+- Obsidian is the default canvas. Bone sections are editorial interludes, not the default.
+- Signal amber is used **once per viewport** wherever possible. It marks action, not decoration.
+- Never place signal on bone at small type sizes below 14px without weight ≥ 600.
+- Status LED green is reserved for the live indicator in the nav/ticker. Nowhere else.
+- Gradients are forbidden except one very low-contrast radial wash on hero backgrounds.
 
 ### Accessibility
-All text/background combinations in the design system meet WCAG 2.1 AA contrast ratios:
-- White on Navy: 13.5:1 ✓
-- Navy on Gold: 8.2:1 ✓
-- Navy on White: 12.1:1 ✓
+
+| Pair | Ratio | Notes |
+|------|-------|-------|
+| Bone on Obsidian | 15.1 : 1 | Body text, headings |
+| Signal on Obsidian | 5.6 : 1 | Large text and buttons only |
+| Ink on Bone | 14.8 : 1 | Body text, headings |
+| Signal on Bone | 3.9 : 1 | Large text (≥ 24px) only |
 
 ---
 
 ## 4. Typography
 
+Three typefaces, each with one job.
+
 ### Typefaces
 
-| Role | Font | Weights | Source |
-|------|------|---------|--------|
-| Display / Headings | Barlow Condensed | 600, 700, 800 | Google Fonts |
-| Body / UI | Barlow | 400, 500, 600 | Google Fonts |
+| Role | Font | Weights | Why |
+|------|------|---------|-----|
+| Display | **Fraunces** | 300, 500, 700, 900 (+ italic) | Variable serif with optical sizing. Serious without being stiff. Sharp at 72px, gentle at 24px. |
+| Body / UI | **Manrope** | 400, 500, 700 | Clean grotesque with distinctive rounded terminals. Readable, modern, not Inter. |
+| Mono / Data | **JetBrains Mono** | 400, 500, 700 | The dispatcher's typewriter. Used at small sizes for timestamps, codes and status. |
 
-**Import:**
+### Import
+
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet"/>
 ```
 
 ### Type Scale
 
-| Element | Font | Size | Weight | Line Height |
-|---------|------|------|--------|-------------|
-| H1 | Barlow Condensed | clamp(2.4rem, 6vw, 4rem) | 800 | 1.15 |
-| H2 | Barlow Condensed | clamp(1.8rem, 4vw, 2.8rem) | 700 | 1.15 |
-| H3 | Barlow Condensed | clamp(1.3rem, 2.5vw, 1.75rem) | 700 | 1.2 |
-| H4 | Barlow Condensed | 1.25rem | 700 | 1.25 |
-| Section label | Barlow Condensed | 0.85rem | 700 | — |
-| Body | Barlow | 1rem | 400 | 1.7 |
-| Body large | Barlow | 1.1–1.15rem | 400 | 1.7 |
-| Small / caption | Barlow | 0.85rem | 400–500 | 1.5 |
-| Button | Barlow Condensed | 0.9–1rem | 700 | — |
-| Nav link | Barlow Condensed | 0.95rem | 600 | — |
+| Element | Font | Size | Weight | Tracking | Leading |
+|---------|------|------|--------|----------|---------|
+| Display H1 | Fraunces | clamp(3rem, 8vw, 6.5rem) | 500 | -0.02em | 0.95 |
+| Display H2 | Fraunces | clamp(2rem, 5vw, 3.75rem) | 500 | -0.015em | 1.02 |
+| H3 | Fraunces | clamp(1.35rem, 2.5vw, 1.85rem) | 500 | -0.01em | 1.15 |
+| H4 | Fraunces | 1.25rem | 500 | -0.005em | 1.2 |
+| Body L | Manrope | 1.0625rem | 400 | 0 | 1.65 |
+| Body | Manrope | 1rem | 400 | 0 | 1.65 |
+| Small | Manrope | 0.875rem | 500 | 0 | 1.55 |
+| Mono label | JetBrains Mono | 0.75rem | 500 | 0.14em | 1 |
+| Mono data | JetBrains Mono | 0.8125rem | 400 | 0.02em | 1.4 |
+| Button | Manrope | 0.875rem | 700 | 0.08em | 1 |
 
-### Letter Spacing
-- Section labels: `0.12em` (uppercase, tracking)
-- Navbar links: `0.05em`
-- Buttons: `0.04em`
-- Headings: `0.01em`
-- Body: normal (0)
+### Typographic Details
+
+- Display headlines use Fraunces **italic** for the single emphasised phrase per section (e.g. *every time*, *on watch*, *built for 3am*). Never emphasise more than one phrase per headline.
+- Mono labels are **always uppercase** and take a leading glyph: `◉ LIVE` · `▸ OPS/01` · `⌁ UNIT READY`.
+- Numbered services use Fraunces italic at 96–144px set as the dominant compositional element.
+- Body text uses Manrope 400 only. Never bold body copy — weight is reserved for UI.
+- Avoid centred paragraphs for anything longer than one line. Editorial layout is left-aligned.
 
 ---
 
-## 5. Spacing System
+## 5. Spacing
 
-Based on an 8px base unit.
+Keep the 8px base but double the scale above `2xl` — editorial layouts breathe.
+
+| Token | Value |
+|-------|-------|
+| `--space-3xs` | 2px |
+| `--space-2xs` | 4px |
+| `--space-xs` | 8px |
+| `--space-sm` | 12px |
+| `--space-md` | 20px |
+| `--space-lg` | 32px |
+| `--space-xl` | 48px |
+| `--space-2xl` | 72px |
+| `--space-3xl` | 112px |
+| `--space-4xl` | 160px |
+| `--space-5xl` | 224px |
+
+Section vertical rhythm uses `--space-3xl` minimum between blocks, `--space-4xl` between major acts.
+
+---
+
+## 6. Corners & Radius
+
+The v1 design was pillowy and rounded. v2 is **hard-edged**. The only rounding comes from typography.
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--space-xs` | 4px | Fine-grained adjustments |
-| `--space-sm` | 8px | Icon gaps, tight spacing |
-| `--space-md` | 16px | Standard component padding |
-| `--space-lg` | 24px | Card padding internal |
-| `--space-xl` | 40px | Section sub-spacing, card padding |
-| `--space-2xl` | 64px | Between major elements |
-| `--space-3xl` | 96px | Section padding |
-| `--space-4xl` | 128px | Hero padding, major separators |
+| `--radius-0` | 0 | Default — everything is square |
+| `--radius-1` | 2px | Small UI chrome (status pills) |
+| `--radius-2` | 4px | Form inputs |
+| `--radius-full` | 999px | Status LED only |
+
+**Never** use rounded corners on cards, buttons, images or sections. The grid is the decoration.
 
 ---
 
-## 6. Border Radius
+## 7. Lines & Rules
 
-| Token | Value | Use |
-|-------|-------|-----|
-| `--radius-sm` | 6px | Tags, small badges |
-| `--radius-md` | 14px | Form inputs, accordion items |
-| `--radius-lg` | 24px | Cards, major containers |
-| `--radius-xl` | 36px | Large feature cards, image frames |
-| `--radius-pill` | 999px | Buttons, industry pills, badges |
+Hairlines are the primary structural element. They replace borders, dividers and cards.
 
-The rounded aesthetic is central to the brand's friendly, professional character. **Always prefer rounder edges** over sharp corners on cards and interactive elements.
+- All rules are 1px.
+- Rule colour is `--hairline-dark` on obsidian, `--hairline-light` on bone.
+- A **double rule** (1px + 3px gap + 1px) marks the top of major sections.
+- A **signal rule** (2px in `--signal`) marks the single emphasised item per page.
+- Cards do not have four-sided borders. They have **top-and-bottom rules** only.
 
 ---
 
-## 7. Components
+## 8. Components
 
-### Buttons
+### 8.1 Navbar
+
+- Fixed. 64px tall.
+- Obsidian background with a 1px bottom hairline.
+- Brand on the left (logo + Fraunces wordmark at 1.05rem, letterspaced).
+- Links centred in Manrope 500, 0.875rem, tracking 0.08em, uppercase.
+- On the right: a `◉ LIVE` pill with a pulsing `--led` dot, then the primary CTA.
+- Active link sits above a 2px signal underline.
+- Scroll state: background remains, hairline intensifies to full `--hairline-dark`.
+
+### 8.2 Ticker
+
+- A 28px-tall strip immediately above the navbar on obsidian.
+- Continuous marquee of mono labels separated by `◆`.
+- Content: `OPS CHANNEL 01 ◆ MCR HQ ◆ 24/7/365 ◆ SIA LICENSED ◆ BS 7858 VETTED ◆ RAPID DEPLOYMENT ◆ EMERGENCY COVER AVAILABLE`.
+- Signal amber text on obsidian, JetBrains Mono 0.75rem, letterspaced.
+- Paused on hover.
+
+### 8.3 Buttons
+
+Only two button types.
 
 | Variant | Background | Text | Border | Use |
 |---------|-----------|------|--------|-----|
-| `.btn-primary` | Gold `#F0A500` | Navy | None | Primary CTA |
-| `.btn-secondary` | Transparent | White | White | Secondary CTA on dark |
-| `.btn-outline-gold` | Transparent | Gold | Gold | Tertiary on light |
-| `.btn-navy` | Navy | White | None | CTA on gold/light bg |
+| `.btn-primary` | Signal | Obsidian | None | Single primary CTA per section |
+| `.btn-ghost` | Transparent | Current | 1px current | Everything else |
 
-- All buttons use `border-radius: 999px` (pill shape)
-- Hover: `translateY(-2px)` lift + shadow deepens
-- Standard size: padding `14px 32px`
-- Large (`.btn-lg`): padding `18px 44px`
-- Small (`.btn-sm`): padding `10px 22px`
+- Shape: square (`--radius-0`).
+- Padding: 16px 28px standard, 20px 36px large, 10px 18px small.
+- On hover: the button flips — primary fades to obsidian with a signal border; ghost fills with signal. No translate, no shadow.
+- Mono caret prefix: `→` sits inside the button with 12px padding on the right.
 
-### Cards
+### 8.4 Cards / "Entries"
 
-Standard card:
-```css
-background: #FFFFFF;
-border-radius: 24px;
-padding: 40px;
-box-shadow: 0 2px 8px rgba(13,27,46,.08);
-border: 1px solid #DDE3EC;
+Cards are reframed as "entries" — magazine items divided by hairlines.
+
+- No background fill. No border-radius. No shadow.
+- 1px top rule + 1px bottom rule only.
+- A huge mono number in the top-right corner (`01 / 06`) in Fraunces italic, size `clamp(3rem, 6vw, 5.5rem)`.
+- Title in Fraunces 500 at 1.6rem.
+- A `◉ TAG` mono strip below the title in signal amber.
+- On hover: title shifts left 8px and a 2px signal rule slides across the bottom from left to right over 400ms.
+
+### 8.5 Status Pills
+
+- JetBrains Mono 0.6875rem uppercase, 0.14em tracking.
+- Padding 4px 10px, `--radius-1`.
+- Three kinds: live (green LED + signal text), alert (signal bg, obsidian text), standby (hairline border, muted text).
+
+### 8.6 Forms
+
+- Inputs have no border box — only a 1px **bottom** rule, `--hairline-dark`.
+- Labels sit above in JetBrains Mono 0.6875rem uppercase signal.
+- Focus: bottom rule becomes 2px signal, no ring.
+- Placeholder: Manrope italic at `--mute-dark`.
+- Select chevron: custom mono `▾`.
+- Errors: a 1px signal rule on the left of the field + mono error message below.
+
+### 8.7 Accordion (Careers)
+
+- Each entry is row-based, full-width, separated by hairlines.
+- Left column: role title (Fraunces 1.5rem) and mono meta (`▸ PART-TIME ◆ MCR CITY ◆ CODE · DS-PT`).
+- Right column: `+` glyph in Fraunces 2rem that rotates 45° to `×` when open.
+- Open body: mono description block with a 2px signal left rule and a ghost "APPLY" button aligned right.
+
+### 8.8 Tables / Step Lists
+
+The three-step process is a horizontal **log**:
+
 ```
-Hover: lift `translateY(-4px)`, deeper shadow.
-
-Dark card (`.card-dark`): navy-light background, white text.
-
-### Service Cards
-Service cards extend the standard card with a `.service-icon` component (56×56, gold on navy-light background). On hover, the icon inverts to gold background with navy icon.
-
-### Badges / Tags
-
-| Class | Use |
-|-------|-----|
-| `.badge-gold` | Key features, accreditations |
-| `.badge-navy` | Dark on light contexts |
-| `.badge-white` | On dark backgrounds |
-| `.job-tag-type` | Role type labels (gold tint) |
-| `.job-tag-location` | Location labels (grey tint) |
-
-### Forms
-- Inputs: 2px border, `--radius-md`, focus ring in gold (`rgba(240,165,0,.12)`)
-- Error state: red border + red error message
-- Select elements match input styling
-
----
-
-## 8. Iconography
-
-The website uses inline SVG icons drawn in the Heroicons / Feather style:
-- Stroke-based, 2px stroke width
-- Stroke-linecap: round, stroke-linejoin: round
-- Size: 24×24px at 1rem; 28×28px in service icon containers
-- Colour: inherits from parent (`currentColor`)
-
-Do not use raster icon images. Prefer inline SVG for performance and crisp rendering at all resolutions.
-
----
-
-## 9. Photography Style
-
-### Style Guidelines
-- **Tone:** Professional, confident, grounded in reality. Not overly staged or stock-photo generic.
-- **Colour:** Images should be slightly desaturated or dark-toned to complement the navy palette. Avoid overly warm or bright imagery.
-- **Subject:** Security professionals, Manchester cityscapes, corporate environments, team settings.
-- **Overlay:** A 10–15% navy overlay (`opacity: 0.12`) applied to all hero background images to maintain brand colour dominance.
-
-### Approved Free Image Sources
-- [Unsplash](https://unsplash.com) — primary source
-- [Pexels](https://pexels.com) — secondary source
-
-### Image Treatment on Website
-- Hero backgrounds: `background-size: cover`, `opacity: 0.12` overlay effect
-- Feature/about images: `border-radius: var(--radius-xl)`, `object-fit: cover`
-- All images include descriptive `alt` attributes
-
----
-
-## 10. Section Layout Patterns
-
-### Clip-path Transitions
-Section transitions use CSS `clip-path` to create angled bottom edges, providing visual movement between sections:
-```css
-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+01 ── ENQUIRE       02 ── PLAN         03 ── DEPLOY
+       ─────────────────────────────────────
+       Mono copy     Mono copy          Mono copy
 ```
-Used on hero sections to create a diagonal flow into the next section.
 
-### Section Rhythm
-Sections alternate between:
-1. White background (`--color-white`)
-2. Off-white background (`.section-alt`)
-3. Dark navy background (`.section-dark`)
-4. Gold background (`.cta-banner`, `.stats-bar`)
-
-This rhythm prevents visual monotony and creates clear content hierarchy.
+Large Fraunces numerals, mono rules between steps, Manrope body below.
 
 ---
 
-## 11. Motion & Animation
+## 9. Section Layout
 
-- **Fade-in on scroll:** `.fade-in` class + IntersectionObserver, 0.6s ease, 28px translateY
-- **Stagger delays:** child elements delay 0.1s per sibling (up to 6)
-- **Button hover:** `translateY(-2px)`, 0.25s ease
-- **Card hover:** `translateY(-4px)`, shadow increase, 0.25s ease
-- **Navbar:** box-shadow adds on scroll, 0.25s ease
-- **Accordion:** open/close state, no height animation (display toggle for simplicity)
-- **Counter animation:** ease-out cubic over 1800ms on stats entering viewport
+### 9.1 The Grid
+
+The site runs on a 12-column grid with `--space-md` gutters. The outer container is `min(92vw, 1360px)`. Breakout rules are allowed — images and headlines may extend to the viewport edge.
+
+### 9.2 Backgrounds
+
+- **Default:** obsidian with a faint graph-paper grid (`--grid-dark`, 40px squares).
+- **Section bone:** bone with `--grid-light` grid.
+- **Grain overlay:** a fixed-position SVG noise layer at 3% opacity sits over the entire site, pinned to the viewport. Source: inline SVG `feTurbulence` with `baseFrequency=0.9`.
+- **No photography on hero by default.** If imagery is used, it is monochromed to obsidian with a 60% darken overlay and placed as a side column, never full-bleed.
+
+### 9.3 Section Rhythm
+
+Alternate in this order, top to bottom:
+
+1. Obsidian (hero)
+2. Obsidian (secondary)
+3. Bone (editorial interlude)
+4. Obsidian (dark stats / credentials)
+5. Bone (CTA spread)
+6. Obsidian (footer)
+
+This dominant-dark cadence reinforces the night-watch concept. A bone section always feels like paper pulled out of a folder.
+
+### 9.4 Hero Composition
+
+The hero is **asymmetric**:
+
+- Left 7 columns: Fraunces headline, mono eyebrow, one sentence of Manrope body, primary CTA.
+- Right 5 columns: an operations panel — a stack of mono readouts (UNIT STATUS, COVERAGE, ON-CALL, LAST DEPLOYMENT) with blinking LED.
+- Bottom full-width: the ticker.
+- Background: obsidian + grid + a very soft signal radial at 8% in the top-right.
+
+### 9.5 Section Headings
+
+Every section starts with a three-line stamp:
+
+```
+▸ SECTION 02 / 06
+─────────────────
+THE SERVICES WE OPERATE
+```
+
+Line 1: JetBrains Mono signal label.
+Line 2: 1px rule, 48px long.
+Line 3: Fraunces headline.
 
 ---
 
-## 12. Tone of Voice
+## 10. Motion
 
-**Do:**
-- Be direct and confident: "We protect your business."
-- Use active voice: "We deploy vetted operatives."
-- Be specific: "SIA-licensed door supervisors" not "security people"
-- Be human and approachable: "Let's talk."
-- Reference Manchester and the North West naturally
+Restrained. Purposeful. Never decorative.
 
-**Don't:**
-- Use jargon without explanation
-- Use passive voice excessively
-- Be overly formal or corporate-stiff
-- Make unverifiable claims ("the best security company")
-- Use filler phrases ("We are pleased to offer…")
+- **Page load:** a single 600ms vertical text reveal on the hero headline (clip-path inset from 0 100% to 0 0). One headline. No others.
+- **Ticker:** continuous linear translate, 60s cycle. Paused on hover.
+- **LED pulse:** 2s ease-in-out alternate, opacity 0.35 → 1.
+- **Section reveal:** body elements fade + rise 12px over 500ms on intersection. Stagger 60ms between siblings. Max 6 items staggered.
+- **Entry hover:** title translateX(8px), signal rule slides across bottom over 400ms `cubic-bezier(0.2, 0, 0, 1)`.
+- **Button hover:** 200ms colour swap, no transform.
+- **Respects `prefers-reduced-motion`:** all non-essential motion is disabled.
 
 ---
 
-## 13. Contact Details (Placeholder)
+## 11. Iconography
+
+- Material Symbols **Outlined** weight 300 — thin, technical.
+- Default size 20px. Inline with mono labels at baseline.
+- Signal amber **only** when paired with the live/alert state. Everything else inherits text colour.
+- No filled icons. No rounded variants.
+
+---
+
+## 12. Photography
+
+Photography is a last resort, not a default.
+
+- If used, convert to grayscale, pull highlights down, push shadows deeper. Image should read as 90% black with one or two silver midtones.
+- Overlay a 40% obsidian scrim with a signal-amber 4% wash.
+- No rounded corners. Images are rectangles with a 1px hairline above and below.
+- Captions mandatory: JetBrains Mono 0.75rem, signal label + Manrope description.
+
+---
+
+## 13. Tone of Voice
+
+Same rules as v1 with two additions:
+
+- Prefer **numbers and specifics.** "24/7, 365" beats "always available".
+- Use **dispatch language** sparingly in mono UI: UNIT, CHANNEL, COVERAGE, DEPLOYMENT, ON-CALL. Never in body copy.
+
+---
+
+## 14. Design Tokens Reference
+
+For direct copy into CSS:
+
+```css
+:root {
+  /* Surface */
+  --obsidian:   #0B0C0E;
+  --obsidian-2: #131417;
+  --obsidian-3: #1C1E23;
+  --bone:       #EEEAE0;
+  --bone-2:     #E4DFD2;
+
+  /* Ink */
+  --ink:        #0B0C0E;
+  --bone-ink:   #EEEAE0;
+
+  /* Accent */
+  --signal:     #FF5B1A;
+  --signal-dim: #C9440F;
+  --led:        #34D399;
+
+  /* Hairlines / atmosphere */
+  --hairline-dark:  rgba(238, 234, 224, 0.12);
+  --hairline-light: rgba(11, 12, 14, 0.12);
+  --mute-dark:      rgba(238, 234, 224, 0.62);
+  --mute-light:     rgba(11, 12, 14, 0.60);
+  --grid-dark:      rgba(238, 234, 224, 0.04);
+  --grid-light:     rgba(11, 12, 14, 0.04);
+
+  /* Type */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body:    "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Motion */
+  --ease-editorial: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 200ms;
+  --dur-mid:  400ms;
+  --dur-slow: 600ms;
+
+  /* Grid */
+  --container: min(92vw, 1360px);
+  --gutter:    20px;
+}
+```
+
+---
+
+## 15. What To Avoid
+
+Explicit no-gos, learned from the v1 refresh:
+
+- Gold gradients on navy. The v1 pairing is retired.
+- Rounded pill buttons.
+- Drop shadows.
+- Centred hero copy for the homepage.
+- Stock photography of "a man in a suit".
+- Iconography as the primary storytelling device.
+- Multiple accent colours. There is one signal. That is the discipline.
+
+---
+
+## 16. Contact Details (Placeholder)
 
 | | |
 |--|--|
-| **Company** | Spike Security Ltd |
-| **Address** | 5 Spinningfields Square, Manchester, M3 3AP |
-| **Phone** | 0161 850 4422 |
+| **Company** | SPIKE SECURITY LIMITED |
+| **Address** | Cheetham Hill, Manchester |
+| **Phone** | 020 37 57 27 67 |
 | **General email** | info@spikesecurity.co.uk |
 | **Careers email** | careers@spikesecurity.co.uk |
 | **Hours (office)** | Mon–Fri, 8am–6pm |
 | **Hours (operational)** | 24/7, 365 days a year |
-
-> ⚠️ The address and company registration number above are placeholders and should be updated with real details before launch.
