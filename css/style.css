@@ -359,6 +359,20 @@ p { line-height: 1.7; }
   font-size: 0.875rem;
 }
 
+/* Caret flourish — the arrow that sits inside primary CTAs and
+   eases forward on hover. Opt-in via .btn-submit or wrap with
+   <span class="btn-caret">. */
+.btn-caret {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  transition: transform var(--transition);
+  display: inline-block;
+}
+
+.btn:hover .btn-caret {
+  transform: translateX(4px);
+}
+
 .btn-lg {
   padding: 18px 44px;
   font-size: 1.125rem;
@@ -692,16 +706,25 @@ textarea.form-control {
 
 .accordion-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-md);
-  margin-top: 4px;
+  margin-top: var(--space-sm);
 }
 
-.accordion-meta span {
-  font-size: 0.85rem;
+.accordion-meta > span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--color-muted);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+}
+
+/* Job code pill — amber inline marker */
+.accordion-meta > span:last-child {
+  color: var(--signal);
 }
 
 .accordion-icon {
@@ -719,7 +742,7 @@ textarea.form-control {
 }
 
 .accordion-header.open .accordion-icon {
-  transform: rotate(180deg);
+  transform: rotate(45deg);
   background: var(--color-gold);
   border-color: var(--color-gold);
   color: var(--color-navy);
@@ -728,8 +751,10 @@ textarea.form-control {
 .accordion-body {
   display: none;
   padding: var(--space-xl);
+  padding-left: calc(var(--space-xl) + 8px);
   background: var(--color-off-white);
   border-top: 1px solid var(--hairline-light);
+  border-left: 2px solid var(--signal);
 }
 
 .accordion-body.open {
