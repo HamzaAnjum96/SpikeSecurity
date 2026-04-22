@@ -143,12 +143,12 @@ button, input, select, textarea {
 }
 button { cursor: pointer; }
 
-.material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
-  font-weight: 500;
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 300;
   font-style: normal !important;
-  font-variation-settings: normal;
-  font-size: 24px;
+  font-variation-settings: 'wght' 300;
+  font-size: 22px;
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -313,8 +313,7 @@ p { line-height: 1.7; }
   white-space: nowrap;
 }
 
-.btn:hover { transform: translateY(-2px); }
-.btn:active { transform: translateY(0); }
+.btn:active { transform: translateY(1px); }
 
 .btn-primary {
   background: var(--color-gold);
@@ -536,7 +535,7 @@ p { line-height: 1.7; }
 
 .check-list li::before {
   content: 'check_circle';
-  font-family: 'Material Symbols Rounded';
+  font-family: 'Material Symbols Outlined';
   font-size: 1.35rem;
   color: var(--color-gold);
   line-height: 1;
@@ -1234,21 +1233,6 @@ textarea.form-control {
   opacity: 1;
 }
 
-.hero-content-wide {
-  max-width: 840px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.hero-content-wide .hero-sub,
-.hero-content-wide h1 {
-  max-width: none;
-}
-
-.hero-content-wide .hero-actions {
-  justify-content: center;
-}
-
 /* ------------------------------------------------------------
    8. STATS BAR
    ------------------------------------------------------------ */
@@ -1696,13 +1680,16 @@ textarea.form-control {
 
 /* ── Form card ── */
 .form-card {
-  background: var(--color-white);
-  padding: var(--space-2xl);
+  background: transparent;
+  padding: var(--space-2xl) 0;
   border-top: 1px solid var(--hairline-light);
   border-bottom: 1px solid var(--hairline-light);
 }
 
 .form-card h3 {
+  position: relative;
+  padding-left: 14px;
+  border-left: 2px solid var(--signal);
   margin-bottom: var(--space-xl);
 }
 
@@ -1835,13 +1822,13 @@ textarea.form-control {
 
 /* When .stat-number carries an icon, drop the italic numeral
    styling and render a clean signal-amber glyph instead. */
-.stat-number.material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
+.stat-number.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
   font-size: 2rem;
   color: var(--signal);
   padding-bottom: var(--space-sm);
 }
-.stat-number.material-symbols-rounded::after {
+.stat-number.material-symbols-outlined::after {
   width: 24px;
 }
 
@@ -1854,7 +1841,7 @@ textarea.form-control {
   .stat-item:last-child { border-bottom: none; }
 }
 
-.industry-pill .material-symbols-rounded { font-size: 1.15rem; }
+.industry-pill .material-symbols-outlined { font-size: 1.15rem; }
 
 /* ------------------------------------------------------------
    18. FOCUS & ACCESSIBILITY
