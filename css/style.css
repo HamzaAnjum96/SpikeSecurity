@@ -1847,6 +1847,97 @@ body::after {
   color: var(--signal);
 }
 
+/* Value cards on dark — borrow the entry treatment vocabulary. */
+.section-dark .value-card {
+  background: transparent;
+  border-bottom-color: var(--hairline-dark);
+}
+
+.section-dark .value-card h3,
+.section-dark .value-card h4 { color: var(--bone); }
+
+.section-dark .value-card p {
+  color: rgba(238, 234, 224, 0.72);
+}
+
+.section-dark .value-card:hover {
+  background: rgba(238, 234, 224, 0.03);
+}
+
+/* Industry pills on dark */
+.section-dark .industry-pill {
+  border-color: var(--hairline-dark);
+  color: rgba(238, 234, 224, 0.82);
+}
+
+.section-dark .industry-pill:hover {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--color-navy);
+}
+
+/* Check-list glyph on dark */
+.section-dark .check-list li { color: var(--bone); }
+.section-dark .check-list li::before { color: var(--signal); }
+
+/* ── Editorial image treatment ──
+   Content photography reads like a monochrome control-room feed:
+   grayscale, contrast pumped, highlights pulled down. A signal
+   amber wash sits over everything at low opacity. A hairline rule
+   above and below. On hover the wash fades. */
+.img-editorial,
+.hero-image img,
+.why-image-wrap img {
+  filter: grayscale(1) contrast(1.12) brightness(0.92);
+  transition: filter 400ms ease;
+}
+
+.img-editorial {
+  border-top: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
+}
+
+.section-dark .img-editorial {
+  border-top-color: var(--hairline-dark);
+  border-bottom-color: var(--hairline-dark);
+}
+
+.img-editorial-wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.img-editorial-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 12, 14, 0.15) 0%,
+    rgba(11, 12, 14, 0.45) 100%
+  );
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.img-editorial-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 91, 26, 0.06);
+  mix-blend-mode: color;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+  z-index: 1;
+}
+
+.img-editorial-wrap:hover .img-editorial,
+.img-editorial-wrap:hover img {
+  filter: grayscale(0.6) contrast(1.08);
+}
+
 /* Responsive overrides for ops chrome */
 @media (max-width: 768px) {
   .live-pill { display: none; }
