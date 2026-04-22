@@ -146,7 +146,8 @@ button { cursor: pointer; }
 .material-symbols-rounded {
   font-family: 'Material Symbols Rounded';
   font-weight: 500;
-  font-style: normal;
+  font-style: normal !important;
+  font-variation-settings: normal;
   font-size: 24px;
   line-height: 1;
   display: inline-flex;
@@ -1152,7 +1153,7 @@ textarea.form-control {
   border-bottom: none;
 }
 
-.ops-row dt {
+.ops-row .ops-k {
   color: rgba(238, 234, 224, 0.55);
   font-size: 0.66rem;
   letter-spacing: 0.16em;
@@ -1160,7 +1161,7 @@ textarea.form-control {
   white-space: nowrap;
 }
 
-.ops-row dd {
+.ops-row .ops-v {
   color: var(--bone);
   font-size: 0.82rem;
   letter-spacing: 0.04em;
