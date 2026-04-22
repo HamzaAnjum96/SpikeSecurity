@@ -6,7 +6,7 @@
 - **Legal name:** SPIKE SECURITY LIMITED
 - **Brand name:** Spike Security
 - **Founded:** 2025
-- **Head office:** Cheetham Hill, Manchester, United Kingdom
+- **Head office:** 475B Cheetham Hill Rd, Cheetham Hill, Manchester M8 9LR, United Kingdom
 - **Primary region served:** the North West
 - **Operating model:** Professional, licensed security services for businesses and events
 - **Availability:** 24/7, 365 days per year
