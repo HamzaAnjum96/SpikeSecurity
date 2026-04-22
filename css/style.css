@@ -301,61 +301,49 @@ p { line-height: 1.7; }
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 14px 32px;
-  border-radius: var(--radius-pill);
+  padding: 16px 28px;
+  border-radius: 0;
+  border: 1px solid transparent;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: background var(--transition), color var(--transition),
-              box-shadow var(--transition), transform var(--transition);
+              border-color var(--transition);
   white-space: nowrap;
 }
 
-.btn:active { transform: translateY(1px); }
-
 .btn-primary {
-  background: var(--color-gold);
-  color: var(--color-navy);
+  background: var(--signal);
+  color: var(--obsidian);
+  border-color: var(--signal);
 }
 .btn-primary:hover {
-  background: var(--color-gold-dark);
-  box-shadow: var(--shadow-gold);
+  background: var(--obsidian);
+  color: var(--signal);
+  border-color: var(--signal);
 }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--color-white);
-  border: 2px solid var(--color-white);
-}
-.btn-secondary:hover {
-  background: var(--color-white);
-  color: var(--color-navy);
-}
-
-.btn-outline-gold {
-  background: transparent;
-  color: var(--color-gold);
-  border: 2px solid var(--color-gold);
-}
-.btn-outline-gold:hover {
-  background: var(--color-gold);
-  color: var(--color-navy);
-  box-shadow: var(--shadow-gold);
-}
-
+/* v2 ghost button (canonical) */
+.btn-ghost,
+.btn-secondary,
+.btn-outline-gold,
 .btn-navy {
-  background: var(--color-navy);
-  color: var(--color-white);
+  background: transparent;
+  color: currentColor;
+  border-color: currentColor;
 }
-.btn-navy:hover {
-  background: var(--color-navy-light);
-  box-shadow: var(--shadow-md);
+.btn-ghost:hover,
+.btn-secondary:hover,
+.btn-outline-gold:hover {
+  background: var(--signal);
+  color: var(--obsidian);
+  border-color: var(--signal);
 }
 
 .btn-sm {
-  padding: 10px 22px;
+  padding: 10px 18px;
   font-size: 0.875rem;
 }
 
@@ -374,8 +362,8 @@ p { line-height: 1.7; }
 }
 
 .btn-lg {
-  padding: 18px 44px;
-  font-size: 1.125rem;
+  padding: 20px 36px;
+  font-size: 0.875rem;
 }
 
 /* ── Cards ── */
@@ -926,8 +914,7 @@ textarea.form-control {
 }
 
 .mobile-nav .btn {
-  width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: var(--space-md);
 }
 
