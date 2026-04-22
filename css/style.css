@@ -69,18 +69,24 @@
   --space-3xl: 96px;
   --space-4xl: 128px;
 
-  /* Border radius */
-  --radius-sm:   6px;
-  --radius-md:   14px;
-  --radius-lg:   24px;
-  --radius-xl:   36px;
+  /* Border radius — v2 is hard-edged. Only the pill
+     survives for LEDs, job tags and status chips. */
+  --radius-sm:   0px;
+  --radius-md:   0px;
+  --radius-lg:   0px;
+  --radius-xl:   0px;
   --radius-pill: 999px;
 
-  /* Shadows */
-  --shadow-sm:  0 2px 8px rgba(11,12,14,.18);
-  --shadow-md:  0 6px 24px rgba(11,12,14,.25);
-  --shadow-lg:  0 16px 48px rgba(11,12,14,.35);
-  --shadow-gold: 0 4px 24px rgba(255,91,26,.30);
+  /* Shadows — v2 replaces drop shadows with hairline rules.
+     Kept as no-op defaults so older rules don't explode. */
+  --shadow-sm:   none;
+  --shadow-md:   none;
+  --shadow-lg:   none;
+  --shadow-gold: none;
+
+  /* Hairline rule (used in place of cards' full borders) */
+  --rule:        1px solid var(--hairline-light);
+  --rule-dark:   1px solid var(--hairline-dark);
 
   /* Transitions */
   --transition: 0.18s ease;
@@ -107,7 +113,13 @@ body {
   font-family: var(--font-body);
   font-weight: var(--fw-regular);
   color: var(--color-text);
-  background: var(--color-white);
+  background-color: var(--color-white);
+  /* Graph-paper grid — 48px cells, very subtle. Gives the
+     whole page a control-room draughtsman feel. */
+  background-image:
+    linear-gradient(to right, var(--grid-light) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-light) 1px, transparent 1px);
+  background-size: 48px 48px;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -355,22 +367,21 @@ p { line-height: 1.7; }
 /* ── Cards ── */
 .card {
   background: var(--color-white);
-  border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
-  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  border-top: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
-  border-color: rgba(255,91,26,.35);
+  border-top-color: var(--signal);
+  background: var(--color-off-white);
 }
 
 .card-dark {
   background: var(--color-navy-light);
-  border-color: rgba(238,234,224,.08);
+  border-top-color: var(--hairline-dark);
+  border-bottom-color: var(--hairline-dark);
   color: var(--color-white);
 }
 
@@ -380,22 +391,23 @@ p { line-height: 1.7; }
 
 /* ── Service Icon ── */
 .service-icon {
-  width: 56px;
-  height: 56px;
-  background: rgba(255,91,26,.12);
-  border-radius: var(--radius-md);
-  display: flex;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-lg);
   color: var(--color-gold);
-  font-size: 1.5rem;
-  transition: background var(--transition);
+  font-size: 1.65rem;
+  border: 1px solid var(--hairline-light);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
 
-.card:hover .service-icon {
+.card:hover .service-icon,
+.service-card:hover .service-icon {
   background: var(--color-gold);
   color: var(--color-navy);
+  border-color: var(--color-gold);
 }
 
 /* ── Badge ── */
@@ -437,6 +449,7 @@ p { line-height: 1.7; }
   color: var(--signal);
   display: block;
   margin-bottom: var(--space-md);
+  text-align: left;
 }
 .section-label::before {
   content: "▸ ";
@@ -459,10 +472,9 @@ p { line-height: 1.7; }
 
 /* ── Divider ── */
 .divider-gold {
-  width: 56px;
-  height: 4px;
+  width: 72px;
+  height: 2px;
   background: var(--color-gold);
-  border-radius: 2px;
   margin-bottom: var(--space-lg);
 }
 
@@ -511,22 +523,21 @@ p { line-height: 1.7; }
 
 .form-control {
   width: 100%;
-  padding: 14px 18px;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  padding: 12px 2px;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
   font-size: 1rem;
   color: var(--color-text);
-  background: var(--color-white);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  background: transparent;
+  transition: border-color var(--transition);
 }
 
 .form-control:focus {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 4px rgba(255,91,26,.12);
+  border-bottom-color: var(--color-gold);
 }
 
 .form-control.error {
-  border-color: var(--color-error);
+  border-bottom-color: var(--color-error);
 }
 
 .form-control::placeholder {
@@ -576,12 +587,12 @@ textarea.form-control {
 .step-number {
   width: 56px;
   height: 56px;
-  background: var(--color-gold);
-  color: var(--color-navy);
-  border-radius: 50%;
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   font-variation-settings: "opsz" 48;
@@ -589,7 +600,6 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--space-lg);
-  box-shadow: var(--shadow-gold);
 }
 
 .step h4 {
@@ -598,18 +608,16 @@ textarea.form-control {
 
 /* ── Accordion (Careers) ── */
 .accordion-item {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: box-shadow var(--transition);
+  border-top: 1px solid var(--hairline-light);
+  transition: background var(--transition);
 }
 
-.accordion-item + .accordion-item {
-  margin-top: var(--space-md);
+.accordion-item:last-child {
+  border-bottom: 1px solid var(--hairline-light);
 }
 
 .accordion-item:hover {
-  box-shadow: var(--shadow-sm);
+  background: var(--color-off-white);
 }
 
 .accordion-header {
@@ -664,27 +672,29 @@ textarea.form-control {
 .accordion-icon {
   width: 32px;
   height: 32px;
-  background: rgba(255,91,26,.12);
-  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--hairline-light);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-gold);
   flex-shrink: 0;
-  transition: transform var(--transition), background var(--transition);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
   margin-left: var(--space-lg);
 }
 
 .accordion-header.open .accordion-icon {
   transform: rotate(180deg);
-  background: rgba(255,91,26,.2);
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-navy);
 }
 
 .accordion-body {
   display: none;
   padding: var(--space-xl);
   background: var(--color-off-white);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--hairline-light);
 }
 
 .accordion-body.open {
@@ -771,7 +781,6 @@ textarea.form-control {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: rgba(238,234,224,.78);
-  border-radius: var(--radius-sm);
   transition: color var(--transition), background var(--transition);
 }
 
@@ -838,8 +847,7 @@ textarea.form-control {
   display: block;
   padding: 14px var(--space-md);
   font-size: 1.1rem;
-  border-radius: var(--radius-md);
-  margin-bottom: 4px;
+  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .mobile-nav .btn {
@@ -865,14 +873,14 @@ textarea.form-control {
   min-height: 88vh;
   display: flex;
   align-items: center;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   padding-bottom: var(--space-4xl);
+  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .hero-page {
   padding-block: var(--space-3xl);
-  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
   padding-bottom: calc(var(--space-3xl) + 48px);
+  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .hero-bg {
@@ -942,13 +950,15 @@ textarea.form-control {
 
 .hero-sub-urgent {
   display: inline-block;
-  background: rgba(255,91,26,.16);
-  border: 1px solid rgba(255,91,26,.45);
-  border-radius: var(--radius-md);
-  padding: 10px 14px;
+  background: transparent;
+  border-left: 2px solid var(--signal);
+  padding: 6px 14px;
   margin-top: calc(var(--space-xl) * -0.45);
   margin-bottom: var(--space-xl);
   color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
   font-weight: var(--fw-medium);
 }
 
@@ -963,22 +973,19 @@ textarea.form-control {
 }
 
 .hero-image img {
-  border-radius: var(--radius-xl);
   width: 100%;
   max-height: 520px;
   object-fit: cover;
-  box-shadow: var(--shadow-lg);
+  filter: grayscale(0.1) contrast(1.03);
 }
 
 .hero-image-badge {
   position: absolute;
-  bottom: -24px;
-  left: -24px;
+  bottom: 0;
+  left: 0;
   background: var(--color-gold);
   color: var(--color-navy);
-  border-radius: var(--radius-lg);
   padding: var(--space-md) var(--space-lg);
-  box-shadow: var(--shadow-gold);
 }
 
 .hero-image-badge .badge-number {
@@ -1003,7 +1010,6 @@ textarea.form-control {
 
 .hero-main-full {
   min-height: 78vh;
-  clip-path: none;
   padding-block: var(--space-4xl) var(--space-3xl);
 }
 
@@ -1035,7 +1041,7 @@ textarea.form-control {
 .stats-bar {
   background: var(--color-gold);
   padding: var(--space-xl) 0;
-  margin-top: -2px;
+  border-bottom: 1px solid rgba(11,12,14,.12);
 }
 
 .stats-grid {
@@ -1076,22 +1082,39 @@ textarea.form-control {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
+  gap: 0;
+  counter-reset: service;
+  border-top: 1px solid var(--hairline-light);
+  border-left: 1px solid var(--hairline-light);
 }
 
 .service-card {
-  border-radius: var(--radius-lg);
+  position: relative;
   padding: var(--space-xl);
   background: var(--color-white);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
-  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  border-right: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
+  counter-increment: service;
+  transition: background var(--transition);
+}
+
+.service-card::before {
+  content: counter(service, decimal-leading-zero);
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
 }
 
 .service-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-  border-color: var(--color-gold);
+  background: var(--color-off-white);
+}
+
+.service-card:hover::before {
+  color: var(--signal);
 }
 
 .service-card .card-link {
@@ -1114,11 +1137,11 @@ textarea.form-control {
 
 /* ── SIA Callout ── */
 .sia-callout {
-  border: 2px solid var(--color-gold);
-  border-radius: var(--radius-xl);
+  border-top: 1px solid var(--color-gold);
+  border-bottom: 1px solid var(--color-gold);
   padding: var(--space-2xl);
   text-align: center;
-  background: linear-gradient(135deg, rgba(255,91,26,.04), rgba(255,91,26,.08));
+  background: transparent;
   max-width: 760px;
   margin-inline: auto;
 }
@@ -1130,7 +1153,6 @@ textarea.form-control {
   width: 80px;
   height: 80px;
   background: var(--color-gold);
-  border-radius: 50%;
   font-family: var(--font-mono);
   font-size: 0.95rem;
   font-weight: 700;
@@ -1138,7 +1160,6 @@ textarea.form-control {
   text-transform: uppercase;
   letter-spacing: 0.18em;
   margin: 0 auto var(--space-lg);
-  box-shadow: var(--shadow-gold);
 }
 
 /* ------------------------------------------------------------
@@ -1149,23 +1170,14 @@ textarea.form-control {
 }
 
 .why-image-wrap img {
-  border-radius: var(--radius-xl);
   width: 100%;
   height: 500px;
   object-fit: cover;
-  box-shadow: var(--shadow-lg);
+  filter: grayscale(0.1) contrast(1.03);
 }
 
 .why-image-accent {
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 140px;
-  height: 140px;
-  background: var(--color-gold);
-  border-radius: var(--radius-xl);
-  z-index: -1;
-  opacity: 0.6;
+  display: none;
 }
 
 /* ------------------------------------------------------------
@@ -1182,45 +1194,60 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 12px 22px;
-  background: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-body);
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid var(--hairline-light);
+  font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: var(--color-text);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   transition: background var(--transition), border-color var(--transition),
-              color var(--transition), transform var(--transition);
+              color var(--transition);
 }
 
 .industry-pill:hover {
   background: var(--color-navy);
   border-color: var(--color-navy);
   color: var(--color-white);
-  transform: translateY(-2px);
 }
 
 /* ------------------------------------------------------------
    12. CTA BANNER
    ------------------------------------------------------------ */
 .cta-banner {
-  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 50%, var(--color-gold) 100%);
+  background: var(--color-navy);
+  color: var(--color-white);
   padding: var(--space-3xl) 0;
-  text-align: center;
+  text-align: left;
+  border-top: 1px solid var(--color-gold);
+  border-bottom: 1px solid var(--color-gold);
 }
 
 .cta-banner h2 {
-  color: var(--color-navy);
+  color: var(--color-white);
   margin-bottom: var(--space-md);
 }
 
+.cta-banner h2 .highlight { color: var(--color-gold); }
+
 .cta-banner p {
-  color: rgba(11,12,14,.7);
+  color: rgba(238,234,224,.7);
   font-size: 1.1rem;
   margin-bottom: var(--space-xl);
+  max-width: 540px;
+}
+
+/* CTA banner is now dark, so the default navy button would
+   disappear. Re-skin to gold and lift text legibility. */
+.cta-banner .btn-navy {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+.cta-banner .btn-navy:hover {
+  background: var(--color-gold-dark);
+  color: var(--color-navy);
 }
 
 /* ------------------------------------------------------------
@@ -1234,17 +1261,15 @@ textarea.form-control {
 
 .value-card {
   background: var(--color-white);
-  border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  text-align: center;
-  border-top: 4px solid var(--color-gold);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), transform var(--transition);
+  text-align: left;
+  border-top: 2px solid var(--color-gold);
+  border-bottom: 1px solid var(--hairline-light);
+  transition: background var(--transition);
 }
 
 .value-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  background: var(--color-off-white);
 }
 
 .value-icon {
@@ -1263,17 +1288,16 @@ textarea.form-control {
 }
 
 .benefit-card {
-  text-align: center;
+  text-align: left;
   padding: var(--space-xl);
-  background: rgba(238,234,224,.06);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(238,234,224,.1);
-  transition: background var(--transition), transform var(--transition);
+  background: transparent;
+  border-top: 1px solid var(--hairline-dark);
+  border-bottom: 1px solid var(--hairline-dark);
+  transition: background var(--transition);
 }
 
 .benefit-card:hover {
-  background: rgba(238,234,224,.1);
-  transform: translateY(-4px);
+  background: rgba(238,234,224,.04);
 }
 
 .benefit-icon {
@@ -1332,9 +1356,9 @@ textarea.form-control {
 
 .contact-info-card {
   background: var(--color-navy);
-  border-radius: var(--radius-xl);
   padding: var(--space-2xl);
   color: var(--color-white);
+  border-top: 1px solid var(--color-gold);
 }
 
 .contact-info-card h3 {
@@ -1351,8 +1375,9 @@ textarea.form-control {
 .contact-detail-icon {
   width: 44px;
   height: 44px;
-  background: rgba(255,91,26,.15);
-  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--hairline-dark);
+  color: var(--color-gold);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1377,7 +1402,6 @@ textarea.form-control {
 
 .map-placeholder {
   background: var(--color-navy-light);
-  border-radius: var(--radius-lg);
   height: 200px;
   display: flex;
   align-items: center;
@@ -1386,15 +1410,14 @@ textarea.form-control {
   font-size: 0.9rem;
   font-style: italic;
   margin-top: var(--space-xl);
-  border: 1px dashed rgba(238,234,224,.15);
+  border: 1px dashed var(--hairline-dark);
 }
 
 .map-embed {
-  border-radius: var(--radius-lg);
   height: 220px;
   margin-top: var(--space-xl);
   overflow: hidden;
-  border: 1px solid rgba(238,234,224,.15);
+  border: 1px solid var(--hairline-dark);
 }
 
 .map-embed iframe {
@@ -1405,9 +1428,9 @@ textarea.form-control {
 
 
 .response-promise-card {
-  border: 2px solid var(--color-gold);
-  background: linear-gradient(135deg, var(--bone-2) 0%, var(--bone) 100%);
-  box-shadow: var(--shadow-md);
+  border-top: 2px solid var(--color-gold);
+  border-bottom: 1px solid var(--hairline-light);
+  background: var(--bone-2);
 }
 
 .response-promise-card h4 {
@@ -1421,10 +1444,9 @@ textarea.form-control {
 /* ── Form card ── */
 .form-card {
   background: var(--color-white);
-  border-radius: var(--radius-xl);
   padding: var(--space-2xl);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-border);
+  border-top: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
 }
 
 .form-card h3 {
@@ -1446,12 +1468,11 @@ textarea.form-control {
 .form-success {
   display: none;
   background: rgba(52,211,153,.08);
-  border: 1px solid rgba(52,211,153,.25);
-  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-success);
   padding: var(--space-lg);
   color: var(--color-success);
   font-weight: var(--fw-semibold);
-  text-align: center;
+  text-align: left;
   margin-top: var(--space-lg);
 }
 
@@ -1460,99 +1481,18 @@ textarea.form-control {
 }
 
 /* ------------------------------------------------------------
-   16. FOOTER
+   16. FOOTER — minimal
+   A single-row rule. Copyright notice left, legal links right.
+   Nothing else. Hard edges, hairline top.
    ------------------------------------------------------------ */
 .footer {
-  background: var(--color-navy-dark);
+  background: var(--color-navy);
   color: rgba(238,234,224,.7);
-  padding-block: var(--space-3xl) var(--space-xl);
-  border-top: 3px solid var(--color-gold);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: var(--space-2xl);
-  padding-bottom: var(--space-2xl);
-  border-bottom: 1px solid rgba(238,234,224,.08);
-}
-
-.footer-brand .footer-logo {
-  height: 44px;
-  margin-bottom: var(--space-lg);
-}
-
-.footer-brand p {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  max-width: 280px;
-  margin-bottom: var(--space-lg);
-}
-
-.footer-social {
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.social-link {
-  width: 38px;
-  height: 38px;
-  background: rgba(238,234,224,.06);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
-  transition: background var(--transition), color var(--transition);
-}
-
-.social-link:hover {
-  background: var(--color-gold);
-  color: var(--color-navy);
-}
-
-.footer-col h5 {
-  color: var(--color-white);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  margin-bottom: var(--space-lg);
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.footer-links a {
-  font-size: 0.92rem;
-  color: rgba(238,234,224,.6);
-  transition: color var(--transition);
-}
-
-.footer-links a:hover {
-  color: var(--color-gold);
-}
-
-.footer-contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  font-size: 0.9rem;
-  margin-bottom: var(--space-sm);
-}
-
-.footer-contact-item .icon {
-  color: var(--color-gold);
-  flex-shrink: 0;
-  margin-top: 3px;
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--hairline-dark);
 }
 
 .footer-bottom {
-  padding-top: var(--space-xl);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1560,41 +1500,32 @@ textarea.form-control {
   gap: var(--space-md);
 }
 
-.footer-bottom p {
-  font-size: 0.85rem;
-  color: rgba(238,234,224,.4);
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(238,234,224,.5);
+  margin: 0;
 }
 
-.footer-accreditation {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: 0.8rem;
-  color: rgba(238,234,224,.55);
-}
-
-.sia-stamp {
+.footer-legal {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  font-size: 0.82rem;
-  font-family: var(--font-body);
-  font-weight: var(--fw-medium);
-  text-transform: none;
-  letter-spacing: 0.01em;
-  color: rgba(238,234,224,.72);
-  text-decoration: underline;
-  text-decoration-color: rgba(238,234,224,.3);
-  text-underline-offset: 3px;
-  transition: color var(--transition), text-decoration-color var(--transition);
+  gap: var(--space-lg);
 }
 
-.sia-stamp:hover {
-  color: var(--color-white);
-  text-decoration-color: rgba(238,234,224,.85);
+.footer-legal a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(238,234,224,.6);
+  transition: color var(--transition);
+}
+
+.footer-legal a:hover {
+  color: var(--color-gold);
 }
 
 /* ------------------------------------------------------------
@@ -1612,8 +1543,7 @@ textarea.form-control {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
   .contact-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-main { clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%); min-height: auto; padding-block: var(--space-3xl); }
-  .hero-page { clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); }
+  .hero-main { min-height: auto; padding-block: var(--space-3xl); }
 }
 
 /* ── Mobile ── */
@@ -1623,8 +1553,8 @@ textarea.form-control {
   .navbar-links { display: none; }
   .navbar-cta { display: none; }
   .hamburger { display: flex; }
-  .hero-main { min-height: 70vh; clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); padding-bottom: var(--space-3xl); }
-  .hero-page { clip-path: none; padding-bottom: var(--space-2xl); }
+  .hero-main { min-height: 70vh; padding-bottom: var(--space-3xl); }
+  .hero-page { padding-bottom: var(--space-2xl); }
   h1 { font-size: 2.2rem; }
   h2 { font-size: 1.6rem; }
   .grid-3 { grid-template-columns: 1fr; }
@@ -1663,7 +1593,6 @@ textarea.form-control {
 .btn:focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 3px;
-  box-shadow: var(--shadow-gold);
 }
 
 .skip-link {
@@ -1673,7 +1602,6 @@ textarea.form-control {
   background: var(--color-gold);
   color: var(--color-navy);
   padding: var(--space-sm) var(--space-lg);
-  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.75rem;
