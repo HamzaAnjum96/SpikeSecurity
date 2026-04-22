@@ -1249,16 +1249,15 @@ textarea.form-control {
 /* ------------------------------------------------------------
    8. STATS BAR
    ------------------------------------------------------------ */
-/* ── Stats bar (editorial interlude) ──
-   A bone strip between the obsidian hero and the obsidian
-   services section. Signal-amber icons, mono labels, hairline
-   rules above and below. A short signal rule sits under each
-   icon like a filing-room punch. */
+/* ── Stats bar (dark elevated panel) ──
+   Sits between the obsidian hero and the obsidian services
+   section as a slightly lighter dark panel — a whisper of
+   separation without breaking the dominant-dark rhythm. */
 .stats-bar {
-  background: var(--bone);
+  background: var(--obsidian-2);
   padding: var(--space-xl) 0;
-  border-top: 1px solid var(--hairline-light);
-  border-bottom: 1px solid var(--hairline-light);
+  border-top: 1px solid var(--hairline-dark);
+  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .stats-grid {
@@ -1270,7 +1269,7 @@ textarea.form-control {
 .stat-item {
   padding: var(--space-md) var(--space-lg);
   text-align: left;
-  border-right: 1px solid var(--hairline-light);
+  border-right: 1px solid var(--hairline-dark);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1308,7 +1307,7 @@ textarea.form-control {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--color-muted);
+  color: rgba(238, 234, 224, 0.62);
 }
 
 /* ------------------------------------------------------------
@@ -1855,7 +1854,7 @@ textarea.form-control {
   .stat-item:nth-child(2n) { border-right: none; }
 }
 @media (max-width: 480px) {
-  .stat-item { border-right: none; border-bottom: 1px solid var(--hairline-light); }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--hairline-dark); }
   .stat-item:last-child { border-bottom: none; }
 }
 
