@@ -274,23 +274,25 @@ p { line-height: 1.7; }
 .gap-md { gap: var(--space-md); }
 .gap-lg { gap: var(--space-lg); }
 
-/* Fade-in animation */
+/* Fade-in on scroll reveal — 500ms rise over 12px with a
+   60ms sibling stagger per the style guide. */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(12px);
+  transition: opacity 500ms cubic-bezier(0.2, 0, 0, 1),
+              transform 500ms cubic-bezier(0.2, 0, 0, 1);
 }
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Stagger delays */
-.fade-in:nth-child(2) { transition-delay: 0.05s; }
-.fade-in:nth-child(3) { transition-delay: 0.1s; }
-.fade-in:nth-child(4) { transition-delay: 0.15s; }
-.fade-in:nth-child(5) { transition-delay: 0.2s; }
-.fade-in:nth-child(6) { transition-delay: 0.25s; }
+/* Stagger delays — 60ms between siblings, capped at 6 items. */
+.fade-in:nth-child(2) { transition-delay: 60ms; }
+.fade-in:nth-child(3) { transition-delay: 120ms; }
+.fade-in:nth-child(4) { transition-delay: 180ms; }
+.fade-in:nth-child(5) { transition-delay: 240ms; }
+.fade-in:nth-child(6) { transition-delay: 300ms; }
 
 /* ------------------------------------------------------------
    5. COMPONENTS
@@ -736,17 +738,32 @@ textarea.form-control {
   color: var(--color-navy);
 }
 
+/* Smooth open/close using max-height + padding transition so
+   the body actually slides down rather than jumping open. */
 .accordion-body {
-  display: none;
-  padding: var(--space-xl);
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
   padding-left: calc(var(--space-xl) + 8px);
+  padding-right: var(--space-xl);
   background: var(--color-off-white);
-  border-top: 1px solid var(--hairline-light);
-  border-left: 2px solid var(--signal);
+  border-top: 1px solid transparent;
+  border-left: 2px solid transparent;
+  transition: max-height 420ms cubic-bezier(0.2, 0, 0, 1),
+              padding-top 420ms cubic-bezier(0.2, 0, 0, 1),
+              padding-bottom 420ms cubic-bezier(0.2, 0, 0, 1),
+              border-top-color 300ms ease,
+              border-left-color 300ms ease;
 }
 
 .accordion-body.open {
-  display: block;
+  max-height: 800px;
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-top-color: var(--hairline-light);
+  border-left-color: var(--signal);
 }
 
 /* ------------------------------------------------------------
@@ -836,18 +853,7 @@ textarea.form-control {
   position: relative;
 }
 
-.nav-link:hover {
-  color: var(--color-white);
-  background: rgba(238,234,224,.08);
-}
-
-.nav-link.active {
-  color: var(--color-white);
-  background: transparent;
-}
-
-/* 2px signal underline under the active page's link */
-.nav-link.active::after {
+.nav-link::after {
   content: "";
   position: absolute;
   left: 14px;
@@ -855,6 +861,25 @@ textarea.form-control {
   bottom: 4px;
   height: 2px;
   background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 300ms cubic-bezier(0.2, 0, 0, 1);
+  pointer-events: none;
+}
+
+.nav-link:hover {
+  color: var(--color-white);
+  background: transparent;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link.active {
+  color: var(--color-white);
+  background: transparent;
 }
 
 .navbar-cta {
@@ -2161,6 +2186,94 @@ body::after {
   .navbar-spacer { height: calc(var(--navbar-height) + 24px); }
   .mobile-nav { top: calc(var(--navbar-height) + 24px); }
   html { scroll-padding-top: calc(var(--navbar-height) + 24px + 16px); }
+}
+
+/* ── Long-form prose (legal / privacy) ── */
+.prose {
+  max-width: 720px;
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 48;
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--hairline-light);
+}
+
+.prose p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+}
+
+.prose a {
+  color: var(--signal);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+.prose a:hover {
+  border-bottom-color: var(--signal);
+}
+
+.prose strong { font-weight: 600; color: var(--color-text); }
+
+.prose-list {
+  margin: 0 0 var(--space-lg) var(--space-md);
+  padding-left: var(--space-md);
+}
+
+.prose-list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-sm);
+  list-style: none;
+  line-height: 1.7;
+}
+
+.prose-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--signal);
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+
+/* Draft / working-copy note inside long-form pages */
+.prose-note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-md);
+  margin-bottom: var(--space-xl);
+  border-left: 2px solid var(--signal);
+  background: var(--bone-2);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.prose-note .dev-notice-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--signal);
+  font-weight: 500;
+}
+
+.prose-note .dev-notice-tag::before {
+  content: "◉";
+  font-size: 0.65rem;
 }
 
 /* Respect reduced-motion preferences globally. */
