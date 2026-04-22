@@ -819,14 +819,29 @@ textarea.form-control {
   transition: color var(--transition), background var(--transition);
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link {
+  position: relative;
+}
+
+.nav-link:hover {
   color: var(--color-white);
   background: rgba(238,234,224,.08);
 }
 
 .nav-link.active {
-  color: var(--color-gold);
+  color: var(--color-white);
+  background: transparent;
+}
+
+/* 2px signal underline under the active page's link */
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--signal);
 }
 
 .navbar-cta {
@@ -1046,6 +1061,95 @@ textarea.form-control {
 .hero-main-full {
   min-height: 78vh;
   padding-block: var(--space-4xl) var(--space-3xl);
+}
+
+/* Asymmetric hero split — 7fr headline + CTA, 5fr ops panel. */
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+.hero-grid .hero-content {
+  max-width: none;
+}
+
+/* ── Ops panel (right column of hero) ──
+   A stack of mono readouts framed by hairlines. Looks like
+   a status readout pulled off a dispatcher's console. */
+.ops-panel {
+  border-top: 1px solid var(--hairline-dark);
+  border-bottom: 1px solid var(--hairline-dark);
+  padding: var(--space-lg) 0 var(--space-md);
+  font-family: var(--font-mono);
+}
+
+.ops-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--hairline-dark);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ops-panel-title {
+  color: var(--signal);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ops-panel-meta {
+  color: rgba(238, 234, 224, 0.55);
+}
+
+.ops-readouts {
+  display: flex;
+  flex-direction: column;
+}
+
+.ops-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px dashed var(--hairline-dark);
+  gap: var(--space-md);
+}
+
+.ops-row:last-child {
+  border-bottom: none;
+}
+
+.ops-row dt {
+  color: rgba(238, 234, 224, 0.55);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ops-row dd {
+  color: var(--bone);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+.ops-panel-foot {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--hairline-dark);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(238, 234, 224, 0.45);
 }
 
 .hero-bg-brand {
@@ -1594,6 +1698,7 @@ textarea.form-control {
   .contact-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-main { min-height: auto; padding-block: var(--space-3xl); }
+  .hero-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
 }
 
 /* ── Mobile ── */
