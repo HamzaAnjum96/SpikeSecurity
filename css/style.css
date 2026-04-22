@@ -935,6 +935,55 @@ textarea.form-control {
 /* Spacer so content doesn't hide under fixed navbar */
 .navbar-spacer { height: var(--navbar-height); }
 
+/* ── Preview-build notice ──
+   Thin strip under the navbar declaring the site is an in-progress
+   preview. Bone background, signal-amber eyebrow glyph, mono copy,
+   hairline rules above and below. */
+.dev-notice {
+  background: var(--bone-2);
+  border-top: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
+  padding: 10px 0;
+  text-align: center;
+}
+
+.dev-notice-inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.dev-notice-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--signal);
+  font-weight: 500;
+}
+
+.dev-notice-tag::before {
+  content: "◉";
+  font-size: 0.65rem;
+}
+
+.dev-notice-sep {
+  color: rgba(11, 12, 14, 0.25);
+}
+
+@media (max-width: 768px) {
+  .dev-notice-inner { padding-inline: var(--space-md); font-size: 0.62rem; letter-spacing: 0.08em; }
+}
+
 /* ------------------------------------------------------------
    7. HERO SECTIONS
    ------------------------------------------------------------ */
