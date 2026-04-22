@@ -1091,6 +1091,8 @@ textarea.form-control {
 .service-card {
   position: relative;
   padding: var(--space-xl);
+  padding-top: calc(var(--space-xl) + var(--space-md));
+  padding-right: calc(var(--space-xl) + var(--space-md));
   background: var(--color-white);
   border-right: 1px solid var(--hairline-light);
   border-bottom: 1px solid var(--hairline-light);
@@ -1098,15 +1100,23 @@ textarea.form-control {
   transition: background var(--transition);
 }
 
+/* Huge editorial numeral — dominant compositional element.
+   Sits top-right, Fraunces italic, signal amber on hover. */
 .service-card::before {
   content: counter(service, decimal-leading-zero);
   position: absolute;
-  top: var(--space-md);
+  top: var(--space-sm);
   right: var(--space-lg);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  color: var(--color-muted);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-variation-settings: "opsz" 96;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: rgba(11, 12, 14, 0.10);
+  pointer-events: none;
+  transition: color 300ms ease;
 }
 
 .service-card:hover {
@@ -1115,6 +1125,11 @@ textarea.form-control {
 
 .service-card:hover::before {
   color: var(--signal);
+}
+
+.service-card h3 {
+  position: relative;
+  z-index: 1;
 }
 
 .service-card .card-link {
@@ -1753,6 +1768,47 @@ body::after {
 
 .service-card:hover::after {
   transform: scaleX(1);
+}
+
+/* ── Dark-section contextual overrides ──
+   When a section has .section-dark applied, any grid and cards
+   inside it need hairline-dark rules and bone text. */
+.section-dark .services-grid {
+  border-top-color: var(--hairline-dark);
+  border-left-color: var(--hairline-dark);
+}
+
+.section-dark .service-card {
+  background: transparent;
+  border-right-color: var(--hairline-dark);
+  border-bottom-color: var(--hairline-dark);
+}
+
+.section-dark .service-card h3 { color: var(--bone); }
+
+.section-dark .service-card p {
+  color: rgba(238, 234, 224, 0.72);
+}
+
+.section-dark .service-card::before {
+  color: rgba(238, 234, 224, 0.10);
+}
+
+.section-dark .service-card:hover {
+  background: rgba(238, 234, 224, 0.03);
+}
+
+.section-dark .service-icon {
+  border-color: var(--hairline-dark);
+  color: var(--signal);
+}
+
+.section-dark .section-subtitle {
+  color: rgba(238, 234, 224, 0.72);
+}
+
+.section-dark .card-link {
+  color: var(--signal);
 }
 
 /* Responsive overrides for ops chrome */
