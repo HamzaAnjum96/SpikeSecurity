@@ -1252,42 +1252,66 @@ textarea.form-control {
 /* ------------------------------------------------------------
    8. STATS BAR
    ------------------------------------------------------------ */
+/* ── Stats bar (editorial interlude) ──
+   A bone strip between the obsidian hero and the obsidian
+   services section. Signal-amber icons, mono labels, hairline
+   rules above and below. A short signal rule sits under each
+   icon like a filing-room punch. */
 .stats-bar {
-  background: var(--color-gold);
+  background: var(--bone);
   padding: var(--space-xl) 0;
-  border-bottom: 1px solid rgba(11,12,14,.12);
+  border-top: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-lg);
-  text-align: center;
+  gap: 0;
 }
 
 .stat-item {
-  padding: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  text-align: left;
+  border-right: 1px solid var(--hairline-light);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
 }
+
+.stat-item:last-child { border-right: none; }
 
 .stat-number {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   font-weight: 500;
-  color: var(--color-navy);
+  color: var(--signal);
   line-height: 1;
-  margin-bottom: 6px;
   letter-spacing: -0.02em;
   font-variation-settings: "opsz" 96;
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+.stat-number::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 32px;
+  height: 1px;
+  background: var(--color-gold);
 }
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(11,12,14,.68);
+  color: var(--color-muted);
 }
 
 /* ------------------------------------------------------------
@@ -1809,7 +1833,26 @@ textarea.form-control {
 }
 
 
-.stat-number.material-symbols-rounded { font-family: 'Material Symbols Rounded'; font-size: 2rem; }
+/* When .stat-number carries an icon, drop the italic numeral
+   styling and render a clean signal-amber glyph instead. */
+.stat-number.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-size: 2rem;
+  color: var(--signal);
+  padding-bottom: var(--space-sm);
+}
+.stat-number.material-symbols-rounded::after {
+  width: 24px;
+}
+
+/* Stat-item right-border housekeeping when the grid wraps */
+@media (max-width: 1024px) {
+  .stat-item:nth-child(2n) { border-right: none; }
+}
+@media (max-width: 480px) {
+  .stat-item { border-right: none; border-bottom: 1px solid var(--hairline-light); }
+  .stat-item:last-child { border-bottom: none; }
+}
 
 .industry-pill .material-symbols-rounded { font-size: 1.15rem; }
 
