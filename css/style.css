@@ -478,6 +478,29 @@ p { line-height: 1.7; }
   margin-bottom: var(--space-lg);
 }
 
+/* ── Section stamp ──
+   The left-aligned three-line header: mono label / short rule /
+   Fraunces headline. This replaces the old centred text block
+   wrappers used throughout the site. */
+.section-stamp {
+  text-align: left;
+  margin-bottom: var(--space-2xl);
+  max-width: 720px;
+}
+
+.section-stamp .section-heading {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.section-stamp .section-subtitle {
+  margin-inline: 0;
+}
+
+.section-stamp .divider-gold {
+  margin-top: var(--space-sm);
+}
+
 .divider-gold.centered {
   margin-inline: auto;
 }
@@ -559,52 +582,64 @@ textarea.form-control {
   display: block;
 }
 
-/* ── Steps ── */
+/* ── Steps (Editorial log) ──
+   A horizontal three-column log. Each step leads with a huge
+   italic Fraunces numeral, then a short hairline, then the title
+   and body. Columns are separated by vertical hairline rules. */
 .steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+  gap: 0;
   position: relative;
-}
-
-.steps::before {
-  content: '';
-  position: absolute;
-  top: 28px;
-  left: 10%;
-  width: 80%;
-  height: 2px;
-  background: var(--color-border);
-  z-index: 0;
+  border-top: 1px solid var(--hairline-light);
+  margin-top: var(--space-xl);
 }
 
 .step {
-  text-align: center;
+  text-align: left;
   position: relative;
-  z-index: 1;
+  padding: var(--space-xl) var(--space-lg) var(--space-xl) 0;
+}
+
+.step + .step {
+  padding-left: var(--space-xl);
+  border-left: 1px solid var(--hairline-light);
 }
 
 .step-number {
-  width: 56px;
-  height: 56px;
+  width: auto;
+  height: auto;
   background: transparent;
-  color: var(--color-gold);
-  border: 1px solid var(--color-gold);
+  color: var(--signal);
+  border: none;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.75rem;
   font-weight: 500;
-  letter-spacing: -0.02em;
-  font-variation-settings: "opsz" 48;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-lg);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-variation-settings: "opsz" 144;
+  display: block;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.step-number::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  margin-top: var(--space-md);
 }
 
 .step h4 {
   margin-bottom: var(--space-sm);
+  font-size: 1.3rem;
 }
+
+/* Dark context overrides for the step log */
+.section-dark .steps { border-top-color: var(--hairline-dark); }
+.section-dark .step + .step { border-left-color: var(--hairline-dark); }
 
 /* ── Accordion (Careers) ── */
 .accordion-item {
@@ -1578,7 +1613,8 @@ textarea.form-control {
   .values-grid { grid-template-columns: 1fr; }
   .benefits-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
-  .steps::before { display: none; }
+  .step + .step { padding-left: 0; border-left: none; border-top: 1px solid var(--hairline-light); }
+  .section-dark .step + .step { border-top-color: var(--hairline-dark); }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
   .footer-bottom { flex-direction: column; text-align: center; }
