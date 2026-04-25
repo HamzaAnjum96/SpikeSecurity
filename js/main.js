@@ -222,4 +222,22 @@
     statEls.forEach(el => statsObserver.observe(el));
   }
 
+  /* ----------------------------------------------------------
+     8. BACK-TO-TOP — injected, scroll-aware
+     ---------------------------------------------------------- */
+  const btt = document.createElement('button');
+  btt.type = 'button';
+  btt.className = 'back-to-top';
+  btt.setAttribute('aria-label', 'Back to top');
+  btt.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>';
+  document.body.appendChild(btt);
+
+  const toggleBtt = () => btt.classList.toggle('visible', window.scrollY > 480);
+  toggleBtt();
+  window.addEventListener('scroll', toggleBtt, { passive: true });
+
+  btt.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
 })();

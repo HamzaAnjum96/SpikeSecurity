@@ -404,7 +404,14 @@ p { line-height: 1.7; }
   color: var(--color-gold);
   font-size: 1.65rem;
   border: 1px solid var(--hairline-light);
-  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  transition: background 240ms cubic-bezier(0.2, 0, 0, 1),
+              color 240ms cubic-bezier(0.2, 0, 0, 1),
+              border-color 240ms cubic-bezier(0.2, 0, 0, 1),
+              transform 320ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.service-icon .material-symbols-outlined {
+  transition: transform 320ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .card:hover .service-icon,
@@ -412,6 +419,11 @@ p { line-height: 1.7; }
   background: var(--color-gold);
   color: var(--color-navy);
   border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.service-card:hover .service-icon .material-symbols-outlined {
+  transform: scale(1.06);
 }
 
 /* ── Badge ── */
@@ -2014,12 +2026,43 @@ body::after {
 
 /* Hero headline reveal — a single 600ms clip-path wipe on load. */
 .hero h1 {
-  animation: headline-reveal 600ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation: headline-reveal 600ms cubic-bezier(0.2, 0, 0, 1) 160ms both;
 }
 
 @keyframes headline-reveal {
   from { clip-path: inset(0 100% 0 0); opacity: 0; }
   to   { clip-path: inset(0 0 0 0);    opacity: 1; }
+}
+
+/* Hero entrance choreography — the eyebrow, sub-copy, buttons and
+   ops panel rise in around the headline's wipe. Each step is a
+   gentle 600ms rise with a staged delay so the hero composes
+   itself rather than appearing all at once. */
+.hero .hero-eyebrow,
+.hero .hero-sub,
+.hero .hero-actions,
+.hero .ops-panel,
+.hero .ops-panel-head,
+.hero .ops-readouts .ops-row,
+.hero .ops-panel-foot {
+  opacity: 0;
+  animation: hero-rise 600ms cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+.hero .hero-eyebrow { animation-delay: 80ms; }
+.hero .hero-sub     { animation-delay: 340ms; }
+.hero .hero-actions { animation-delay: 420ms; }
+.hero .ops-panel-head     { animation-delay: 520ms; }
+.hero .ops-readouts .ops-row:nth-child(1) { animation-delay: 580ms; }
+.hero .ops-readouts .ops-row:nth-child(2) { animation-delay: 640ms; }
+.hero .ops-readouts .ops-row:nth-child(3) { animation-delay: 700ms; }
+.hero .ops-readouts .ops-row:nth-child(4) { animation-delay: 760ms; }
+.hero .ops-readouts .ops-row:nth-child(5) { animation-delay: 820ms; }
+.hero .ops-panel-foot     { animation-delay: 900ms; }
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Entry hover — service card gets a signal rule that slides across
@@ -2274,6 +2317,54 @@ body::after {
 .prose-note .dev-notice-tag::before {
   content: "◉";
   font-size: 0.65rem;
+}
+
+/* ── Back-to-top button ──
+   Floating fixed-position button injected by main.js. Appears
+   after the user scrolls past the first viewport, fades back
+   out near the top. Square obsidian panel with hairline border;
+   flips to signal amber on hover. */
+.back-to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  width: 44px;
+  height: 44px;
+  background: var(--obsidian-2);
+  border: 1px solid var(--hairline-dark);
+  color: var(--bone);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 300ms ease,
+              transform 300ms cubic-bezier(0.2, 0, 0, 1),
+              background var(--transition),
+              color var(--transition),
+              border-color var(--transition);
+  z-index: 999;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--signal);
+  color: var(--color-navy);
+  border-color: var(--signal);
+}
+
+.back-to-top .material-symbols-outlined {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .back-to-top { right: var(--space-md); bottom: var(--space-md); width: 40px; height: 40px; }
 }
 
 /* Respect reduced-motion preferences globally. */
