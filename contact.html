@@ -21,8 +21,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <meta name="theme-color" content="#0D1B2E"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Spike Security",
+    "url": "https://www.spikesecurity.co.uk/contact",
+    "description": "Get in touch with Spike Security for a free security consultation or quote. Based in Manchester, serving the North West.",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.spikesecurity.co.uk/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.spikesecurity.co.uk/contact" }
+      ]
+    }
+  }
+  </script>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -212,7 +227,7 @@
               </div>
             </div>
 
-            <div class="form-success" id="formSuccess" role="status">
+            <div class="form-success" id="formSuccess" role="alert">
               ✓ Your message has been sent. We'll be in touch shortly!
             </div>
           </form>
@@ -264,7 +279,17 @@
             </div>
 
             <div class="map-embed" aria-label="Map showing 475B Cheetham Hill Rd, Manchester">
-              <div id="map" role="img" aria-label="Map of 475B Cheetham Hill Rd, Manchester M8 9LR"></div>
+              <!-- Consent gate — shown when functional cookies are off -->
+              <div class="map-consent-gate" id="map-gate" aria-live="polite">
+                <div class="map-gate-icon material-symbols-outlined" aria-hidden="true">location_off</div>
+                <p class="map-gate-title">The interactive map is off.</p>
+                <p class="map-gate-desc">It loads tiles from a third-party service. Enable to view it here.</p>
+                <button type="button" class="map-gate-btn" onclick="window.SpikeConsent && window.SpikeConsent.openCookiePreferences()">
+                  Manage preferences
+                </button>
+              </div>
+              <!-- Map renders here once consent is granted -->
+              <div id="map" role="img" aria-label="Map of 475B Cheetham Hill Rd, Manchester M8 9LR" hidden></div>
             </div>
           </div>
 
@@ -318,57 +343,131 @@
         <nav class="footer-legal" aria-label="Legal">
           <a href="legal.html">Legal</a>
           <a href="privacy.html">Privacy Policy</a>
+          <button type="button" class="footer-cookie-btn" onclick="window.SpikeConsent && window.SpikeConsent.openCookiePreferences()">Cookie Preferences</button>
         </nav>
       </div>
     </div>
   </footer>
+<script src="js/consent.js"></script>
 <script src="js/main.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
+  /* Consent-aware map initialiser for contact.html */
   (function () {
-    if (!window.L || !document.getElementById('map')) return;
+    'use strict';
 
-    const lat = 53.5004;
-    const lon = -2.2389;
-    const address = '475B Cheetham Hill Rd, Cheetham Hill, Manchester M8 9LR';
-    const gmapsUrl = 'https://www.google.com/maps/search/?api=1&query='
-                   + encodeURIComponent('475B Cheetham Hill Rd, Manchester M8 9LR');
+    var LAT = 53.5004;
+    var LON = -2.2389;
+    var gmapsUrl = 'https://www.google.com/maps/search/?api=1&query='
+                 + encodeURIComponent('475B Cheetham Hill Rd, Manchester M8 9LR');
 
-    const map = L.map('map', {
-      zoomControl: true,
-      scrollWheelZoom: false,
-      attributionControl: true
-    }).setView([lat, lon], 16);
+    var mapEl  = document.getElementById('map');
+    var gateEl = document.getElementById('map-gate');
+    var mapInstance = null;
+    var leafletLoaded = false;
 
-    L.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
+    function showGate() {
+      if (gateEl) gateEl.hidden = false;
+      if (mapEl)  mapEl.hidden  = true;
+    }
+
+    function initMap() {
+      if (mapInstance || !mapEl) return;
+
+      /* Dynamically load Leaflet only when consent is granted */
+      function onLeafletReady() {
+        if (mapInstance) return;
+        var L = window.L;
+
+        if (gateEl) gateEl.hidden = true;
+        mapEl.hidden = false;
+
+        mapInstance = L.map('map', {
+          zoomControl: true,
+          scrollWheelZoom: false,
+          attributionControl: true
+        }).setView([LAT, LON], 16);
+
+        L.tileLayer(
+          'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+          {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> ' +
+              '&copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+          }
+        ).addTo(mapInstance);
+
+        var marker = L.marker([LAT, LON], {
+          icon: L.divIcon({
+            className: 'spike-marker',
+            html: '<span class="spike-marker-dot" aria-hidden="true"></span>',
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+          })
+        }).addTo(mapInstance);
+
+        var popupHtml = '<strong>SPIKE SECURITY LIMITED</strong>'
+          + '<span class="map-popup-addr">475B Cheetham Hill Rd<br/>Cheetham Hill, Manchester M8 9LR</span>'
+          + '<a class="map-popup-link" href="' + gmapsUrl + '" target="_blank" rel="noopener">Open in Google Maps →</a>';
+
+        marker.bindPopup(popupHtml, {
+          className: 'spike-popup',
+          closeButton: true,
+          maxWidth: 260
+        }).openPopup();
       }
-    ).addTo(map);
 
-    const marker = L.marker([lat, lon], {
-      icon: L.divIcon({
-        className: 'spike-marker',
-        html: '<span class="spike-marker-dot" aria-hidden="true"></span>',
-        iconSize: [16, 16],
-        iconAnchor: [8, 8]
-      })
-    }).addTo(map);
+      if (leafletLoaded) {
+        onLeafletReady();
+        return;
+      }
 
-    const popupHtml = ''
-      + '<strong>SPIKE SECURITY LIMITED</strong>'
-      + '<span class="map-popup-addr">475B Cheetham Hill Rd<br/>Cheetham Hill, Manchester M8 9LR</span>'
-      + '<a class="map-popup-link" href="' + gmapsUrl + '" target="_blank" rel="noopener">Open in Google Maps →</a>';
+      /* Inject Leaflet CSS */
+      var cssEl = document.createElement('link');
+      cssEl.rel = 'stylesheet';
+      cssEl.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      cssEl.setAttribute('crossorigin', '');
+      document.head.appendChild(cssEl);
 
-    marker.bindPopup(popupHtml, {
-      className: 'spike-popup',
-      closeButton: true,
-      maxWidth: 260
-    }).openPopup();
+      /* Inject Leaflet JS */
+      var jsEl = document.createElement('script');
+      jsEl.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      jsEl.setAttribute('crossorigin', '');
+      jsEl.onload = function () {
+        leafletLoaded = true;
+        onLeafletReady();
+      };
+      document.head.appendChild(jsEl);
+    }
+
+    function destroyMap() {
+      if (mapInstance) {
+        mapInstance.remove();
+        mapInstance = null;
+      }
+      showGate();
+    }
+
+    /* Initial state — wait for consent.js to be ready */
+    document.addEventListener('DOMContentLoaded', function () {
+      var consent = window.SpikeConsent && window.SpikeConsent.readConsent();
+      if (consent && consent.functional) {
+        initMap();
+      } else {
+        showGate();
+      }
+    });
+
+    /* React to consent changes in real time */
+    window.addEventListener('spike:consent-change', function (e) {
+      if (e.detail && e.detail.functional) {
+        initMap();
+      } else {
+        destroyMap();
+      }
+    });
+
   })();
 </script>
 </body>

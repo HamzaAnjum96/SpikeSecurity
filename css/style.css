@@ -40,7 +40,7 @@
   --color-white:      var(--bone);
   --color-off-white:  var(--bone-2);
   --color-text:       var(--ink);
-  --color-muted:      #6B6558;
+  --color-muted:      #5A5047;
   --color-border:     #D8D2C3;
   --color-success:    var(--led);
   --color-error:      #D63031;
@@ -2506,3 +2506,342 @@ body::after {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   19. COOKIE CONSENT BANNER
+   Modal dialog injected by js/consent.js. Appears on first
+   visit; can be reopened via the footer "Cookie Preferences"
+   button. Backdrop prevents dismissal without a choice until
+   consent is recorded.
+   ============================================================ */
+
+/* Prevent body scroll while banner is open */
+body.ck-open { overflow: hidden; }
+
+#cookie-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+#cookie-banner[hidden] { display: none; }
+
+.ck-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 12, 14, 0.82);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.ck-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: var(--obsidian-2);
+  border: 1px solid var(--hairline-dark);
+  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.ck-view {
+  padding: var(--space-2xl);
+}
+
+@media (max-width: 480px) {
+  .ck-view { padding: var(--space-xl) var(--space-lg); }
+}
+
+.ck-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 var(--space-sm);
+}
+
+.ck-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: var(--bone);
+  line-height: 1.15;
+  margin: 0 0 var(--space-md);
+}
+
+.ck-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.ck-body p {
+  font-size: 0.875rem;
+  color: rgba(238, 234, 224, 0.65);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Actions ── */
+.ck-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.ck-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), opacity var(--transition);
+}
+
+.ck-btn-primary {
+  background: var(--signal);
+  color: var(--obsidian);
+  border: 1px solid var(--signal);
+}
+
+.ck-btn-primary:hover { opacity: 0.88; }
+
+.ck-btn-secondary {
+  background: transparent;
+  color: var(--bone);
+  border: 1px solid var(--hairline-dark);
+}
+
+.ck-btn-secondary:hover { border-color: rgba(238, 234, 224, 0.35); }
+
+.ck-btn-full { width: 100%; margin-top: var(--space-xl); }
+
+/* ── Links row ── */
+.ck-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.ck-text-btn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(238, 234, 224, 0.65);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition);
+}
+
+.ck-text-btn:hover { color: var(--bone); }
+
+.ck-policy-link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(238, 234, 224, 0.45);
+  transition: color var(--transition);
+}
+
+.ck-policy-link:hover { color: rgba(238, 234, 224, 0.8); }
+
+/* ── Back button ── */
+.ck-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(238, 234, 224, 0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--space-lg);
+  transition: color var(--transition);
+}
+
+.ck-back-btn:hover { color: var(--bone); }
+
+/* ── Categories ── */
+.ck-categories {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--hairline-dark);
+}
+
+.ck-category {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--hairline-dark);
+}
+
+.ck-cat-text { flex: 1; min-width: 0; }
+
+.ck-cat-name {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--bone);
+  margin: 0 0 4px;
+}
+
+.ck-cat-desc {
+  font-size: 0.78rem;
+  color: rgba(238, 234, 224, 0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ck-always-on {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(238, 234, 224, 0.4);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── Toggle switch ── */
+.ck-toggle {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 40px;
+  height: 23px;
+  background: var(--hairline-dark);
+  border: 1px solid rgba(238, 234, 224, 0.15);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 250ms ease, border-color 250ms ease;
+  padding: 0;
+}
+
+.ck-toggle--on {
+  background: var(--signal);
+  border-color: var(--signal);
+}
+
+.ck-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 17px;
+  height: 17px;
+  background: var(--bone);
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 250ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.ck-toggle--on .ck-toggle-thumb { transform: translateX(17px); }
+
+/* ── Footer cookie-prefs button ── */
+.footer-legal button.footer-cookie-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(238, 234, 224, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition);
+}
+
+.footer-legal button.footer-cookie-btn:hover { color: var(--color-gold); }
+
+/* ============================================================
+   20. MAP CONSENT GATE
+   Shown in the .map-embed area on contact.html when functional
+   cookies are not enabled. Replaced by the Leaflet map when
+   consent is granted.
+   ============================================================ */
+
+.map-consent-gate {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  background: var(--obsidian-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  gap: var(--space-sm);
+}
+
+.map-gate-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 91, 26, 0.12);
+  color: var(--signal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.map-gate-title {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--bone);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.map-gate-desc {
+  font-size: 0.78rem;
+  color: rgba(238, 234, 224, 0.5);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 26ch;
+}
+
+.map-gate-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--signal);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
+  transition: color var(--transition);
+}
+
+.map-gate-btn:hover { color: var(--bone); }

@@ -24,14 +24,37 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SecurityService",
+    "@type": ["SecurityService", "LocalBusiness"],
     "name": "Spike Security",
+    "legalName": "SPIKE SECURITY LIMITED",
     "url": "https://www.spikesecurity.co.uk/",
     "logo": "https://www.spikesecurity.co.uk/resources/SPIKE%20SECURITY%20LOGO.svg",
     "image": "https://www.spikesecurity.co.uk/resources/SPIKE%20SECURITY%20LOGO.svg",
-    "description": "Professional security services across Manchester and the North West.",
-    "areaServed": ["Manchester", "North West England"],
-    "sameAs": ["https://www.spikesecurity.co.uk/"]
+    "description": "Professional SIA-licensed security services across Manchester and the North West — door supervisors, event security, corporate security, mobile patrol and CCTV monitoring.",
+    "telephone": "+442037572767",
+    "email": "info@spikesecurity.co.uk",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "475B Cheetham Hill Rd",
+      "addressLocality": "Cheetham Hill, Manchester",
+      "addressRegion": "Greater Manchester",
+      "postalCode": "M8 9LR",
+      "addressCountry": "GB"
+    },
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "areaServed": ["Manchester", "Salford", "Trafford", "Stockport", "Bolton", "Bury", "North West England"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Security Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Door Supervisors" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Event Security" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Security" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile Patrol" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CCTV Monitoring" } }
+      ]
+    },
+    "sameAs": ["https://www.instagram.com/spikesecurity"]
   }
   </script>
   <meta name="theme-color" content="#0D1B2E"/>
@@ -398,10 +421,12 @@
         <nav class="footer-legal" aria-label="Legal">
           <a href="legal.html">Legal</a>
           <a href="privacy.html">Privacy Policy</a>
+          <button type="button" class="footer-cookie-btn" onclick="window.SpikeConsent && window.SpikeConsent.openCookiePreferences()">Cookie Preferences</button>
         </nav>
       </div>
     </div>
   </footer>
+<script src="js/consent.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

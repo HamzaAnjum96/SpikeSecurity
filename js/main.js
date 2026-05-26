@@ -21,6 +21,13 @@
 
   // Mobile menu toggle
   if (hamburger && mobileNav) {
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
     hamburger.addEventListener('click', () => {
       const isOpen = hamburger.classList.toggle('open');
       mobileNav.classList.toggle('open', isOpen);
@@ -30,12 +37,31 @@
 
     // Close on link click
     mobileNav.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileNav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Keyboard: Escape closes menu
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && hamburger.classList.contains('open')) {
+        closeMobileMenu();
+        hamburger.focus();
+      }
+    });
+
+    // Focus trap: keep Tab within mobile menu while open
+    mobileNav.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      const focusable = Array.from(mobileNav.querySelectorAll('.nav-link'));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        hamburger.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        hamburger.focus();
+      }
     });
   }
 
