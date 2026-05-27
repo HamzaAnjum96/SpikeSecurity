@@ -466,12 +466,21 @@
           }
         ).addTo(mapInstance);
 
+        var pinHtml =
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="40" height="48"' +
+          ' style="filter:drop-shadow(0 3px 10px rgba(0,0,0,.75))" aria-hidden="true">' +
+          '<path d="M100 6 L184 46 L180 164 L100 230 L20 164 L16 46 Z" fill="#FF5B1A"/>' +
+          '<path d="M16 46 L100 6 L184 46 L164 56 L100 18 L36 56 Z" fill="#CC3E0D"/>' +
+          '<polygon points="136,78 136,106 64,126 64,98" fill="#0D1B2E"/>' +
+          '<polygon points="136,134 136,162 64,182 64,154" fill="#0D1B2E"/>' +
+          '</svg>';
+
         var marker = L.marker([LAT, LON], {
           icon: L.divIcon({
-            className: 'spike-marker',
-            html: '<span class="spike-marker-dot" aria-hidden="true"></span>',
-            iconSize: [16, 16],
-            iconAnchor: [8, 8]
+            className: 'spike-map-pin',
+            html: pinHtml,
+            iconSize:   [40, 48],
+            iconAnchor: [20, 46]
           })
         }).addTo(mapInstance);
 

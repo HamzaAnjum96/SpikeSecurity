@@ -1717,7 +1717,7 @@ textarea.form-control {
 }
 
 .map-embed {
-  height: 260px;
+  height: 320px;
   margin-top: var(--space-xl);
   overflow: hidden;
   border: 1px solid var(--hairline-dark);
@@ -1740,17 +1740,18 @@ textarea.form-control {
   outline: none;
 }
 
-/* Pulsing signal-amber marker */
-.spike-marker { background: transparent; border: none; }
-.spike-marker-dot {
+/* Spike Security shield pin marker */
+.spike-map-pin {
+  background: transparent !important;
+  border: none !important;
+}
+.spike-map-pin svg {
   display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--signal);
-  border: 2px solid var(--obsidian);
-  box-shadow: 0 0 0 4px rgba(255, 91, 26, 0.25);
-  animation: led-pulse 2s ease-in-out infinite alternate;
+  transition: transform 0.15s ease;
+}
+.spike-map-pin:hover svg,
+.spike-map-pin:focus svg {
+  transform: translateY(-3px) scale(1.08);
 }
 
 /* Popup chrome */
@@ -2819,7 +2820,7 @@ body.ck-open { overflow: hidden; }
 .map-consent-gate {
   width: 100%;
   height: 100%;
-  min-height: 220px;
+  min-height: 280px;
   background: var(--obsidian-2);
   display: flex;
   flex-direction: column;
