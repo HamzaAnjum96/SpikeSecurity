@@ -437,19 +437,24 @@
     function initMap() {
       if (mapInstance || !mapEl) return;
 
-      /* Dynamically load Leaflet only when consent is granted */
+      /* Show the container BEFORE Leaflet loads so the browser has time to
+         lay it out — Leaflet reads offsetWidth/Height on init and gets 0×0
+         if the element is still display:none at that moment. */
+      if (gateEl) gateEl.hidden = true;
+      mapEl.hidden = false;
+
       function onLeafletReady() {
         if (mapInstance) return;
         var L = window.L;
-
-        if (gateEl) gateEl.hidden = true;
-        mapEl.hidden = false;
 
         mapInstance = L.map('map', {
           zoomControl: true,
           scrollWheelZoom: false,
           attributionControl: true
         }).setView([LAT, LON], 16);
+
+        /* Force Leaflet to recalculate tile grid after any residual layout delay */
+        mapInstance.invalidateSize();
 
         L.tileLayer(
           'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
@@ -483,7 +488,9 @@
       }
 
       if (leafletLoaded) {
-        onLeafletReady();
+        /* Container was just unhidden in the same tick — wait one frame so
+           the browser has laid it out before Leaflet reads its dimensions. */
+        requestAnimationFrame(onLeafletReady);
         return;
       }
 
