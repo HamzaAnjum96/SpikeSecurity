@@ -430,17 +430,19 @@
     var leafletLoaded = false;
 
     function showGate() {
-      if (gateEl) gateEl.hidden = false;
-      if (mapEl)  mapEl.hidden  = true;
+      /* Use style.display — the CSS rule ".map-consent-gate { display: flex }"
+         has higher specificity than the UA "[hidden] { display: none }" rule,
+         so the hidden attribute alone would not actually hide the element. */
+      if (gateEl) gateEl.style.display = '';
+      if (mapEl)  mapEl.hidden = true;
     }
 
     function initMap() {
       if (mapInstance || !mapEl) return;
 
-      /* Show the container BEFORE Leaflet loads so the browser has time to
-         lay it out — Leaflet reads offsetWidth/Height on init and gets 0×0
-         if the element is still display:none at that moment. */
-      if (gateEl) gateEl.hidden = true;
+      /* Hide gate with inline style (must override CSS display:flex) then
+         show the map container so Leaflet can measure real dimensions. */
+      if (gateEl) gateEl.style.display = 'none';
       mapEl.hidden = false;
 
       function onLeafletReady() {
@@ -452,9 +454,6 @@
           scrollWheelZoom: false,
           attributionControl: true
         }).setView([LAT, LON], 16);
-
-        /* Force Leaflet to recalculate tile grid after any residual layout delay */
-        mapInstance.invalidateSize();
 
         L.tileLayer(
           'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
@@ -485,12 +484,15 @@
           closeButton: true,
           maxWidth: 260
         }).openPopup();
+
+        /* Recalculate tile grid after all elements have settled */
+        setTimeout(function () { mapInstance && mapInstance.invalidateSize(); }, 150);
       }
 
       if (leafletLoaded) {
-        /* Container was just unhidden in the same tick — wait one frame so
-           the browser has laid it out before Leaflet reads its dimensions. */
-        requestAnimationFrame(onLeafletReady);
+        /* Use double-rAF: first frame unhides the container, second frame
+           is after the browser has performed layout and Leaflet can measure it. */
+        requestAnimationFrame(function () { requestAnimationFrame(onLeafletReady); });
         return;
       }
 
@@ -498,13 +500,11 @@
       var cssEl = document.createElement('link');
       cssEl.rel = 'stylesheet';
       cssEl.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-      cssEl.setAttribute('crossorigin', '');
       document.head.appendChild(cssEl);
 
-      /* Inject Leaflet JS */
+      /* Inject Leaflet JS — no crossorigin needed without SRI */
       var jsEl = document.createElement('script');
       jsEl.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-      jsEl.setAttribute('crossorigin', '');
       jsEl.onload = function () {
         leafletLoaded = true;
         onLeafletReady();
