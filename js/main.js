@@ -144,6 +144,7 @@
       // Clear previous errors
       contactForm.querySelectorAll('.form-control').forEach(field => {
         field.classList.remove('error');
+        field.setAttribute('aria-invalid', 'false');
       });
       contactForm.querySelectorAll('.form-error').forEach(err => {
         err.classList.remove('visible');
@@ -156,6 +157,7 @@
 
         if (!val) {
           field.classList.add('error');
+          field.setAttribute('aria-invalid', 'true');
           if (errEl) {
             errEl.textContent = 'This field is required.';
             errEl.classList.add('visible');
@@ -170,6 +172,7 @@
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailField.value.trim())) {
           emailField.classList.add('error');
+          emailField.setAttribute('aria-invalid', 'true');
           const errEl = document.getElementById('emailError');
           if (errEl) {
             errEl.textContent = 'Please enter a valid email address.';
@@ -186,6 +189,7 @@
         const phoneRegex = /^(\+44|0)[0-9]{9,10}$/;
         if (!phoneRegex.test(cleaned)) {
           phoneField.classList.add('error');
+          phoneField.setAttribute('aria-invalid', 'true');
           const errEl = document.getElementById('phoneError');
           if (errEl) {
             errEl.textContent = 'Please enter a valid UK phone number.';

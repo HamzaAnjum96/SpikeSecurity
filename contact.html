@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="application-name" content="Spike Security"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Contact Spike Security — get in touch for a free security consultation or quote. Based in Manchester, serving the North West."/>
   <title>Contact Us | Spike Security Manchester</title>
@@ -45,6 +47,46 @@
         { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.spikesecurity.co.uk/contact" }
       ]
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How quickly can you deploy security?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For pre-planned requirements we typically need 48–72 hours' notice. For Emergency Cover, contact us directly and we can urgently deploy available officers at short notice, often within hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are all your operatives licensed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every operative deployed by Spike Security holds a valid, in-date SIA security licence. We verify all licences before deployment and maintain real-time records."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer flexible contract terms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We offer short-notice one-off cover, rolling monthly agreements and long-term contracts. We'll find a commercial arrangement that suits your business."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our primary coverage area is the North West. We regularly deploy across Manchester, Salford, Trafford, Stockport, Bolton, Bury and surrounding areas."
+        }
+      }
+    ]
   }
   </script>
   <link rel="stylesheet" href="css/style.css"/>
@@ -155,6 +197,9 @@
                     placeholder="John Smith"
                     data-required="true"
                     autocomplete="name"
+                    aria-required="true"
+                    aria-invalid="false"
+                    aria-describedby="fullNameError"
                   />
                   <span class="form-error" id="fullNameError" role="alert"></span>
                 </div>
@@ -168,6 +213,9 @@
                     placeholder="john@company.co.uk"
                     data-required="true"
                     autocomplete="email"
+                    aria-required="true"
+                    aria-invalid="false"
+                    aria-describedby="emailError"
                   />
                   <span class="form-error" id="emailError" role="alert"></span>
                 </div>
@@ -183,6 +231,8 @@
                     class="form-control"
                     placeholder="020 37 57 27 67"
                     autocomplete="tel"
+                    aria-invalid="false"
+                    aria-describedby="phoneError"
                   />
                   <span class="form-error" id="phoneError" role="alert"></span>
                 </div>
@@ -201,7 +251,7 @@
 
               <div class="form-group">
                 <label for="service" class="form-label">Service Required *</label>
-                <select id="service" name="service" class="form-control" data-required="true">
+                <select id="service" name="service" class="form-control" data-required="true" aria-required="true" aria-invalid="false" aria-describedby="serviceError">
                   <option value="" disabled selected>Select a service…</option>
                   <option value="event-security">Event Security</option>
                   <option value="door-supervisors">Door Supervisors</option>
@@ -223,6 +273,9 @@
                   placeholder="Tell us about your security requirements, site details, dates, or any questions you have…"
                   data-required="true"
                   rows="5"
+                  aria-required="true"
+                  aria-invalid="false"
+                  aria-describedby="messageError"
                 ></textarea>
                 <span class="form-error" id="messageError" role="alert"></span>
               </div>
@@ -347,7 +400,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer" aria-label="Site footer">
+  <footer class="footer" role="contentinfo" aria-label="Site footer">
     <div class="container">
       <div class="footer-bottom">
         <p class="footer-copy">© 2026 SPIKE SECURITY LIMITED (No. 16807138).</p>
