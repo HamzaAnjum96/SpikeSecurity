@@ -1911,17 +1911,126 @@ textarea.form-control {
 }
 
 /* ------------------------------------------------------------
-   16. FOOTER — minimal
-   A single-row rule. Copyright notice left, legal links right.
-   Nothing else. Hard edges, hairline top.
+   16. FOOTER — multi-column
+   Brand left · Quick Links centre · Contact right · legal bar below.
+   Desktop 3-col → tablet 2-col (brand full-width) → mobile 1-col.
    ------------------------------------------------------------ */
 .footer {
   background: var(--color-navy);
   color: rgba(238,234,224,.7);
-  padding-block: var(--space-xl);
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-xl);
   border-top: 1px solid var(--hairline-dark);
 }
 
+/* ── Main grid ── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--hairline-dark);
+  margin-bottom: var(--space-xl);
+}
+
+/* ── Brand column ── */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer-logo-link {
+  display: inline-block;
+  width: fit-content;
+}
+
+.footer-logo {
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.88;
+  transition: opacity var(--transition);
+}
+
+.footer-logo-link:hover .footer-logo,
+.footer-logo-link:focus .footer-logo {
+  opacity: 1;
+}
+
+.footer-tagline {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(238,234,224,.6);
+  margin: 0;
+  max-width: 300px;
+}
+
+/* ── Section headings (shared by nav + contact) ── */
+.footer-nav-heading {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 var(--space-md);
+}
+
+/* ── Quick links ── */
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-nav-link {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(238,234,224,.72);
+  transition: color var(--transition);
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+.footer-nav-link:hover {
+  color: var(--bone);
+}
+
+/* ── Contact column ── */
+.footer-address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer-address p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(238,234,224,.72);
+  margin: 0 0 var(--space-sm);
+}
+
+.footer-contact-link {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(238,234,224,.72);
+  transition: color var(--transition);
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+.footer-contact-link:hover {
+  color: var(--signal);
+}
+
+/* ── Bottom bar ── */
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -1943,6 +2052,7 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: var(--space-lg);
+  flex-wrap: wrap;
 }
 
 .footer-legal a {
@@ -1974,6 +2084,8 @@ textarea.form-control {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .benefits-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+  .footer-brand { grid-column: 1 / -1; flex-direction: row; align-items: flex-start; gap: var(--space-xl); }
+  .footer-tagline { max-width: none; }
   .contact-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-main { min-height: auto; padding-block: var(--space-3xl); }
@@ -2000,8 +2112,11 @@ textarea.form-control {
   .step + .step { padding-left: 0; border-left: none; border-top: 1px solid var(--hairline-light); }
   .section-dark .step + .step { border-top-color: var(--hairline-dark); }
   .form-row { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+  .footer-brand { flex-direction: column; }
+  .footer-tagline { max-width: none; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-legal { justify-content: center; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { justify-content: center; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
