@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /join-us/
 
 Sitemap: https://www.spikesecurity.co.uk/sitemap.xml
