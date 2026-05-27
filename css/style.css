@@ -570,7 +570,7 @@ p { line-height: 1.7; }
   width: 100%;
   padding: 12px 2px;
   border: none;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 2px solid #8A8174;
   font-size: 1rem;
   color: var(--color-text);
   background: transparent;
@@ -579,6 +579,11 @@ p { line-height: 1.7; }
 
 .form-control:focus {
   border-bottom-color: var(--color-gold);
+  outline: none;
+}
+
+.form-control:focus-visible {
+  outline: none;
 }
 
 .form-control.error {
@@ -687,6 +692,12 @@ textarea.form-control {
   cursor: pointer;
   text-align: left;
   transition: background var(--transition);
+  min-height: 44px;
+}
+
+.accordion-header:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: -2px;
 }
 
 .accordion-header:hover {
@@ -698,6 +709,7 @@ textarea.form-control {
   color: var(--color-white);
 }
 
+.accordion-header.open h3,
 .accordion-header.open h4,
 .accordion-header.open .accordion-meta span {
   color: var(--color-white);
@@ -910,7 +922,11 @@ textarea.form-control {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: var(--space-sm);
+  padding: 11px;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  align-items: center;
 }
 
 .hamburger span {
@@ -1413,6 +1429,9 @@ textarea.form-control {
   letter-spacing: 0.16em;
   color: var(--signal);
   transition: gap var(--transition);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
 }
 
 .service-card:hover .card-link {
@@ -1915,7 +1934,7 @@ textarea.form-control {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(238,234,224,.5);
+  color: rgba(238,234,224,.75);
   margin: 0;
 }
 
@@ -1930,8 +1949,11 @@ textarea.form-control {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(238,234,224,.6);
+  color: rgba(238,234,224,.82);
   transition: color var(--transition);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .footer-legal a:hover {
@@ -2042,7 +2064,8 @@ textarea.form-control {
   transition: top var(--transition);
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   top: 0;
 }
 
@@ -2511,6 +2534,7 @@ body::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  html { scroll-behavior: auto !important; }
 }
 
 /* ============================================================
@@ -2774,11 +2798,12 @@ body.ck-open { overflow: hidden; }
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(238, 234, 224, 0.6);
+  color: rgba(238, 234, 224, 0.82);
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
+  min-height: 44px;
   transition: color var(--transition);
 }
 

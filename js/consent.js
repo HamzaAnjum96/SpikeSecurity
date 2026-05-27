@@ -133,6 +133,7 @@
 
     var toggle    = banner.querySelector('#ck-functional-toggle');
     var functional = false;
+    var prevFocus  = null;
 
     function setToggle(val) {
       functional = val;
@@ -141,6 +142,7 @@
     }
 
     function openBanner(startView) {
+      prevFocus = document.activeElement;
       banner.removeAttribute('hidden');
       document.body.classList.add('ck-open');
       showView(banner, startView || 'ck-main');
@@ -149,7 +151,31 @@
     function closeBanner() {
       banner.setAttribute('hidden', '');
       document.body.classList.remove('ck-open');
+      if (prevFocus && typeof prevFocus.focus === 'function') {
+        prevFocus.focus();
+      }
+      prevFocus = null;
     }
+
+    /* Focus trap: keep Tab within the visible banner view */
+    banner.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab' || banner.hidden) return;
+      var focusable = Array.from(banner.querySelectorAll(
+        'button:not([disabled]), a[href], input, [tabindex]:not([tabindex="-1"])'
+      )).filter(function (el) {
+        return !el.closest('[hidden]') && el.offsetParent !== null;
+      });
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
 
     /* Accept / Reject */
     banner.querySelector('#ck-accept').addEventListener('click', function () {

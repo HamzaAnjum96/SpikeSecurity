@@ -33,6 +33,10 @@
       mobileNav.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) {
+        const firstLink = mobileNav.querySelector('.nav-link');
+        if (firstLink) firstLink.focus();
+      }
     });
 
     // Close on link click
@@ -119,13 +123,16 @@
 
       // Close all others
       document.querySelectorAll('.accordion-item').forEach(other => {
-        other.querySelector('.accordion-header').classList.remove('open');
+        const otherHeader = other.querySelector('.accordion-header');
+        otherHeader.classList.remove('open');
+        otherHeader.setAttribute('aria-expanded', 'false');
         other.querySelector('.accordion-body').classList.remove('open');
       });
 
       // Toggle current
       if (!isOpen) {
         header.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
         body.classList.add('open');
       }
     });
