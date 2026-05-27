@@ -252,6 +252,12 @@ p { line-height: 1.7; }
   color: var(--color-white);
 }
 
+/* Prose page headings — opsz 144 renders hairlines too thin at medium sizes */
+.prose h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-variation-settings: "opsz" 72, "wght" 600;
+}
+
 .section-dark h1,
 .section-dark h2,
 .section-dark h3,

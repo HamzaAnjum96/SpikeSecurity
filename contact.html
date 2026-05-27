@@ -520,15 +520,16 @@
       showGate();
     }
 
-    /* Initial state — wait for consent.js to be ready */
-    document.addEventListener('DOMContentLoaded', function () {
+    /* Initial state — script is at bottom of <body> so DOM is already ready.
+       DOMContentLoaded has already fired; listening for it would be a no-op. */
+    (function () {
       var consent = window.SpikeConsent && window.SpikeConsent.readConsent();
       if (consent && consent.functional) {
         initMap();
       } else {
         showGate();
       }
-    });
+    }());
 
     /* React to consent changes in real time */
     window.addEventListener('spike:consent-change', function (e) {
