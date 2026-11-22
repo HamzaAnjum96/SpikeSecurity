@@ -104,7 +104,7 @@ components:
 
 # Spike Security design system (brand v3.0)
 
-> Source of truth for the brand defined on `/branding` (`branding.html`). It is a **draft for approval**: the live pages still use the v2 "Night Watch" stylesheet (`css/style.css`, Fraunces, Manrope and JetBrains Mono) until the site is rolled over to this system. New work should target this file. `css/branding.css` is the reference implementation of these tokens.
+> Source of truth for the brand defined on `/branding` (`branding.html`). It is a **draft for approval**: the live pages still use the v2 "Night Watch" stylesheet (`css/style.css`, Fraunces, Manrope and JetBrains Mono) until the site is rolled over to this system. New work should target this file. `css/branding.css` is the reference implementation of these tokens. The rollover of the rest of the site is planned in [`docs/site-improvement-plan.md`](docs/site-improvement-plan.md).
 
 ## 1. Overview
 

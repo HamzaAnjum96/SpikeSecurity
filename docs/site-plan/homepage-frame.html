@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Homepage frame · Spike Security site plan</title>
+<meta name="description" content="Direction frame for the Spike Security homepage, built from brand v3.0. A planning artefact, not a live page.">
+<meta name="theme-color" content="#0B0C0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<!--
+  Site plan, frame 1: the homepage as it should look on brand v3.0.
+  Everything here comes from DESIGN.md: obsidian, bone and one orange signal; Archivo at three widths;
+  hairlines, square corners, hanging section numerals, no kickers, no cards, no icon font.
+  Grey "shot" frames mark the commissioned photographs (see the shot list in docs/site-improvement-plan.md).
+  Facts and promises in this frame are proposals: each one must be confirmed by Spike before it goes live.
+-->
+<style>
+:root {
+  color-scheme: dark;
+  --obsidian: #0B0C0E; --obsidian-2: #131417; --graphite: #1C1E23; --line: #2A2B2D; --line-strong: #46474A;
+  --ash: #A39E94; --bone: #EEEAE0; --bone-2: #E4DFD2; --line-light: #CECBC3; --line-strong-light: #9B978E; --stone: #5E5A52;
+  --orange: #FF5B1A; --ember: #B33A06; --line-on-orange: #C94A17;
+  --font: 'Archivo', 'Arial Narrow', Arial, sans-serif;
+  --condensed: 62%; --semi: 87%; --expanded: 125%;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+  --gutter: clamp(16px, 4vw, 48px); --max: 1320px; --bar-h: 60px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1); --fast: 160ms; --mid: 320ms;
+  --title: clamp(2.25rem, 5.4vw, 4.75rem);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--bar-h) + 16px); }
+body {
+  margin: 0; background: var(--obsidian); color: var(--bone);
+  font-family: var(--font); font-size: 1.0625rem; font-weight: 400; font-stretch: 100%;
+  line-height: 1.7; letter-spacing: 0.005em; font-kerning: normal;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, svg { display: block; max-width: 100%; }
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgba(255, 91, 26, 0.2); }
+p, li, dd { text-wrap: pretty; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+::selection { background: var(--orange); color: var(--obsidian); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: var(--s4); top: -100px; z-index: 40; background: var(--orange); color: var(--obsidian); padding: var(--s3) var(--s4); font-weight: 700; text-decoration: none; }
+.skip:focus { top: var(--s3); }
+.wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+.nb { white-space: nowrap; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Labels: expanded capitals, never orange */
+.label {
+  font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded);
+  letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.4; color: var(--ash);
+}
+
+/* Buttons: two kinds, square, 48px minimum */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s3);
+  min-height: 48px; padding: 12px 20px; border: 1px solid transparent; border-radius: 0;
+  font-size: 0.875rem; font-weight: 700; font-stretch: 106%; letter-spacing: 0.06em;
+  text-transform: uppercase; line-height: 1.2; text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color var(--fast) var(--ease), color var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.btn--primary { background: var(--orange); color: var(--obsidian); }
+.btn--primary:hover { background: var(--bone); }
+.btn--ghost { background: transparent; color: var(--bone); border-color: var(--line-strong); }
+.btn--ghost:hover { border-color: var(--bone); background: var(--graphite); }
+.btn--dark { background: var(--obsidian); color: var(--bone); }
+.btn--dark:hover { background: var(--bone); color: var(--obsidian); }
+.btn--sm { min-height: 40px; padding: 8px 14px; font-size: 0.75rem; }
+.btn--lg { min-height: 60px; padding: 16px 28px; font-size: 1rem; }
+.btn:active { transform: translateY(1px); }
+.arrow { width: 20px; height: 20px; flex: none; }
+
+/* ── Bar ─────────────────────────────────────────────────── */
+.bar { position: sticky; top: 0; z-index: 30; background: var(--obsidian); border-bottom: 1px solid var(--line); }
+.bar-in { height: var(--bar-h); display: flex; align-items: center; gap: var(--s5); }
+.brand { display: flex; align-items: center; min-height: 44px; flex: none; color: var(--bone); }
+.brand svg { height: 28px; width: auto; }
+.nav { flex: 1; display: flex; justify-content: center; align-self: stretch; }
+.nav ul { display: flex; gap: var(--s1); height: 100%; }
+.nav a {
+  position: relative; display: flex; align-items: center; height: 100%; padding: 0 12px;
+  color: var(--ash); text-decoration: none; font-size: 0.75rem; font-weight: 600; font-stretch: 112%;
+  letter-spacing: 0.08em; text-transform: uppercase; transition: color var(--fast) var(--ease);
+}
+.nav a::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform var(--mid) var(--ease); }
+.nav a:hover { color: var(--bone); }
+.nav a:hover::after { transform: scaleX(1); }
+.bar-tel {
+  display: flex; align-items: baseline; gap: var(--s2); min-height: 44px; align-items: center;
+  color: var(--bone); text-decoration: none; font-weight: 700; font-stretch: 100%; font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.bar-tel span { font-size: 0.6875rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.14em; color: var(--ash); }
+.bar-tel:hover { color: var(--orange); }
+.menu { display: none; }
+@media (max-width: 1059px) {
+  .nav { display: none; }
+  .bar-in { justify-content: space-between; }
+  .bar-actions { margin-left: auto; }
+}
+.bar-actions { display: flex; align-items: center; gap: var(--s5); }
+.bar-call { display: none; }
+@media (max-width: 699px) {
+  .bar-tel, .bar-quote { display: none; }
+  .bar-in { gap: var(--s3); }
+  .brand svg { height: 26px; }
+  .menu, .bar-call {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 12px;
+    background: transparent; color: var(--bone); border: 1px solid var(--line-strong);
+    font: 700 0.75rem/1 var(--font); font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+  }
+  .menu { border-color: transparent; padding-right: 0; }
+  .bar-actions { gap: var(--s2); }
+}
+
+/* ── Cover ───────────────────────────────────────────────── */
+.cover { position: relative; padding-top: clamp(28px, 5vw, 72px); padding-bottom: clamp(48px, 6vw, 88px); }
+.cover-grid { display: grid; gap: var(--s7); grid-template-columns: minmax(0, 1fr); align-items: end; }
+.cover-h1 { display: block; font-weight: inherit; }
+/* "ON RECORD." is 4.40em wide in Archivo 62%/800; dividing the column by 4.45 keeps every line whole */
+.display {
+  display: block; font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase;
+  letter-spacing: 0.005em; line-height: 0.86;
+  font-size: min(calc((100vw - 2 * var(--gutter)) / 4.45), 10rem);
+}
+.dl { display: block; }
+.dl--o { color: var(--orange); }
+.lede {
+  display: block; margin-top: var(--s6); max-width: 34ch;
+  font-size: clamp(1.1875rem, 1.7vw, 1.5rem); font-weight: 400; line-height: 1.45; color: var(--bone);
+}
+.cover-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5) var(--s6); margin-top: var(--s6); }
+.tel { display: grid; gap: 2px; color: var(--bone); text-decoration: none; min-height: 48px; align-content: center; }
+.tel-l { font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); }
+.tel-n {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem); font-weight: 800; font-stretch: 75%; line-height: 1;
+  letter-spacing: 0.01em; font-variant-numeric: tabular-nums;
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; text-decoration-color: var(--line-strong);
+  transition: text-decoration-color var(--fast) var(--ease);
+}
+.tel:hover .tel-n { text-decoration-color: var(--orange); }
+
+/* Commissioned photograph, shown as an art-direction frame until the shoot */
+.shot { display: grid; gap: var(--s3); }
+.shot-frame {
+  position: relative; overflow: hidden; background: var(--obsidian-2); border: 1px solid var(--line);
+  aspect-ratio: 4 / 5;
+}
+.shot--wide .shot-frame { aspect-ratio: 3 / 2; }
+.shot-sg { position: absolute; height: 190%; width: auto; left: 30%; top: -58%; --shield: var(--graphite); }
+.shot--wide .shot-sg { height: 250%; left: 48%; top: -92%; }
+.shot-crop { position: absolute; inset: 14px; width: calc(100% - 28px); height: calc(100% - 28px); }
+.shot-crop path { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
+.shot-note { position: absolute; left: 28px; right: 28px; bottom: 26px; display: grid; gap: var(--s2); max-width: 34ch; color: var(--ash); font-size: 0.9375rem; line-height: 1.5; }
+.shot-note b { color: var(--bone); }
+.shot figcaption { color: var(--ash); font-size: 0.875rem; line-height: 1.5; }
+.shot figcaption b { font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; color: var(--bone); margin-right: var(--s2); }
+
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: clamp(40px, 5vw, 72px); border-top: 1px solid var(--line); }
+.facts li { padding: var(--s4) var(--s4) var(--s4) 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; line-height: 1.5; color: var(--ash); }
+.facts b { display: block; color: var(--bone); font-weight: 700; font-size: 1rem; }
+.facts a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.2em; }
+.facts a:hover { color: var(--bone); text-decoration-color: var(--orange); }
+@media (min-width: 900px) {
+  .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .facts li { border-bottom: 0; padding: var(--s5) var(--s5) 0 0; }
+  .facts li + li { padding-left: var(--s5); border-left: 1px solid var(--line); }
+}
+@media (min-width: 900px) {
+  .cover-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .display {
+    font-size: max(4.5rem, min(
+      calc((min(100vw - 2 * var(--gutter), var(--max)) - var(--s7)) * 7 / 12 / 4.45),
+      calc((100svh - 470px) / 2.58)
+    ));
+  }
+  .shot--hero .shot-frame { aspect-ratio: auto; height: 100%; min-height: 520px; }
+  .shot--hero { align-self: stretch; grid-template-rows: 1fr auto; }
+}
+@media (max-width: 899px) {
+  .shot--hero .shot-frame { aspect-ratio: 4 / 3; }
+}
+
+/* ── Sections ────────────────────────────────────────────── */
+.sec { position: relative; padding-top: clamp(72px, 10vw, 144px); padding-bottom: clamp(72px, 10vw, 144px); border-top: 1px solid var(--line); }
+.sec-head {
+  display: grid; grid-template-columns: fit-content(38%) minmax(0, 1fr);
+  column-gap: clamp(16px, 3vw, 48px); row-gap: var(--s5); align-items: start;
+  margin-bottom: clamp(40px, 6vw, 88px);
+}
+.sec-num { display: grid; gap: var(--s2); justify-items: start; }
+.sec-num b { font-size: var(--title); font-weight: 800; font-stretch: var(--condensed); line-height: 0.88; letter-spacing: 0.005em; color: var(--orange); font-variant-numeric: tabular-nums; }
+.sec-num span { font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ash); }
+.sec-title {
+  font-size: var(--title); font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase;
+  letter-spacing: 0.005em; line-height: 0.88; max-width: 15ch; text-wrap: balance; overflow-wrap: anywhere;
+}
+.sec-lede { grid-column: 1 / -1; max-width: 48ch; font-size: clamp(1.0625rem, 1.35vw, 1.25rem); line-height: 1.6; color: var(--ash); }
+.sec-lede strong { color: var(--bone); font-weight: 600; }
+/* Desktop: one 12-column grid shared by section heads and the rows beneath them, so names line up with titles */
+@media (min-width: 1000px) {
+  .sec-head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s6); align-items: end; }
+  .sec-num { grid-column: span 2; align-self: start; }
+  .sec-title { grid-column: span 6; align-self: start; }
+  .sec-lede { grid-column: span 4; padding-bottom: 0.3em; }
+}
+
+/* 01 Services: rows, not cards */
+.svc { border-top: 1px solid var(--line-strong); counter-reset: svc; }
+.svc li { border-bottom: 1px solid var(--line); }
+.svc a {
+  display: grid; grid-template-columns: 2.25rem minmax(0, 1fr) 24px; column-gap: var(--s4); row-gap: var(--s2);
+  align-items: baseline; padding: var(--s5) 0; color: var(--bone); text-decoration: none;
+  transition: background-color var(--fast) var(--ease), padding var(--mid) var(--ease);
+}
+.svc-n { font-size: 1.25rem; font-weight: 800; font-stretch: var(--condensed); color: var(--ash); font-variant-numeric: tabular-nums; line-height: 1; }
+.svc-name { font-size: clamp(1.75rem, 2.8vw, 2.5rem); font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase; line-height: 0.95; letter-spacing: 0.005em; }
+.svc-desc { grid-column: 2 / 3; color: var(--ash); max-width: 52ch; line-height: 1.6; }
+.svc-for { grid-column: 2 / 3; font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; color: var(--bone); }
+.svc-go { grid-column: 3; grid-row: 1; align-self: center; color: var(--ash); transition: color var(--fast) var(--ease), transform var(--mid) var(--ease); }
+.svc a:hover { background: var(--obsidian-2); }
+.svc a:hover .svc-go { color: var(--orange); transform: translateX(4px); }
+@media (min-width: 1000px) {
+  /* the row bleeds 16px each side so the hover fill has room, while its grid stays on the page grid */
+  .svc a { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s6); align-items: center; margin: 0 calc(-1 * var(--s4)); padding: var(--s6) var(--s4); }
+  .svc-n { grid-column: span 2; font-size: 1.5rem; }
+  .svc-name { grid-column: span 3; }
+  .svc-desc { grid-column: span 4; }
+  .svc-for { grid-column: span 2; color: var(--ash); }
+  .svc-go { grid-column: span 1; grid-row: auto; justify-self: end; margin-right: var(--s2); }
+}
+
+/* 02 On record (paper) */
+.sec--paper {
+  --ash: var(--stone); --line: var(--line-light); --line-strong: var(--line-strong-light);
+  background: var(--bone-2); color: var(--obsidian); border-top-color: var(--bone-2);
+}
+.sec--paper .sec-num b { color: var(--ember); }
+.sec--paper :focus-visible { outline-color: var(--obsidian); }
+.sec--paper ::selection { background: var(--obsidian); color: var(--bone); }
+.record { display: grid; gap: var(--s8); align-items: start; }
+.record .sec-head { margin-bottom: var(--s7); }
+.record .sec-title { max-width: 12ch; }
+@media (min-width: 1000px) {
+  .record { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--s8); }
+  .record .sec-head { grid-template-columns: minmax(0, 1fr) minmax(0, 4fr); }
+  .record .sec-num, .record .sec-title { grid-column: auto; }
+}
+.promises { border-top: 2px solid var(--obsidian); }
+.promises li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: var(--s4); padding: var(--s5) 0; border-bottom: 1px solid var(--line); }
+.promises .n { font-size: 1.75rem; font-weight: 800; font-stretch: var(--condensed); line-height: 1; color: var(--obsidian); font-variant-numeric: tabular-nums; }
+.promises h3 { font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: var(--s1); line-height: 1.4; }
+.promises p { font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.5; max-width: 38ch; }
+
+.doc-fig { display: grid; gap: var(--s3); }
+.doc { background: var(--bone); border: 1px solid var(--line-strong-light); color: var(--obsidian); font-size: 0.9375rem; line-height: 1.5; }
+.doc-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); padding: var(--s5); border-bottom: 2px solid var(--obsidian); }
+.doc-id { display: flex; align-items: center; gap: var(--s3); }
+.doc-id svg { width: 22px; height: auto; }
+.doc-id b { font-size: 1.375rem; font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; }
+.doc-ref { font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); font-variant-numeric: tabular-nums; text-align: right; }
+.doc-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--line-light); }
+.doc-meta div { padding: var(--s3) var(--s5); border-bottom: 1px solid var(--line-light); }
+.doc-meta div:nth-child(odd) { border-right: 1px solid var(--line-light); }
+.doc-meta div:nth-last-child(-n+2) { border-bottom: 0; }
+.doc-meta dt { font-size: 0.6875rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); }
+.doc-meta dd { font-weight: 600; font-variant-numeric: tabular-nums; }
+.doc-log { width: 100%; border-collapse: collapse; }
+.doc-log caption { text-align: left; padding: var(--s4) var(--s5) var(--s2); font-size: 0.6875rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); }
+.doc-log th, .doc-log td { text-align: left; vertical-align: top; padding: var(--s3) var(--s5); border-top: 1px solid var(--line-light); }
+.doc-log th { width: 5.5rem; font-weight: 800; font-stretch: var(--condensed); font-size: 1.125rem; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.doc-foot { display: flex; justify-content: space-between; gap: var(--s4); flex-wrap: wrap; padding: var(--s4) var(--s5); border-top: 2px solid var(--obsidian); font-size: 0.8125rem; color: var(--stone); }
+.doc-fig figcaption { font-size: 0.875rem; color: var(--stone); }
+.doc-fig figcaption b { font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; color: var(--obsidian); margin-right: var(--s2); }
+
+/* 03 Area */
+.area { display: grid; gap: var(--s7); align-items: start; }
+@media (min-width: 1000px) { .area { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s6); } .map { grid-column: span 7; } .sectors { grid-column: 9 / span 4; } }
+.map { display: grid; gap: var(--s3); }
+.map > svg { width: 100%; height: auto; background: var(--obsidian-2); border: 1px solid var(--line); overflow: hidden; }
+.map figcaption { font-size: 0.875rem; color: var(--ash); }
+.map figcaption b { font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; color: var(--bone); margin-right: var(--s2); }
+.m-ring { fill: none; stroke: var(--line-strong); stroke-width: 9; }
+.m-road { fill: none; stroke: var(--line); stroke-width: 4; stroke-linecap: square; }
+.m-town { fill: var(--bone); }
+.m-name { fill: var(--bone); font-family: var(--font); font-weight: 800; font-stretch: 62%; font-size: 25px; letter-spacing: 0.02em; text-transform: uppercase; }
+.m-name--sm { fill: var(--ash); font-weight: 600; font-stretch: 125%; font-size: 10.5px; letter-spacing: 0.16em; }
+.m-shield-label { fill: var(--bone); font-family: var(--font); font-weight: 600; font-stretch: 125%; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+.m-plate rect { fill: var(--obsidian); stroke: var(--line-strong); stroke-width: 1.5; }
+.m-plate text { fill: var(--bone); font-family: var(--font); font-weight: 800; font-stretch: 62%; font-size: 17px; letter-spacing: 0.04em; }
+
+.sectors h3 { font-size: clamp(1.375rem, 2vw, 1.75rem); font-weight: 700; font-stretch: var(--semi); line-height: 1.15; margin-bottom: var(--s4); }
+.sectors ul { border-top: 1px solid var(--line-strong); }
+.sectors li { border-bottom: 1px solid var(--line); }
+.sectors a { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); min-height: 52px; color: var(--bone); text-decoration: none; font-size: 1.0625rem; transition: color var(--fast) var(--ease); }
+.sectors a svg { width: 18px; height: 18px; color: var(--ash); flex: none; transition: color var(--fast) var(--ease), transform var(--mid) var(--ease); }
+.sectors a:hover svg { color: var(--orange); transform: translateX(3px); }
+.sectors p { margin-top: var(--s5); color: var(--ash); max-width: 40ch; }
+
+/* 04 Careers */
+.sec--careers { overflow: hidden; background: var(--obsidian); }
+.careers-sg { position: absolute; right: -14%; top: -30%; height: 170%; width: auto; --shield: var(--graphite); pointer-events: none; }
+.sec--careers .wrap { position: relative; }
+.careers { display: grid; gap: var(--s7); align-items: start; }
+@media (min-width: 1000px) { .careers { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s6); } .careers-copy { grid-column: span 5; } .roles { grid-column: 7 / span 6; } }
+.careers-copy p { font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.55; max-width: 40ch; }
+.careers-copy p + p { margin-top: var(--s4); color: var(--ash); font-size: 1rem; }
+.careers-copy .btn { margin-top: var(--s6); }
+.roles { border-top: 1px solid var(--line-strong); }
+.roles li { border-bottom: 1px solid var(--line); }
+.roles a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s1) var(--s4); align-items: center; padding: var(--s5) 0; color: var(--bone); text-decoration: none; }
+.role-t { font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 700; font-stretch: var(--semi); line-height: 1.2; }
+.role-m { grid-column: 1; font-size: 0.9375rem; color: var(--ash); }
+.role-go { grid-row: 1 / span 2; grid-column: 2; font-size: 0.75rem; font-weight: 700; font-stretch: var(--expanded); letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; gap: var(--s2); color: var(--bone); }
+.role-go svg { width: 18px; height: 18px; transition: transform var(--mid) var(--ease), color var(--fast) var(--ease); }
+.roles a:hover .role-go svg { color: var(--orange); transform: translateX(3px); }
+
+/* Finale: the page ends on the brand colour, the 24-hour number set like the back of a van */
+.sec--signal { --ash: var(--obsidian); --line: var(--line-on-orange); background: var(--orange); color: var(--obsidian); border-top-color: var(--orange); overflow: hidden; }
+.sec--signal :focus-visible { outline-color: var(--obsidian); }
+.sec--signal ::selection { background: var(--obsidian); color: var(--orange); }
+.finale { display: grid; gap: var(--s6); }
+.finale-tel {
+  display: inline-block; color: var(--obsidian); text-decoration: none;
+  font-size: min(calc((min(100vw, var(--max) + 2 * var(--gutter)) - 2 * var(--gutter)) / 5.12), 16rem); font-weight: 800; font-stretch: var(--condensed);
+  line-height: 0.86; letter-spacing: 0.005em; font-variant-numeric: tabular-nums;
+}
+.finale-tel:hover { text-decoration: underline; text-decoration-thickness: 0.06em; text-underline-offset: 0.08em; }
+.finale-row { display: grid; gap: var(--s5); padding-top: var(--s5); border-top: 2px solid var(--obsidian); align-items: end; }
+.finale-row p { font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.5; max-width: 44ch; }
+.finale-row p b { font-weight: 700; }
+.finale-lockup { height: 64px; width: auto; --shield: var(--obsidian); --word: var(--obsidian); }
+@media (min-width: 900px) { .finale-row { grid-template-columns: minmax(0, 6fr) minmax(0, 4fr) auto; column-gap: var(--s7); } .finale-row .btn { justify-self: start; } }
+
+/* Footer */
+.foot { padding-top: clamp(56px, 7vw, 96px); padding-bottom: var(--s7); background: var(--obsidian); }
+.foot-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--s5); padding-bottom: var(--s7); border-bottom: 1px solid var(--line); }
+.foot-top svg { height: 44px; width: auto; }
+.foot-line { font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase; line-height: 0.95; color: var(--ash); }
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6) var(--s5); padding: var(--s7) 0; border-bottom: 1px solid var(--line); }
+@media (min-width: 480px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.foot-grid a { overflow-wrap: anywhere; }
+@media (min-width: 1000px) { .foot-grid { grid-template-columns: 3fr 3fr 3fr 2fr 2fr; } }
+.foot-h { font-size: 0.75rem; font-weight: 600; font-stretch: var(--expanded); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ash); margin-bottom: var(--s3); line-height: 1.4; }
+.foot-grid a, .foot-grid address, .foot-grid p { color: var(--bone); font-style: normal; font-size: 0.9375rem; line-height: 1.6; text-decoration: none; }
+.foot-grid a:hover { color: var(--orange); }
+.foot-big { font-size: 1.625rem !important; font-weight: 800; font-stretch: 75%; line-height: 1.1 !important; font-variant-numeric: tabular-nums; }
+.foot-grid ul li a { display: inline-flex; min-height: 32px; align-items: center; }
+.foot-grid .muted { color: var(--ash); margin-top: var(--s2); }
+.foot-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s4) var(--s6); padding-top: var(--s5); font-size: 0.8125rem; color: var(--ash); line-height: 1.6; }
+.foot-legal p { max-width: 72ch; }
+.foot-legal ul { display: flex; gap: var(--s5); }
+.foot-legal a { color: var(--ash); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.2em; }
+.foot-legal a:hover { color: var(--bone); }
+
+/* Phones: one thumb-reach dock appears once the cover's own actions scroll away */
+.dock { display: none; }
+@media (max-width: 699px) {
+  .dock {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--s2);
+    padding: var(--s2) var(--gutter) calc(var(--s2) + env(safe-area-inset-bottom));
+    background: var(--obsidian); border-top: 1px solid var(--line);
+    transform: translateY(110%); transition: transform var(--mid) var(--ease);
+  }
+  .dock.on { transform: none; }
+  .dock .btn { min-height: 52px; padding: 0 12px; }
+  .cover-actions .btn { flex: 1 1 100%; }
+  .foot { padding-bottom: calc(var(--s7) + 72px); }
+}
+
+/* One orchestrated entrance; nothing else moves on load */
+@media (prefers-reduced-motion: no-preference) {
+  .js .dl, .js .lede, .js .cover-actions { animation: rise 700ms var(--ease) both; }
+  .js .dl:nth-child(1) { animation-delay: 60ms; }
+  .js .dl:nth-child(2) { animation-delay: 130ms; }
+  .js .dl:nth-child(3) { animation-delay: 200ms; }
+  .js .lede { animation-delay: 300ms; }
+  .js .cover-actions { animation-delay: 360ms; }
+}
+@media (prefers-reduced-motion: reduce) { .dock, .svc a, .svc-go { transition: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body id="top">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="ss-shield" viewBox="0 0 351.64 453.19"><path fill="var(--shield, #FF5B1A)" transform="translate(-82.42 -28.84)" d="M 257.947 28.843 L 433.47 67.567 L 433.47 226.665 L 358.329 197.312 L 357.743 132.725 C 357.048 124.775 351.56 122.724 347.173 121.58 L 260.867 100.452 L 167.54 122.171 C 157.892 126.688 152.311 156.792 172.233 163.854 L 434.056 265.409 L 433.724 317.883 C 436.009 358.442 412.596 370.85 397.66 382.232 L 257.947 482.029 L 113.527 378.129 C 92.478 362.151 87.37 352.011 82.418 331.75 L 82.418 232.605 L 158.15 264.817 L 158.72 265.409 L 159.312 320.013 C 160.715 329.482 165.015 333.132 172.825 338.793 L 257.947 398.669 L 345.413 337.629 C 361.856 327.233 358.705 313.385 351.87 310.623 L 83.01 200.843 L 82.418 200.251 L 82.418 68.158 L 257.947 28.843 Z"/></symbol>
+<symbol id="ss-horizontal" viewBox="0 0 2080.8 453.19"><path fill="var(--shield, #FF5B1A)" transform="translate(-82.42 -28.84)" d="M 257.947 28.843 L 433.47 67.567 L 433.47 226.665 L 358.329 197.312 L 357.743 132.725 C 357.048 124.775 351.56 122.724 347.173 121.58 L 260.867 100.452 L 167.54 122.171 C 157.892 126.688 152.311 156.792 172.233 163.854 L 434.056 265.409 L 433.724 317.883 C 436.009 358.442 412.596 370.85 397.66 382.232 L 257.947 482.029 L 113.527 378.129 C 92.478 362.151 87.37 352.011 82.418 331.75 L 82.418 232.605 L 158.15 264.817 L 158.72 265.409 L 159.312 320.013 C 160.715 329.482 165.015 333.132 172.825 338.793 L 257.947 398.669 L 345.413 337.629 C 361.856 327.233 358.705 313.385 351.87 310.623 L 83.01 200.843 L 82.418 200.251 L 82.418 68.158 L 257.947 28.843 Z"/><path fill="var(--word, #EEEAE0)" transform="translate(442.28 303.63)" d="M54.57 3.17Q43.04 3.17 33.15 0.79Q23.27 -1.59 15.83 -7.74Q8.38 -13.88 4.19 -24.8Q0 -35.72 0 -52.94Q0 -53.83 0 -55.51Q0 -57.19 0.14 -58.25H38.64Q38.64 -56.93 38.64 -55.54Q38.64 -54.14 38.64 -52.82Q38.64 -44.26 40.33 -39.56Q42.01 -34.86 45.27 -33Q48.53 -31.15 53.34 -31.15Q56.28 -31.15 58.51 -31.86Q60.73 -32.57 62.51 -34.11Q64.29 -35.65 65.44 -37.9Q66.58 -40.15 67.08 -43.23Q67.59 -46.31 67.59 -50.13Q67.59 -56.24 64.83 -60.46Q62.06 -64.68 57.4 -67.74Q52.74 -70.81 46.95 -73.5Q41.16 -76.19 34.91 -79.16Q28.67 -82.12 22.87 -86.16Q17.08 -90.2 12.42 -96.09Q7.76 -101.99 5 -110.26Q2.23 -118.54 2.23 -130.17Q2.23 -145.06 6.49 -155.48Q10.74 -165.9 18.18 -172.4Q25.63 -178.9 35.05 -181.95Q44.48 -185 54.83 -185Q65.67 -185 74.88 -182.35Q84.09 -179.71 90.86 -173.9Q97.63 -168.08 101.43 -158.43Q105.22 -148.77 105.22 -134.74V-128.05H67.25V-131.7Q67.25 -137.76 66.25 -141.88Q65.25 -146.01 62.72 -148.2Q60.2 -150.39 55.22 -150.39Q51.37 -150.39 48.58 -148.7Q45.78 -147.02 44.41 -143.63Q43.04 -140.24 43.04 -134.89Q43.04 -128.38 45.8 -123.87Q48.56 -119.37 53.3 -116.23Q58.03 -113.09 63.82 -110.4Q69.61 -107.71 75.79 -104.8Q81.96 -101.9 87.75 -97.93Q93.54 -93.97 98.28 -88.22Q103.01 -82.46 105.77 -74.27Q108.54 -66.08 108.54 -54.6Q108.54 -34.9 101.98 -22.11Q95.42 -9.32 83.36 -3.07Q71.31 3.17 54.57 3.17ZM133.19 0V-181.68H195.88Q213.66 -181.68 224.1 -174.33Q234.54 -166.98 239.1 -153.72Q243.67 -140.47 243.67 -122.81Q243.67 -104.51 238.58 -90.59Q233.5 -76.67 222.99 -68.72Q212.48 -60.77 195.93 -60.77H173.46V0ZM173.46 -94.23H187.58Q196.17 -94.23 199.59 -101.82Q203.01 -109.4 203.01 -121.35Q203.01 -130.25 201.56 -136.18Q200.12 -142.12 196.55 -145.03Q192.99 -147.93 186.62 -147.93H173.46ZM265.84 0V-181.68H306.11V0ZM337.98 0V-181.68H378.25V-101.85L415.13 -181.68H456.75L419.34 -104.51L458.31 0H414.39L392.73 -66.8L378.25 -46.23V0ZM478.3 0V-181.68H578.57V-146.93H518.57V-109.72H569.42V-74.85H518.57V-34.75H579.77V0ZM699.61 3.17Q688.08 3.17 678.2 0.79Q668.31 -1.59 660.87 -7.74Q653.42 -13.88 649.23 -24.8Q645.04 -35.72 645.04 -52.94Q645.04 -53.83 645.04 -55.51Q645.04 -57.19 645.19 -58.25H683.68Q683.68 -56.93 683.68 -55.54Q683.68 -54.14 683.68 -52.82Q683.68 -44.26 685.37 -39.56Q687.05 -34.86 690.31 -33Q693.57 -31.15 698.39 -31.15Q701.32 -31.15 703.55 -31.86Q705.77 -32.57 707.55 -34.11Q709.33 -35.65 710.48 -37.9Q711.62 -40.15 712.13 -43.23Q712.63 -46.31 712.63 -50.13Q712.63 -56.24 709.87 -60.46Q707.11 -64.68 702.44 -67.74Q697.78 -70.81 691.99 -73.5Q686.2 -76.19 679.95 -79.16Q673.71 -82.12 667.92 -86.16Q662.13 -90.2 657.46 -96.09Q652.8 -101.99 650.04 -110.26Q647.28 -118.54 647.28 -130.17Q647.28 -145.06 651.53 -155.48Q655.78 -165.9 663.22 -172.4Q670.67 -178.9 680.09 -181.95Q689.52 -185 699.87 -185Q710.71 -185 719.92 -182.35Q729.13 -179.71 735.9 -173.9Q742.68 -168.08 746.47 -158.43Q750.26 -148.77 750.26 -134.74V-128.05H712.29V-131.7Q712.29 -137.76 711.29 -141.88Q710.29 -146.01 707.77 -148.2Q705.24 -150.39 700.26 -150.39Q696.41 -150.39 693.62 -148.7Q690.82 -147.02 689.45 -143.63Q688.08 -140.24 688.08 -134.89Q688.08 -128.38 690.84 -123.87Q693.61 -119.37 698.34 -116.23Q703.07 -113.09 708.86 -110.4Q714.65 -107.71 720.83 -104.8Q727 -101.9 732.79 -97.93Q738.58 -93.97 743.32 -88.22Q748.05 -82.46 750.82 -74.27Q753.58 -66.08 753.58 -54.6Q753.58 -34.9 747.02 -22.11Q740.46 -9.32 728.41 -3.07Q716.35 3.17 699.61 3.17ZM778.23 0V-181.68H878.5V-146.93H818.5V-109.72H869.35V-74.85H818.5V-34.75H879.71V0ZM962.68 3.17Q940.82 3.17 927.41 -6.93Q913.99 -17.03 907.99 -37.91Q901.99 -58.78 901.99 -91.05Q901.99 -139.4 917.41 -162.2Q932.83 -185 965.3 -185Q983.18 -185 995.23 -177.53Q1007.29 -170.06 1013.52 -153.42Q1019.76 -136.79 1019.76 -109.43H980.97Q980.97 -122.65 979.59 -131.81Q978.2 -140.97 974.29 -145.6Q970.38 -150.24 963.02 -150.24Q955.52 -150.24 951.05 -145.52Q946.57 -140.79 944.75 -131.04Q942.93 -121.29 942.93 -105.95V-75.37Q942.93 -60.01 944.76 -50.32Q946.59 -40.62 950.95 -36.03Q955.3 -31.44 962.81 -31.44Q970.04 -31.44 974.21 -35.89Q978.37 -40.33 980.08 -49.22Q981.79 -58.12 981.79 -71.43H1019.64Q1019.64 -44.77 1013.1 -28.34Q1006.57 -11.91 993.94 -4.37Q981.32 3.17 962.68 3.17ZM1100.34 3.17Q1083.48 3.17 1071.19 -2.53Q1058.91 -8.24 1052.28 -21.94Q1045.65 -35.64 1045.65 -59.33V-181.68H1085.92V-56.57Q1085.92 -44.18 1088.81 -37.74Q1091.7 -31.3 1100.05 -31.3Q1108.66 -31.3 1111.75 -37.74Q1114.85 -44.18 1114.85 -56.57V-181.68H1155.12V-59.33Q1155.12 -35.64 1148.49 -21.94Q1141.86 -8.24 1129.66 -2.53Q1117.46 3.17 1100.34 3.17ZM1185.7 0V-181.68H1246.55Q1266.66 -181.68 1277.78 -174.46Q1288.9 -167.25 1293.4 -154.98Q1297.91 -142.72 1297.91 -127.61Q1297.91 -111.78 1294.1 -98.86Q1290.28 -85.95 1280.7 -78.03L1304.04 0H1262.3L1244.93 -64.42H1225.97V0ZM1225.97 -97.31H1241.05Q1250.53 -97.31 1254.02 -104.77Q1257.51 -112.23 1257.51 -123.7Q1257.51 -131.45 1255.98 -136.86Q1254.46 -142.26 1250.83 -145.17Q1247.21 -148.08 1240.33 -148.08H1225.97ZM1325.22 0V-181.68H1365.5V0ZM1425.88 0V-146.81H1389.07V-181.68H1502.56V-146.81H1466.15V0ZM1554.89 0V-70.92L1510.85 -181.68H1552.59L1574.57 -114.63H1576.16L1599.21 -181.68H1638.53L1595.16 -70.92V0Z"/></symbol>
+<symbol id="ss-stacked" viewBox="0 0 860.23 627.06"><path fill="var(--shield, #FF5B1A)" transform="translate(171.88 -28.84)" d="M 257.947 28.843 L 433.47 67.567 L 433.47 226.665 L 358.329 197.312 L 357.743 132.725 C 357.048 124.775 351.56 122.724 347.173 121.58 L 260.867 100.452 L 167.54 122.171 C 157.892 126.688 152.311 156.792 172.233 163.854 L 434.056 265.409 L 433.724 317.883 C 436.009 358.442 412.596 370.85 397.66 382.232 L 257.947 482.029 L 113.527 378.129 C 92.478 362.151 87.37 352.011 82.418 331.75 L 82.418 232.605 L 158.15 264.817 L 158.72 265.409 L 159.312 320.013 C 160.715 329.482 165.015 333.132 172.825 338.793 L 257.947 398.669 L 345.413 337.629 C 361.856 327.233 358.705 313.385 351.87 310.623 L 83.01 200.843 L 82.418 200.251 L 82.418 68.158 L 257.947 28.843 Z"/><path fill="var(--word, #EEEAE0)" transform="translate(0 625.4)" d="M28.65 1.66Q22.59 1.66 17.41 0.42Q12.22 -0.83 8.31 -4.06Q4.4 -7.29 2.2 -13.02Q0 -18.75 0 -27.79Q0 -28.26 0 -29.14Q0 -30.03 0.08 -30.58H20.29Q20.29 -29.89 20.29 -29.16Q20.29 -28.42 20.29 -27.73Q20.29 -23.24 21.17 -20.77Q22.05 -18.3 23.77 -17.33Q25.48 -16.35 28.01 -16.35Q29.55 -16.35 30.72 -16.73Q31.88 -17.1 32.82 -17.91Q33.75 -18.72 34.35 -19.9Q34.95 -21.08 35.22 -22.69Q35.48 -24.31 35.48 -26.32Q35.48 -29.53 34.03 -31.74Q32.58 -33.96 30.14 -35.56Q27.69 -37.17 24.65 -38.59Q21.61 -40 18.33 -41.56Q15.05 -43.12 12.01 -45.23Q8.97 -47.35 6.52 -50.45Q4.07 -53.54 2.62 -57.89Q1.17 -62.23 1.17 -68.34Q1.17 -76.15 3.4 -81.63Q5.64 -87.1 9.55 -90.51Q13.45 -93.92 18.4 -95.52Q23.35 -97.12 28.79 -97.12Q34.47 -97.12 39.31 -95.74Q44.15 -94.35 47.7 -91.3Q51.26 -88.24 53.25 -83.17Q55.24 -78.11 55.24 -70.74V-67.22H35.31V-69.14Q35.31 -72.32 34.78 -74.49Q34.26 -76.65 32.93 -77.8Q31.6 -78.95 28.99 -78.95Q26.97 -78.95 25.5 -78.07Q24.04 -77.19 23.32 -75.4Q22.59 -73.62 22.59 -70.82Q22.59 -67.4 24.05 -65.03Q25.5 -62.67 27.98 -61.02Q30.47 -59.37 33.51 -57.96Q36.55 -56.55 39.79 -55.02Q43.03 -53.5 46.07 -51.41Q49.11 -49.33 51.6 -46.31Q54.08 -43.29 55.53 -38.99Q56.98 -34.69 56.98 -28.66Q56.98 -18.32 53.54 -11.61Q50.1 -4.89 43.77 -1.61Q37.44 1.66 28.65 1.66ZM69.92 0V-95.38H102.84Q112.17 -95.38 117.65 -91.52Q123.13 -87.67 125.53 -80.7Q127.92 -73.74 127.92 -64.48Q127.92 -54.87 125.26 -47.56Q122.59 -40.25 117.07 -36.08Q111.55 -31.91 102.87 -31.91H91.07V0ZM91.07 -49.47H98.48Q102.99 -49.47 104.78 -53.45Q106.58 -57.43 106.58 -63.71Q106.58 -68.38 105.82 -71.5Q105.06 -74.61 103.19 -76.14Q101.32 -77.67 97.97 -77.67H91.07ZM139.57 0V-95.38H160.71V0ZM177.44 0V-95.38H198.58V-53.47L217.94 -95.38H239.79L220.16 -54.87L240.61 0H217.55L206.18 -35.07L198.58 -24.27V0ZM251.11 0V-95.38H303.75V-77.14H272.25V-57.6H298.95V-39.29H272.25V-18.25H304.38V0ZM367.29 1.66Q361.24 1.66 356.05 0.42Q350.86 -0.83 346.96 -4.06Q343.05 -7.29 340.85 -13.02Q338.65 -18.75 338.65 -27.79Q338.65 -28.26 338.65 -29.14Q338.65 -30.03 338.72 -30.58H358.93Q358.93 -29.89 358.93 -29.16Q358.93 -28.42 358.93 -27.73Q358.93 -23.24 359.82 -20.77Q360.7 -18.3 362.41 -17.33Q364.12 -16.35 366.65 -16.35Q368.19 -16.35 369.36 -16.73Q370.53 -17.1 371.47 -17.91Q372.4 -18.72 373 -19.9Q373.6 -21.08 373.87 -22.69Q374.13 -24.31 374.13 -26.32Q374.13 -29.53 372.68 -31.74Q371.23 -33.96 368.78 -35.56Q366.34 -37.17 363.3 -38.59Q360.26 -40 356.98 -41.56Q353.7 -43.12 350.66 -45.23Q347.62 -47.35 345.17 -50.45Q342.72 -53.54 341.27 -57.89Q339.82 -62.23 339.82 -68.34Q339.82 -76.15 342.05 -81.63Q344.28 -87.1 348.19 -90.51Q352.1 -93.92 357.05 -95.52Q362 -97.12 367.43 -97.12Q373.12 -97.12 377.96 -95.74Q382.79 -94.35 386.35 -91.3Q389.9 -88.24 391.9 -83.17Q393.89 -78.11 393.89 -70.74V-67.22H373.95V-69.14Q373.95 -72.32 373.43 -74.49Q372.9 -76.65 371.58 -77.8Q370.25 -78.95 367.64 -78.95Q365.61 -78.95 364.15 -78.07Q362.68 -77.19 361.96 -75.4Q361.24 -73.62 361.24 -70.82Q361.24 -67.4 362.69 -65.03Q364.14 -62.67 366.63 -61.02Q369.11 -59.37 372.15 -57.96Q375.19 -56.55 378.44 -55.02Q381.68 -53.5 384.72 -51.41Q387.76 -49.33 390.24 -46.31Q392.73 -43.29 394.18 -38.99Q395.63 -34.69 395.63 -28.66Q395.63 -18.32 392.19 -11.61Q388.74 -4.89 382.41 -1.61Q376.08 1.66 367.29 1.66ZM408.57 0V-95.38H461.22V-77.14H429.71V-57.6H456.41V-39.29H429.71V-18.25H461.85V0ZM505.41 1.66Q493.93 1.66 486.89 -3.64Q479.85 -8.94 476.7 -19.9Q473.54 -30.86 473.54 -47.8Q473.54 -73.19 481.64 -85.15Q489.73 -97.12 506.78 -97.12Q516.17 -97.12 522.5 -93.2Q528.83 -89.28 532.1 -80.55Q535.37 -71.81 535.37 -57.45H515.01Q515.01 -64.39 514.28 -69.2Q513.56 -74.01 511.5 -76.44Q509.45 -78.88 505.59 -78.88Q501.65 -78.88 499.3 -76.4Q496.95 -73.92 496 -68.8Q495.04 -63.68 495.04 -55.62V-39.57Q495.04 -31.5 496 -26.42Q496.96 -21.33 499.25 -18.92Q501.53 -16.51 505.47 -16.51Q509.27 -16.51 511.46 -18.84Q513.64 -21.17 514.54 -25.84Q515.44 -30.51 515.44 -37.5H535.31Q535.31 -23.51 531.88 -14.88Q528.45 -6.25 521.82 -2.3Q515.19 1.66 505.41 1.66ZM577.68 1.66Q568.82 1.66 562.38 -1.33Q555.93 -4.32 552.45 -11.52Q548.97 -18.71 548.97 -31.15V-95.38H570.11V-29.7Q570.11 -23.19 571.63 -19.81Q573.14 -16.43 577.53 -16.43Q582.05 -16.43 583.67 -19.81Q585.29 -23.19 585.29 -29.7V-95.38H606.44V-31.15Q606.44 -18.71 602.96 -11.52Q599.48 -4.32 593.07 -1.33Q586.67 1.66 577.68 1.66ZM622.49 0V-95.38H654.44Q664.99 -95.38 670.83 -91.59Q676.67 -87.8 679.04 -81.37Q681.4 -74.93 681.4 -67Q681.4 -58.68 679.4 -51.9Q677.4 -45.12 672.37 -40.96L684.62 0H662.71L653.59 -33.82H643.64V0ZM643.64 -51.09H651.55Q656.53 -51.09 658.36 -55Q660.19 -58.92 660.19 -64.94Q660.19 -69.01 659.39 -71.85Q658.59 -74.69 656.69 -76.21Q654.79 -77.74 651.17 -77.74H643.64ZM695.74 0V-95.38H716.89V0ZM748.59 0V-77.07H729.26V-95.38H788.84V-77.07H769.73V0ZM816.32 0V-37.23L793.2 -95.38H815.11L826.65 -60.18H827.48L839.59 -95.38H860.23L837.46 -37.23V0Z"/></symbol>
+</defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top" aria-label="Spike Security home"><svg viewBox="0 0 2080.8 453.19" aria-hidden="true" focusable="false"><use href="#ss-horizontal"/></svg></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#area">Sectors</a></li>
+        <li><a href="#record">How we work</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#quote">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="bar-actions">
+      <a class="bar-tel" href="tel:+442037572767"><span>24H</span>020&nbsp;3757&nbsp;2767</a>
+      <a class="btn btn--ghost btn--sm bar-quote" href="#quote">Get a quote</a>
+      <a class="bar-call" href="tel:+442037572767" aria-label="Call 020 3757 2767, 24 hours">Call</a>
+      <button class="menu" type="button" aria-expanded="false">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="cover" aria-labelledby="cover-title">
+    <div class="wrap cover-grid">
+      <div class="cover-text">
+        <h1 class="cover-h1" id="cover-title">
+          <span class="display"><span class="dl">On site.</span><span class="dl">On time.</span><span class="dl dl--o">On record.</span></span>
+          <span class="lede">Licensed security officers for venues, events, shops and offices across Manchester and the North&nbsp;West.</span>
+        </h1>
+        <div class="cover-actions" id="cover-actions">
+          <a class="btn btn--primary btn--lg" href="#quote">Get a quote</a>
+          <a class="tel" href="tel:+442037572767"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n">020&nbsp;3757&nbsp;2767</span></a>
+        </div>
+      </div>
+      <figure class="shot shot--hero">
+        <div class="shot-frame" role="img" aria-label="Placeholder for a commissioned photograph: a Spike door supervisor at a venue entrance after dark.">
+          <svg class="shot-sg" viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg>
+          <svg class="shot-crop" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M0 6V0h6M94 0h6v6M100 94v6h-6M6 100H0v-6"/></svg>
+          <p class="shot-note"><span class="label">Shot 01 · To commission</span><span><b>A Spike door supervisor at a venue entrance, after dark.</b> Working, not posing. Real street and venue light; the hi-vis catches it.</span></p>
+        </div>
+        <figcaption><b>Fig. 01</b>Our own officers on sites we cover, photographed with consent.</figcaption>
+      </figure>
+    </div>
+    <div class="wrap">
+      <ul class="facts">
+        <li><b>SIA licensed</b>Every officer. <a href="#">Check any badge on the public register</a>.</li>
+        <li><b>Vetted to BS&nbsp;7858</b>The British Standard for screening security staff.</li>
+        <li><b>Insured</b>Certificates sent with every quote.</li>
+        <li><b>Registered company</b>Spike Security Limited, no.&nbsp;<span class="tnum">16807138</span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-num" aria-hidden="true"><b>01</b><span>Services</span></p>
+        <h2 class="sec-title" id="services-title"><span class="sr-only">Services: </span>Six services. One number to call.</h2>
+        <p class="sec-lede">Every booking comes with <strong>a named supervisor</strong>, the licence number of every officer before the shift, and a written report the next morning.</p>
+      </div>
+      <ol class="svc">
+        <li><a href="#"><span class="svc-n">1</span><span class="svc-name">Door supervisors</span><span class="svc-desc">Licensed door teams who check ID, manage the queue and deal with trouble calmly, by the book.</span><span class="svc-for">Bars, clubs, venues</span><svg class="svc-go arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+        <li><a href="#"><span class="svc-n">2</span><span class="svc-name">Event security</span><span class="svc-desc">Planning and staffing from the first risk assessment to the last car out of the car park.</span><span class="svc-for">Concerts, sport, private events</span><svg class="svc-go arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+        <li><a href="#"><span class="svc-n">3</span><span class="svc-name">Retail security</span><span class="svc-desc">Uniformed or plain-clothes officers who put thieves off and know the law on stopping one.</span><span class="svc-for">Shops, retail parks</span><svg class="svc-go arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+        <li><a href="#"><span class="svc-n">4</span><span class="svc-name">Office security</span><span class="svc-desc">Officers who know your building, your staff and who should be signing in.</span><span class="svc-for">Offices, receptions, HQs</span><svg class="svc-go arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+        <li><a href="#"><span class="svc-n">5</span><span class="svc-name">Mobile patrols</span><span class="svc-desc">Unannounced night visits, alarm response and keyholding, each one logged with times and photos.</span><span class="svc-for">Empty or multi-site premises</span><svg class="svc-go arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+        <li><a href="#"><span class="svc-n">6</span><span class="svc-name">CCTV monitoring</span><span class="svc-desc">Your cameras watched remotely, with a patrol or the police sent when something happens.</span><span class="svc-for">Sites with cameras and no night staff</span><svg class="svc-go arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--paper" id="record" aria-labelledby="record-title">
+    <div class="wrap record">
+      <div>
+        <div class="sec-head">
+          <p class="sec-num" aria-hidden="true"><b>02</b><span>On record</span></p>
+          <h2 class="sec-title" id="record-title"><span class="sr-only">On record: </span>You’ll know who is on your door.</h2>
+        </div>
+        <ol class="promises">
+          <li><span class="n" aria-hidden="true">1</span><div><h3>Before the shift</h3><p>The name and SIA licence number of every officer, by email.</p></div></li>
+          <li><span class="n" aria-hidden="true">2</span><div><h3>During the shift</h3><p>One supervisor you can reach, on site or by phone, all night.</p></div></li>
+          <li><span class="n" aria-hidden="true">3</span><div><h3>After the shift</h3><p>A written report by 9am, every incident logged with the time.</p></div></li>
+        </ol>
+      </div>
+      <figure class="doc-fig">
+        <article class="doc" aria-label="Sample shift report">
+          <header class="doc-head">
+            <div class="doc-id"><svg viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg><b>Shift report</b></div>
+            <p class="doc-ref"><span class="nb">Ref. SR-1411-03</span><br>Sample</p>
+          </header>
+          <dl class="doc-meta">
+            <div><dt>Site</dt><dd>Bar, Northern Quarter</dd></div>
+            <div><dt>Date</dt><dd>Sat 14 Nov</dd></div>
+            <div><dt>Hours</dt><dd>21:00 to 03:30</dd></div>
+            <div><dt>Officers</dt><dd>2, licences checked 20:41</dd></div>
+          </dl>
+          <table class="doc-log">
+            <caption>Log</caption>
+            <tbody>
+              <tr><th scope="row">21:00</th><td>On site. Briefing with the duty manager. Radios checked.</td></tr>
+              <tr><th scope="row">22:47</th><td>Refused entry: one guest, intoxicated. Left without incident.</td></tr>
+              <tr><th scope="row">00:15</th><td>First aid: small cut to a guest’s hand, cleaned and dressed. Venue accident book updated.</td></tr>
+              <tr><th scope="row">02:58</th><td>Venue clear. Doors locked with the manager.</td></tr>
+            </tbody>
+          </table>
+          <footer class="doc-foot"><span>Supervisor: J.&nbsp;M.</span><span class="tnum">Sent Sun 08:12</span></footer>
+        </article>
+        <figcaption><b>Fig. 02</b>What lands in your inbox the next morning. Sample with invented details.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="area" aria-labelledby="area-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-num" aria-hidden="true"><b>03</b><span>Area</span></p>
+        <h2 class="sec-title" id="area-title"><span class="sr-only">Area: </span>Inside the M60, and well beyond&nbsp;it.</h2>
+        <p class="sec-lede">Our office is on Cheetham Hill Road, just north of the city centre. We work most often in <strong>Manchester, Salford, Trafford, Stockport, Bolton and Bury</strong>.</p>
+      </div>
+      <div class="area">
+        <figure class="map">
+          <svg viewBox="0 0 640 500" role="img" aria-labelledby="map-t">
+            <title id="map-t">Schematic map of the M60 ring around Manchester. Our office is in Cheetham Hill, just north of the city centre. We work most often in Manchester, Salford, Trafford, Stockport, Bolton and Bury.</title>
+            <path class="m-road" d="M290.1 85.6 L245.3 -168.5 M179.1 156.3 L-32.2 8.4 M406.0 106.0 L535.0 -117.4 M489.4 225.1 L743.5 180.3 M378.8 416.6 L467.1 659.1 M247.3 410.9 L138.3 644.7 M149.7 278.9 L-105.8 314.8"/>
+            <circle class="m-ring" cx="320" cy="255" r="170"/>
+            <g class="m-plate"><rect x="445.1" y="320.8" width="50" height="28"/><text x="470.1" y="340.8" text-anchor="middle">M60</text></g>
+            <rect class="m-town" x="313" y="248" width="14" height="14"/>
+            <text class="m-name" x="340" y="283">Manchester</text>
+            <rect class="m-town" x="277.7" y="38.3" width="10" height="10"/><text class="m-name" x="299" y="52" text-anchor="start">Bury</text>
+            <rect class="m-town" x="133.1" y="122.7" width="10" height="10"/><text class="m-name" x="154" y="114" text-anchor="start">Bolton</text>
+            <rect class="m-town" x="387.5" y="449.2" width="10" height="10"/><text class="m-name" x="409" y="463" text-anchor="start">Stockport</text>
+            <rect class="m-town" x="222.0" y="322.6" width="10" height="10"/><text class="m-name" x="243" y="337" text-anchor="start">Trafford</text>
+            <rect class="m-town" x="225.0" y="230.9" width="10" height="10"/><text class="m-name" x="230" y="222" text-anchor="middle">Salford</text>
+            <svg x="311.5" y="173.8" width="30" height="39" viewBox="0 0 351.64 453.19"><use href="#ss-shield"/></svg>
+            <text class="m-shield-label" x="350.5" y="190.3">Our office</text>
+            <text class="m-shield-label" x="350.5" y="206.3" style="fill: var(--ash)">Cheetham Hill</text>
+            <text class="m-name m-name--sm" x="24" y="482">Schematic · not to scale</text>
+          </svg>
+          <figcaption><b>Fig. 03</b>Where we work most often. Further afield, call us and we’ll tell you straight away if we can cover it.</figcaption>
+        </figure>
+        <div class="sectors">
+          <h3>Who we work for</h3>
+          <ul>
+            <li><a href="#">Bars, clubs and late venues<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+            <li><a href="#">Concerts, festivals and sport<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+            <li><a href="#">Shops and retail parks<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+            <li><a href="#">Offices and receptions<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+            <li><a href="#">Building sites and empty property<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+            <li><a href="#">Warehouses and logistics<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li>
+          </ul>
+          <p>Each sector page says what we do there, who we send, and what it costs to get started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--careers" id="careers" aria-labelledby="careers-title">
+    <svg class="careers-sg" viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-num" aria-hidden="true"><b>04</b><span>Careers</span></p>
+        <h2 class="sec-title" id="careers-title"><span class="sr-only">Careers: </span>Good officers get steady shifts.</h2>
+      </div>
+      <div class="careers">
+        <div class="careers-copy">
+          <p>If you hold an SIA door supervisor or security guard licence, you can apply from your phone in about three minutes. No CV needed.</p>
+          <p>We pay weekly at the rate agreed when you start, and send rotas a week ahead.</p>
+          <a class="btn btn--ghost" href="#">See all roles</a>
+        </div>
+        <ul class="roles">
+          <li><a href="#"><span class="role-t">Door supervisor, part-time</span><span class="role-m">Manchester city centre · Fri and Sat nights</span><span class="role-go">Apply<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a></li>
+          <li><a href="#"><span class="role-t">Door supervisor, full-time</span><span class="role-m">Manchester · Day and night rota</span><span class="role-go">Apply<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a></li>
+          <li><a href="#"><span class="role-t">Event security officer</span><span class="role-m">North West · Flexible, event by event</span><span class="role-go">Apply<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--signal" id="quote" aria-labelledby="quote-title">
+    <div class="wrap finale">
+      <h2 id="quote-title"><span class="sr-only">Call us, 24 hours, every day: </span><a class="finale-tel" href="tel:+442037572767">020&nbsp;3757&nbsp;2767</a></h2>
+      <div class="finale-row">
+        <p><b>Answered 24 hours, every day.</b> Need cover tonight? Call. Planning ahead? Send the site, the dates and the hours, and we’ll reply with a price and the officers we’d send.</p>
+        <a class="btn btn--dark btn--lg" href="#">Get a quote</a>
+        <svg class="finale-lockup" viewBox="0 0 860.23 627.06" role="img" aria-label="Spike Security"><use href="#ss-stacked"/></svg>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <svg viewBox="0 0 2080.8 453.19" role="img" aria-label="Spike Security"><use href="#ss-horizontal"/></svg>
+      <p class="foot-line">On site. On time. On record.</p>
+    </div>
+    <div class="foot-grid">
+      <div><h2 class="foot-h">Call, 24 hours</h2><a class="foot-big" href="tel:+442037572767">020&nbsp;3757&nbsp;2767</a></div>
+      <div><h2 class="foot-h">Email</h2><a href="mailto:info@spikesecurity.co.uk">info@spikesecurity.co.uk</a><br><a href="mailto:careers@spikesecurity.co.uk">careers@spikesecurity.co.uk</a></div>
+      <div><h2 class="foot-h">Office</h2><address>475B Cheetham Hill Road<br>Manchester M8&nbsp;9LR</address><p class="muted">Monday to Friday, 8am to 6pm</p></div>
+      <nav aria-label="Services"><h2 class="foot-h">Services</h2><ul><li><a href="#">Door supervisors</a></li><li><a href="#">Event security</a></li><li><a href="#">Retail security</a></li><li><a href="#">CCTV monitoring</a></li></ul></nav>
+      <nav aria-label="Company"><h2 class="foot-h">Company</h2><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li><li><a href="#">Brand</a></li></ul></nav>
+    </div>
+    <div class="foot-legal">
+      <p>Spike Security Limited. Registered in England and Wales, company number <span class="tnum">16807138</span>. Registered office: 475B Cheetham Hill Road, Manchester M8&nbsp;9LR.</p>
+      <ul><li><a href="#">Legal</a></li><li><a href="#">Privacy</a></li><li><a href="#">Site map</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" id="dock" aria-hidden="true">
+  <a class="btn btn--ghost" href="tel:+442037572767" tabindex="-1">Call 24h</a>
+  <a class="btn btn--primary" href="#quote" tabindex="-1">Get a quote</a>
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function () {
+    var dock = document.getElementById('dock');
+    var target = document.getElementById('cover-actions');
+    var finale = document.getElementById('quote');
+    if (!('IntersectionObserver' in window) || !dock || !target) return;
+    var coverGone = false, finaleIn = false;
+    function set() {
+      var on = coverGone && !finaleIn;
+      dock.classList.toggle('on', on);
+      dock.setAttribute('aria-hidden', on ? 'false' : 'true');
+      dock.querySelectorAll('a').forEach(function (a) { a.tabIndex = on ? 0 : -1; });
+    }
+    new IntersectionObserver(function (e) { coverGone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; set(); }).observe(target);
+    new IntersectionObserver(function (e) { finaleIn = e[0].isIntersecting; set(); }).observe(finale);
+  })();
+</script>
+</body>
+</html>
