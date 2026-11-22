@@ -25,7 +25,7 @@ FONT_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/archivo/Arch
 FONT = WORK / 'Archivo-VF.ttf'
 
 sys.path.insert(0, str(HERE))
-from outline import shape_and_outline, cap_height  # noqa: E402
+from outline import shape_and_outline, outline_words, cap_height  # noqa: E402
 from shield import D as SHIELD_D, X0, Y0, W as SW, H as SH  # noqa: E402
 
 # ── Brand constants ────────────────────────────────────────────────────────
@@ -34,10 +34,12 @@ C = {
     'line': '#2A2B2D', 'ash': '#A39E94', 'bone': '#EEEAE0', 'bone2': '#E4DFD2',
     'stone': '#5E5A52', 'orange': '#FF5B1A', 'ember': '#B33A06',
 }
-WORDMARK = dict(text='SPIKE SECURITY', wdth=62, wght=800, tracking=0.03)
+# word_gap: extra word space (em) so SPIKE and SECURITY separate at small sizes and at distance
+WORDMARK = dict(text='SPIKE SECURITY', wdth=62, wght=800, tracking=0.03, word_gap=0.10)
 HORIZONTAL = dict(cap=0.40, gap=0.20, align=0.47)   # ratios of shield height
 STACKED = dict(cap=0.21, gap=0.17)
 CLEAR = 0.25                                         # clear space = 1/4 shield height
+BLEED = 3                                            # mm of print bleed on site signs
 PHONE, EMAIL, WEB = '020 3757 2767', 'info@spikesecurity.co.uk', 'spikesecurity.co.uk'
 
 # colourway id -> (shield fill, wordmark fill, background for -bg exports, label)
@@ -72,6 +74,13 @@ WHICH LOGO FILE?
 FORMATS
   SVG and PDF are vector: use them for print, signs, embroidery and vehicles.
   PNG is for documents, slides and the web. Never stretch or recolour the logo.
+
+SIGNS AND UNIFORMS
+  Sign PDFs are A3 with 3 mm bleed on every edge (page 303 x 426 mm); trim to A3.
+  Uniform inks: Pantone Orange 021 C for the shield, white ink for bone lettering.
+
+EMAIL
+  email/ holds the two images the signature builder on the brand page links to.
 
 COLOURS
   Obsidian      #0B0C0E   background
@@ -127,9 +136,16 @@ def fit(text, width, wdth=62, wght=800, tracking=0.0):
 
 
 # ── Lockups ────────────────────────────────────────────────────────────────
+def wordmark_path(cap):
+    """The SPIKE SECURITY wordmark, outlined, with cap height `cap` units."""
+    size = cap / cap_height(str(FONT))
+    return outline_words(WORDMARK['text'], WORDMARK['wdth'], WORDMARK['wght'], size,
+                         WORDMARK['tracking'], str(FONT), WORDMARK['word_gap'])
+
+
 def horizontal():
     cap = HORIZONTAL['cap'] * SH
-    d, (bx0, by0, bx1, by1) = text_path(WORDMARK['text'], cap, WORDMARK['wdth'], WORDMARK['wght'], WORDMARK['tracking'])
+    d, (bx0, by0, bx1, by1) = wordmark_path(cap)
     gap = HORIZONTAL['gap'] * SH
     tx = SW + gap - bx0
     ty = HORIZONTAL['align'] * SH + cap / 2
@@ -141,7 +157,7 @@ def horizontal():
 
 def stacked():
     cap = STACKED['cap'] * SH
-    d, (bx0, by0, bx1, by1) = text_path(WORDMARK['text'], cap, WORDMARK['wdth'], WORDMARK['wght'], WORDMARK['tracking'])
+    d, (bx0, by0, bx1, by1) = wordmark_path(cap)
     ww = bx1 - bx0
     w = max(SW, ww)
     ty = SH + STACKED['gap'] * SH + cap
@@ -254,11 +270,11 @@ def compositions(H_):
     # A3 sign: orange message panel (top 62%) over an obsidian sign-off panel.
     inner = 297 - 2 * 22                                   # live width in mm
     sign_css = f'''
-      .sheet{{position:relative;width:297mm;height:420mm;background:{C['obsidian']}}}
-      .top{{position:absolute;left:0;right:0;top:0;height:262mm;background:{C['orange']};color:{C['obsidian']};
-           padding:22mm 22mm 20mm;display:flex;flex-direction:column}}
+      .sheet{{position:relative;width:{297 + 2 * BLEED}mm;height:{420 + 2 * BLEED}mm;background:{C['obsidian']}}}
+      .top{{position:absolute;left:0;right:0;top:0;height:{262 + BLEED}mm;background:{C['orange']};color:{C['obsidian']};
+           padding:{22 + BLEED}mm {22 + BLEED}mm 20mm;display:flex;flex-direction:column}}
       .msg{{margin-top:auto}}
-      .bot{{position:absolute;left:0;right:0;bottom:0;height:158mm;padding:18mm 22mm 20mm;display:flex;flex-direction:column}}
+      .bot{{position:absolute;left:0;right:0;bottom:0;height:{158 + BLEED}mm;padding:18mm {22 + BLEED}mm {20 + BLEED}mm;display:flex;flex-direction:column}}
       .disp{{white-space:nowrap}}
       .body{{font-weight:500;font-stretch:100%;font-size:8mm;line-height:1.3;max-width:220mm}}
       .tel{{font-weight:800;font-stretch:62%;font-size:26mm;line-height:.9;letter-spacing:.01em;color:{C['orange']};font-variant-numeric:tabular-nums;white-space:nowrap}}
@@ -281,7 +297,7 @@ def compositions(H_):
           </div>
         </div>
         <div class="bot">{foot('Protected by')}</div>
-      </div>''', 297, 420, sign_css, 'mm'), 297, 420)
+      </div>''', 297 + 2 * BLEED, 420 + 2 * BLEED, sign_css, 'mm'), 297, 420)
 
     camera = (f'<svg viewBox="0 0 120 80" style="display:block;height:50mm;width:auto;align-self:flex-start" aria-hidden="true">'
               f'<g fill="{C["obsidian"]}"><path d="M8 18 L84 6 L92 46 L16 58 Z"/><path d="M92 18 L118 12 L118 44 L94 38 Z"/>'
@@ -297,7 +313,7 @@ def compositions(H_):
           </div>
         </div>
         <div class="bot">{foot('Monitored by')}</div>
-      </div>''', 297, 420, sign_css, 'mm'), 297, 420)
+      </div>''', 297 + 2 * BLEED, 420 + 2 * BLEED, sign_css, 'mm'), 297, 420)
 
     return cmp
 
@@ -336,6 +352,29 @@ def matrix_html(lockups):
                 f'<figcaption class="dl"><span class="dl-name">{title}</span><span class="dl-links">{links}</span></figcaption></figure>')
         rows.append(f'<div class="cw cw--{cw}"><div class="cw-head"><h4 class="cw-name">{name}</h4><p class="cw-use">{use}</p></div>{"".join(cells)}</div>')
     return '\n'.join(rows)
+
+
+def space_figure(L):
+    """Clear-space diagram for the horizontal lockup: x = CLEAR × shield height on every side."""
+    x = CLEAR * SH
+    w, h = L['w'], L['h']
+    return (f'<svg viewBox="{n(-x)} {n(-x)} {n(w + 2 * x)} {n(h + 2 * x)}" role="img" aria-label="Horizontal lockup with clear space of x on every side">'
+            f'<rect class="fig-zone" x="{n(-x)}" y="{n(-x)}" width="{n(w + 2 * x)}" height="{n(h + 2 * x)}"/>'
+            f'<rect class="fig-box" x="0" y="0" width="{n(w)}" height="{n(h)}"/>'
+            f'<use href="#ss-horizontal" x="0" y="0" width="{n(w)}" height="{n(h)}"/>'
+            + ''.join(f'<text class="fig-t fig-t--big" x="{n(tx)}" y="{n(ty)}" text-anchor="middle">x</text>'
+                      for tx, ty in ((-x / 2, h / 2 + 20), (w + x / 2, h / 2 + 20), (w / 2, -x / 2 + 20), (w / 2, h + x / 2 + 20)))
+            + '</svg>')
+
+
+def sync_viewboxes(text, lockups):
+    """Keep hand-written <svg viewBox> values for the lockups in step with the generated symbols."""
+    import re
+    for kind, L in lockups.items():
+        h = n(L['h'])
+        text = re.sub(rf'viewBox="0 0 (?!{re.escape(n(SW))} )[\d.]+ {re.escape(h)}"',
+                      f'viewBox="0 0 {n(L["w"])} {h}"', text)
+    return text
 
 
 def inject(name, html):
@@ -379,8 +418,10 @@ def main():
         jobs.append(dict(svg=str(OUT / 'logo' / f'{base}.svg'), out=str(OUT / 'logo' / f'{base}.png'), width=930, transparent=True))
         jobs.append(dict(svg=str(OUT / 'logo' / f'{base}.svg'), out=str(OUT / 'logo' / f'{base}.pdf'), width=240, pdf=True))
 
-    # Email signature shield (34 x 44 px display, 3x for sharp screens)
+    # Email signature images, 3x for sharp screens: the shield (34 x 44 px) for the
+    # Light style and the full-colour lockup (180 px wide) for the Dark block style
     jobs.append(dict(svg=str(OUT / 'logo' / 'spike-security-shield-orange.svg'), out=str(OUT / 'email' / 'spike-security-email-shield.png'), width=102, transparent=True))
+    jobs.append(dict(svg=str(OUT / 'logo' / 'spike-security-horizontal-dark.svg'), out=str(OUT / 'email' / 'spike-security-email-lockup.png'), width=540, transparent=True))
 
     # Uniform back prints
     B = back_print()
@@ -396,10 +437,12 @@ def main():
         p = WORK / (name.replace('/', '__') + '.html')
         p.write_text(html)
         if name.startswith('signage/'):
-            cw, ch = w / 25.4 * 96, h / 25.4 * 96          # A3 in CSS px
-            jobs.append(dict(html=str(p), out=str(OUT / f'{name}.pdf'), pdf=True, width_mm=w, height_mm=h))
-            jobs.append(dict(html=str(p), out=str(OUT / f'{name}.png'), css_w=cw, css_h=ch, scale=150 / 96))   # 150 dpi
-            jobs.append(dict(html=str(p), out=str(OUT / f'{name}-preview.jpg'), css_w=cw, css_h=ch, scale=720 / cw, jpeg=True))
+            px = lambda mm: mm / 25.4 * 96
+            full_w, full_h = px(w + 2 * BLEED), px(h + 2 * BLEED)          # page incl. bleed, CSS px
+            trim = dict(x=px(BLEED), y=px(BLEED), width=px(w), height=px(h))
+            jobs.append(dict(html=str(p), out=str(OUT / f'{name}.pdf'), pdf=True, width_mm=w + 2 * BLEED, height_mm=h + 2 * BLEED))
+            jobs.append(dict(html=str(p), out=str(OUT / f'{name}.png'), css_w=full_w, css_h=full_h, scale=150 / 96, clip=trim))  # 150 dpi
+            jobs.append(dict(html=str(p), out=str(OUT / f'{name}-preview.jpg'), css_w=full_w, css_h=full_h, scale=720 / px(w), jpeg=True, clip=trim))
         else:
             jobs.append(dict(html=str(p), out=str(OUT / f'{name}.png'), css_w=w, css_h=h, scale=1))
             jobs.append(dict(html=str(p), out=str(OUT / f'{name}-preview.jpg'), css_w=w, css_h=h, scale=min(1, 960 / w), jpeg=True))
@@ -421,6 +464,9 @@ def main():
 
     inject('symbols', '\n'.join(sym[1:]))
     inject('matrix', matrix_html(lockups))
+    inject('spacefig', space_figure(lockups['horizontal']))
+    if PAGE.exists():
+        PAGE.write_text(sync_viewboxes(PAGE.read_text(), lockups))
 
     meta = {k: {'w': round(L['w'], 3), 'h': round(L['h'], 3)} for k, L in lockups.items()}
     meta['shield'] = {'w': round(SW, 3), 'h': round(SH, 3)}

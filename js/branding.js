@@ -124,7 +124,9 @@
   if (!form || !outNode) return;
 
   var SITE = 'https://www.spikesecurity.co.uk';
-  var LOGO_PATH = '/resources/brand/email/spike-security-email-shield.png';
+  // Hosted images: the full lockup for the Dark block, the shield alone for Light
+  var IMG = { lockup: '/resources/brand/email/spike-security-email-lockup.png', shield: '/resources/brand/email/spike-security-email-shield.png' };
+  var DESCRIPTOR = 'Licensed security for Manchester and the North West';
   var C = { orange: '#FF5B1A', obsidian: '#0B0C0E', obsidian2: '#131417', bone: '#EEEAE0', ash: '#A39E94' };
   var FONT = 'font-family:Arial,Helvetica,sans-serif;';
   var OFFICE = '020 3757 2767';
@@ -153,8 +155,10 @@
     };
   }
 
-  // Email-client-safe HTML: tables, inline styles, web-safe fonts, hosted image.
-  function signatureHTML(d, logoSrc) {
+  // Email-client-safe HTML: tables, inline styles, web-safe fonts, hosted images.
+  // Dark block carries the real logo as an image (it sits on its own obsidian ground).
+  // Light adapts to the reader's mail app, so it pairs the shield with live text.
+  function signatureHTML(d, base) {
     var dark = d.style === 'dark';
     var ink = dark ? C.bone : 'inherit';
     var muted = dark ? C.ash : 'inherit';
@@ -177,16 +181,21 @@
       ? ' &nbsp;&middot;&nbsp; M <a href="' + esc(telHref(d.phone)) + '" style="color:' + ink + ';text-decoration:none;">' + nbsp(d.phone) + '</a>'
       : '';
 
-    rows +=
-      '<tr><td' + top + ' style="' + topBg + 'border-top:3px solid ' + C.orange + ';padding:14px ' + pad + ' 12px;' + FONT + '">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' +
-          '<td width="34" valign="middle" style="width:34px;"><img src="' + logoSrc + '" width="34" height="44" alt="" style="display:block;width:34px;height:44px;border:0;"></td>' +
+    var brand = dark
+      ? '<img src="' + base + IMG.lockup + '" width="180" height="39" alt="Spike Security" style="display:block;width:180px;height:39px;border:0;">' +
+        '<p style="margin:10px 0 0;' + FONT + 'font-size:12px;line-height:18px;color:' + muted + ';">' + DESCRIPTOR + '</p>'
+      : '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' +
+          '<td width="34" valign="middle" style="width:34px;"><img src="' + base + IMG.shield + '" width="34" height="44" alt="" style="display:block;width:34px;height:44px;border:0;"></td>' +
           '<td width="12" style="width:12px;font-size:1px;line-height:1px;">&nbsp;</td>' +
           '<td valign="middle" style="' + FONT + '">' +
-            '<span style="' + FONT + 'font-size:17px;line-height:20px;font-weight:bold;letter-spacing:1.4px;color:' + ink + ';">SPIKE SECURITY</span><br>' +
-            '<span style="' + FONT + 'font-size:10px;line-height:16px;font-weight:bold;letter-spacing:1.8px;color:' + muted + ';">LICENSED SECURITY &middot; NORTH WEST</span>' +
+            '<span style="' + FONT + 'font-size:17px;line-height:22px;font-weight:bold;color:inherit;">Spike Security</span><br>' +
+            '<span style="' + FONT + 'font-size:12px;line-height:18px;color:inherit;">' + DESCRIPTOR + '</span>' +
           '</td>' +
-        '</tr></table>' +
+        '</tr></table>';
+
+    rows +=
+      '<tr><td' + top + ' style="' + topBg + 'border-top:3px solid ' + C.orange + ';padding:' + (dark ? '16px 16px 14px' : '14px 0 12px') + ';' + FONT + '">' +
+        brand +
         '<p style="margin:12px 0 0;' + FONT + 'font-size:13px;line-height:20px;color:' + ink + ';">' +
           'T <a href="tel:+442037572767" style="color:' + ink + ';text-decoration:none;">' + nbsp(OFFICE) + '</a>' + mobile + '<br>' +
           '<a href="mailto:info@spikesecurity.co.uk" style="color:' + ink + ';text-decoration:underline;">info@spikesecurity.co.uk</a> &nbsp;&middot;&nbsp; ' +
@@ -205,7 +214,8 @@
     if (d.name) lines.push(d.name);
     if (d.role) lines.push(d.role);
     if (lines.length) lines.push('');
-    lines.push('SPIKE SECURITY');
+    lines.push('Spike Security');
+    lines.push(DESCRIPTOR);
     lines.push('T ' + OFFICE + (d.phone ? ' · M ' + d.phone : ''));
     lines.push('info@spikesecurity.co.uk · spikesecurity.co.uk');
     lines.push('');
@@ -217,8 +227,8 @@
   var current = read();
   function render() {
     current = read();
-    // Preview uses a page-relative image so it shows before deployment; the copy uses the live URL.
-    outNode.innerHTML = signatureHTML(current, LOGO_PATH.slice(1));
+    // Preview uses page-relative images so they show before deployment; the copy uses the live URL.
+    outNode.innerHTML = signatureHTML(current, '.');
   }
 
   var DEFAULT_STATUS = status ? status.textContent : '';
@@ -243,7 +253,7 @@
   var textButton = document.getElementById('copy-text');
   if (htmlButton) {
     htmlButton.addEventListener('click', function () {
-      var html = signatureHTML(current, SITE + LOGO_PATH);
+      var html = signatureHTML(current, SITE);
       copyRich(html, signatureText(current), outNode).then(function (ok) {
         say(ok
           ? 'Signature copied. Paste it into your mail app’s signature settings.'

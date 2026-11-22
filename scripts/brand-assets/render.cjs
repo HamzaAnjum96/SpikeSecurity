@@ -74,7 +74,8 @@ function svgPage(svg, w, h, transparent) {
           return document.fonts.check('800 20px Archivo');
         });
         if (!ok) throw new Error(`Archivo did not load for ${job.html}`);
-        const opts = { path: job.out, clip: { x: 0, y: 0, width: vw, height: vh } };
+        // job.clip (CSS px) crops to the trim when the page carries print bleed
+        const opts = { path: job.out, clip: job.clip || { x: 0, y: 0, width: vw, height: vh } };
         if (job.jpeg) Object.assign(opts, { type: 'jpeg', quality: 84 });
         await page.screenshot(opts);
         await ctx.close();
