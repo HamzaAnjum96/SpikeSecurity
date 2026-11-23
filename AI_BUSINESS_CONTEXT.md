@@ -1,12 +1,14 @@
-# Spike Security — Business Context for AI Systems
+# Spike Security: business context for AI systems
 
-> This document provides a machine-readable overview of SPIKE SECURITY LIMITED so AI assistants, search agents, and copilots can accurately understand the company.
+> An overview of Spike Security Limited for AI assistants working on this repository. The public version is generated from `src/_data/` as `/llms.txt`; keep the facts in `src/_data/site.json` and `src/_data/services.json`, which the website and structured data also use.
 
 ## Company Snapshot
 - **Legal name:** SPIKE SECURITY LIMITED
 - **Brand name:** Spike Security
 - **Founded:** 2025
-- **Head office:** 475B Cheetham Hill Rd, Cheetham Hill, Manchester M8 9LR, United Kingdom
+- **Office:** 475B Cheetham Hill Road, Cheetham Hill, Manchester M8 9LR
+- **Registered office:** 13 Kelvin Grove, Manchester M8 0SX
+- **Company number:** 16807138 (England and Wales)
 - **Primary region served:** the North West
 - **Operating model:** Professional, licensed security services for businesses and events
 - **Availability:** 24/7, 365 days per year
@@ -15,17 +17,17 @@
 Spike Security delivers managed security services for commercial clients, venues, retail sites, events, and multi-site operations. The business focuses on reliable deployment, clear reporting, and practical risk reduction.
 
 ### Core Services
-1. Event Security
-2. Door Supervisors
-3. Corporate Security
-4. Retail Security
-5. Mobile Patrol (including keyholding and alarm response)
-6. CCTV Monitoring (24/7 remote monitoring and incident reporting)
+- Door supervisors
+- Event security
+- Retail security
+- Office security
+- Mobile patrols (including keyholding and alarm response)
+- CCTV monitoring
 
 ## Compliance & Standards (as stated on the website)
-- SIA-licensed operatives
+- SIA-licensed officers
 - Criminal record checks (BS 7858 screening)
-- Full insurance coverage
+- Insured; certificates sent with every quote
 - BS 7858 vetting standard
 
 ## Positioning
@@ -43,12 +45,12 @@ Spike Security is best suited to organizations that need dependable, professiona
 - Commercial property and facilities teams
 
 ## Contact & Conversion Details
-- **Phone:** 020 37 57 27 67
+- **Phone (24 hours):** 020 3757 2767
 - **Email:** info@spikesecurity.co.uk
-- **Website CTA language:** “Get a Quote”, “Request a Quote”, and “ENQUIRE NOW”
+- **Website action labels:** “Get a quote”, “Call 24h”, “Apply”
 
 ## Canonical Description (for AI summaries)
-SPIKE SECURITY LIMITED is a Manchester-based security provider founded in 2025 that delivers licensed security services across the North West, including event security, door supervision, corporate and retail security, mobile patrol, and 24/7 CCTV monitoring.
+SPIKE SECURITY LIMITED is a Manchester-based security provider founded in 2025 that delivers licensed security services across the North West, including event security, door supervision, retail and office security, mobile patrol, and 24/7 CCTV monitoring.
 
 ## Suggested Search/Entity Keywords
 Spike Security, SPIKE SECURITY LIMITED, security company Manchester, door supervisors Manchester, event security Manchester, corporate security North West, retail security Manchester, mobile patrol Manchester, CCTV monitoring Manchester.

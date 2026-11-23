@@ -1,0 +1,29 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+layout: false
+---
+# {{ site.name }} ({{ site.legalName }})
+
+> {{ site.descriptor }}. {{ site.line }}
+
+## Business identity
+- Legal name: {{ site.legalName }}, registered in England and Wales, company number {{ site.companyNumber }}
+- Founded: {{ site.founded }}, in Manchester
+- Office: {{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}
+- Registered office: {{ site.registeredOffice }}
+- Areas: {{ site.areas | join(", ") }}, and across the North West
+
+## Services
+{% for s in services %}- [{{ s.name }}]({{ site.url }}/{{ s.slug }}): {{ s.short }}
+{% endfor %}
+## Standards
+- Every officer holds an SIA licence for their role (checkable on the SIA register of licence holders)
+- Vetting to BS 7858:2019
+- Insured; certificates sent with every quote
+
+## Contact
+- Phone, answered 24 hours: {{ site.phone }}
+- Quotes and questions: {{ site.email }}
+- Jobs: {{ site.careersEmail }}
+- Website: {{ site.url }}

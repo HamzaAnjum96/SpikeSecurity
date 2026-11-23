@@ -1,0 +1,36 @@
+---
+title: Site map
+description: Every page on spikesecurity.co.uk.
+permalink: /sitemap.html
+---
+{% from "macros.njk" import pagehead, arrow %}
+{{ pagehead("Every page on this site.") }}
+<section class="sec sec--flush">
+  <div class="wrap sitemap-grid">
+    <div class="sectors">
+      <h2 class="sub-title">Company</h2>
+      <ul>
+        <li><a href="/">Home{{ arrow() }}</a></li>
+        <li><a href="/how-we-work">How we work{{ arrow() }}</a></li>
+        <li><a href="/about">About{{ arrow() }}</a></li>
+        <li><a href="/careers">Careers{{ arrow() }}</a></li>
+        <li><a href="/contact">Contact and quotes{{ arrow() }}</a></li>
+        <li><a href="/branding">Brand guidelines{{ arrow() }}</a></li>
+      </ul>
+    </div>
+    <div class="sectors">
+      <h2 class="sub-title">Services</h2>
+      <ul>
+        <li><a href="/services">All services{{ arrow() }}</a></li>
+        {% for s in services %}<li><a href="/{{ s.slug }}">{{ s.name }}{{ arrow() }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    <div class="sectors">
+      <h2 class="sub-title">Legal</h2>
+      <ul>
+        <li><a href="/legal">Legal information{{ arrow() }}</a></li>
+        <li><a href="/privacy">Privacy notice{{ arrow() }}</a></li>
+      </ul>
+    </div>
+  </div>
+</section>

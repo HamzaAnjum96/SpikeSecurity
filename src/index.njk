@@ -1,0 +1,108 @@
+---
+permalink: /index.html
+description: Licensed security officers for venues, events, shops and offices across Manchester and the North West. Door supervisors, event security, patrols and CCTV monitoring. Call 020 3757 2767, 24 hours.
+bodyClass: page-home
+schemaPage: business
+---
+{% from "macros.njk" import arrow, serviceRows, finale, map %}
+<section class="cover" aria-labelledby="cover-title">
+  <div class="wrap cover-grid">
+    <div class="cover-text">
+      <h1 class="cover-h1" id="cover-title">
+        <span class="display"><span class="dl">On site.</span><span class="dl">On time.</span><span class="dl dl--o">On record.</span></span>
+        <span class="lede">Licensed security officers for venues, events, shops and offices across Manchester and the North&nbsp;West.</span>
+      </h1>
+      <div class="cover-actions" id="cover-actions">
+        <a class="btn btn--primary btn--lg" href="/contact#quote">Get a quote</a>
+        <a class="tel" href="{{ site.phoneHref }}"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n">{{ site.phone | replace(" ", "&nbsp;") | safe }}</span></a>
+      </div>
+    </div>
+    <div class="cover-art" aria-hidden="true">
+      <svg class="cover-sg" viewBox="0 0 351.64 453.19" focusable="false"><use href="#ss-shield"/></svg>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="facts">
+      <li><b>SIA licensed</b>Every officer. <a href="{{ site.siaRegister }}" rel="noopener">Check any badge on the public register</a>.</li>
+      <li><b>Vetted to BS&nbsp;7858</b>The British Standard for screening security staff.</li>
+      <li><b>Insured</b>Certificates sent with every quote.</li>
+      <li><b>Registered company</b>{{ site.legalName }}, no.&nbsp;<span class="tnum">{{ site.companyNumber }}</span>.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="services-title">Six services. One number to call.</h2>
+      <p class="sec-lede">Every booking comes with <strong>a named supervisor</strong>, the licence number of every officer before the shift, and a written report the next morning.</p>
+    </div>
+    {{ serviceRows(services) }}
+  </div>
+</section>
+
+<section class="sec sec--paper" id="record" aria-labelledby="record-title">
+  <div class="wrap record">
+    <div>
+      <div class="sec-head">
+        <h2 class="sec-title" id="record-title">You’ll know who is on your door.</h2>
+      </div>
+      <ul class="promises">
+        <li><h3>Before the shift</h3><p>The name and SIA licence number of every officer, by email.</p></li>
+        <li><h3>During the shift</h3><p>One supervisor you can reach, on site or by phone, all night.</p></li>
+        <li><h3>After the shift</h3><p>A written report the next morning, every incident logged with the time.</p></li>
+      </ul>
+      <a class="link link--solo record-more" href="/how-we-work">How we vet, brief and report{{ arrow() }}</a>
+    </div>
+    <figure class="doc-fig">
+      {% include "report.njk" %}
+      <figcaption>What lands in your inbox the next morning. A sample with invented details.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="area" aria-labelledby="area-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="area-title">Based in Manchester. On call across the North&nbsp;West.</h2>
+      <p class="sec-lede">Our office is on Cheetham Hill Road, just north of the city centre. We work most often in <strong>{{ site.areas | join(", ") | replace(", Bury", " and Bury") }}</strong>.</p>
+    </div>
+    <div class="area">
+      {{ map(site, "area", "Map of Greater Manchester showing our office and the areas we cover") }}
+      <div class="sectors">
+        <h3>Who we work for</h3>
+        <ul>
+          <li><a href="/door-supervisors">Bars, clubs and late venues{{ arrow() }}</a></li>
+          <li><a href="/event-security">Concerts, festivals and sport{{ arrow() }}</a></li>
+          <li><a href="/retail-security">Shops and retail parks{{ arrow() }}</a></li>
+          <li><a href="/office-security">Offices and receptions{{ arrow() }}</a></li>
+          <li><a href="/mobile-patrols">Building sites and empty property{{ arrow() }}</a></li>
+          <li><a href="/cctv-monitoring">Yards, depots and car parks{{ arrow() }}</a></li>
+        </ul>
+        <p>Further afield? Call us and we’ll tell you straight away if we can cover it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="careers" aria-labelledby="careers-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="careers-title">Good officers get steady shifts.</h2>
+    </div>
+    <div class="careers">
+      <div class="careers-copy">
+        <p>If you hold an SIA door supervisor or security guard licence, you can apply from your phone in a few minutes. No CV needed.</p>
+        <p>We pay weekly, with overtime when you want it.</p>
+        <a class="btn btn--ghost" href="/careers">See all roles</a>
+      </div>
+      <ul class="roles">
+        {% for r in roles %}
+        <li><a href="/careers#apply" data-role="{{ r.code }}"><span class="role-t">{{ r.title }}</span><span class="role-m">{{ r.place }} · {{ r.pattern }}</span><span class="role-go">Apply{{ arrow() }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{{ finale(site, "<b>Answered 24 hours, every day.</b> Need cover tonight? Call. Planning ahead? Send the site, the dates and the hours, and we’ll reply with a price and the officers we’d send.") }}

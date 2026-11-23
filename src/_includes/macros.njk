@@ -1,0 +1,72 @@
+{% macro arrow() %}<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>{% endmacro %}
+
+{% macro phone(site) %}{{ site.phone | replace(" ", "&nbsp;") | safe }}{% endmacro %}
+
+{# Section opening: a statement headline, with an optional supporting sentence. No label above, no number. #}
+{% macro head(id, title, lede, tag="h2") %}
+<div class="sec-head">
+  <{{ tag }} class="sec-title" id="{{ id }}">{{ title | safe }}</{{ tag }}>
+  {% if lede %}<p class="sec-lede">{{ lede | safe }}</p>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro serviceRows(services) %}
+<ul class="svc">
+  {% for s in services %}
+  <li><a href="/{{ s.slug }}"><span class="svc-name">{{ s.name }}</span><span class="svc-desc">{{ s.short }}</span><span class="svc-for">{{ s.bestFor }}</span>{{ arrow() }}</a></li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro faqs(items, headingId="faq-title", title="Questions") %}
+<div class="faq">
+  {% for f in items %}
+  <details>
+    <summary><h3>{{ f.q }}</h3><span class="faq-mark" aria-hidden="true"></span></summary>
+    <p>{{ f.a | safe }}</p>
+  </details>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{# The orange finale: the 24-hour number set like the back of a van #}
+{% macro finale(site, text, cta="Get a quote", href="/contact#quote") %}
+<section class="sec sec--signal" aria-labelledby="finale-title">
+  <div class="wrap finale">
+    <h2 id="finale-title"><span class="sr-only">Call us, 24 hours, every day: </span><a class="finale-tel" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a></h2>
+    <div class="finale-row">
+      <p>{{ text | safe }}</p>
+      {% if cta %}<a class="btn btn--dark btn--lg" href="{{ href }}">{{ cta }}</a>{% endif %}
+      <svg class="finale-lockup" viewBox="0 0 860.23 627.06" aria-hidden="true" focusable="false"><use href="#ss-stacked"/></svg>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{# A real street map (Leaflet, CARTO dark tiles) behind a one-click consent gate #}
+{% macro map(site, mode="area", label="Map") %}
+<figure class="map" data-map="{{ mode }}" data-lat="{{ site.office.lat }}" data-lon="{{ site.office.lon }}">
+  <div class="map-frame">
+    <div class="map-canvas" role="region" aria-label="{{ label }}" tabindex="-1"></div>
+    <div class="map-gate">
+      <svg class="map-gate-pin" viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg>
+      <p class="map-gate-title">{{ "Where we work" if mode == "area" else "Our office" }}</p>
+      <p class="map-gate-text">{{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}{% if mode == "area" %}. On call across {{ site.areas | join(", ") }}{% endif %}.</p>
+      <button class="btn btn--ghost btn--sm map-on" type="button">Show the map</button>
+      <p class="map-gate-note">The map loads from OpenStreetMap, which will see your IP address.</p>
+    </div>
+  </div>
+  <figcaption><span class="map-credit" hidden>Map © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a>. <button type="button" class="map-off">Turn the map off</button></span>{% if mode == "office" %}<a class="map-directions" href="https://www.google.com/maps/search/?api=1&amp;query={{ site.office.lat }}%2C{{ site.office.lon }}" rel="noopener">Directions in Google Maps</a>{% endif %}</figcaption>
+</figure>
+{% endmacro %}
+
+{# Inner page opening: the statement is the h1; no label above it #}
+{% macro pagehead(title, lede="", actions="") %}
+<header class="page-head">
+  <div class="wrap page-head-grid">
+    <h1 class="page-title">{{ title | safe }}</h1>
+    {% if lede %}<p class="page-lede">{{ lede | safe }}</p>{% endif %}
+    {% if actions %}<div class="page-actions">{{ actions | safe }}</div>{% endif %}
+  </div>
+</header>
+{% endmacro %}

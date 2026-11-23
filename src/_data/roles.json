@@ -1,0 +1,26 @@
+[
+  {
+    "code": "DS-PT",
+    "title": "Door supervisor, part-time",
+    "place": "Manchester city centre",
+    "pattern": "Friday and Saturday nights",
+    "licence": "SIA door supervisor licence",
+    "summary": "Weekend and evening shifts at licensed venues in Manchester city centre."
+  },
+  {
+    "code": "DS-FT",
+    "title": "Door supervisor, full-time",
+    "place": "Manchester",
+    "pattern": "Day and night rota",
+    "licence": "SIA door supervisor licence",
+    "summary": "Fixed and rotating venue assignments, with a mix of day and night shifts."
+  },
+  {
+    "code": "ESO",
+    "title": "Event security officer",
+    "place": "North West",
+    "pattern": "Flexible, event by event",
+    "licence": "SIA door supervisor licence",
+    "summary": "Concerts, festivals, sporting fixtures and private functions across the North West."
+  }
+]

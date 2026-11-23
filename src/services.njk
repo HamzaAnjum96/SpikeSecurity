@@ -1,0 +1,13 @@
+---
+title: Security services in Manchester
+description: Door supervisors, event security, retail security, office security, mobile patrols and CCTV monitoring across Manchester and the North West, from licensed, vetted officers.
+permalink: /services.html
+section: Services
+---
+{% from "macros.njk" import pagehead, serviceRows, finale %}
+{{ pagehead("Six services. One number to call.", "Licensed officers for venues, events, shops, offices and empty sites across Manchester and the North West. Every booking comes with a named supervisor, licence numbers before the shift and a written report after it.") }}
+<section class="sec sec--flush" aria-label="Services">
+  <div class="wrap">{{ serviceRows(services) }}</div>
+</section>
+{% include "steps.njk" %}
+{{ finale(site, "<b>Answered 24 hours, every day.</b> Tell us the site, the dates and the hours, and we’ll reply with a price and the officers we’d send.") }}

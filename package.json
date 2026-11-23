@@ -1,0 +1,14 @@
+{
+  "name": "spike-security-site",
+  "private": true,
+  "description": "Spike Security website, built with Eleventy from src/ into _site/.",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.8",
+    "leaflet": "1.9.4"
+  }
+}

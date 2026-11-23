@@ -1,3 +1,5 @@
+> **Superseded.** This was the v2 "Night Watch" style guide. The current system is in [DESIGN.md](../DESIGN.md).
+
 # Spike Security — Brand Style Guide
 
 > Version 2.0 · "The Night Watch" · April 2026

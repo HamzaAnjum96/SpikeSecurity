@@ -1,0 +1,66 @@
+---
+title: About Spike Security
+description: Spike Security Limited is a Manchester security company, founded in 2025, supplying licensed officers to venues, events, shops and offices across the North West.
+permalink: /about.html
+section: About
+---
+{% from "macros.njk" import pagehead, finale, arrow %}
+{{ pagehead("A Manchester company, started in 2025.", "Spike Security supplies licensed security officers to venues, events, shops and offices across Manchester and the North West, from an office on Cheetham Hill Road.") }}
+
+<section class="sec" aria-labelledby="believe-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="believe-title">Security should be in proportion.</h2>
+    </div>
+    <div class="split-body">
+      <p>Enough to keep people safe, and never more than the job needs. A door team that starts fights is worse than no door team, and a guard who ignores visitors is no guard at all.</p>
+      <p>Our officers represent your business while they are on your site. So we choose people who stay calm under pressure, talk before they act, and write down what happened.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--paper" aria-labelledby="line-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="line-title">On site. On time. On record.</h2>
+      <p class="sec-lede">Our line is the promise we make on every booking.</p>
+    </div>
+    <ul class="line-list">
+      <li><h3>On site</h3><p>Licensed officers where you need them, briefed on your site and your instructions.</p></li>
+      <li><h3>On time</h3><p>When we say the team will be there, the team is there. If anything changes, you hear from us first.</p></li>
+      <li><h3>On record</h3><p>Names and licence numbers before the shift, a written report after it.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="facts-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="facts-title">The company.</h2>
+    </div>
+    <dl class="facts-list">
+      <div><dt>Registered name</dt><dd>{{ site.legalName }}</dd></div>
+      <div><dt>Company number</dt><dd class="tnum">{{ site.companyNumber }}, registered in England and Wales</dd></div>
+      <div><dt>Founded</dt><dd>{{ site.founded }}, in Manchester</dd></div>
+      <div><dt>Office</dt><dd>{{ site.office.street }}, {{ site.office.city }} {{ site.office.postcode }}</dd></div>
+      <div><dt>Registered office</dt><dd>{{ site.registeredOffice }}</dd></div>
+      <div><dt>Licensing</dt><dd>Every officer holds an SIA licence for their role</dd></div>
+      <div><dt>Vetting</dt><dd>BS 7858:2019, the British Standard for security screening</dd></div>
+      <div><dt>Areas</dt><dd>{{ site.areas | join(", ") }}, and across the North West</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="join-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="join-title">Want to work with us?</h2>
+    </div>
+    <div class="split-body">
+      <p>We are hiring door supervisors and event security officers. If you hold an SIA licence, you can apply from your phone in a few minutes.</p>
+      <a class="link link--solo" href="/careers">See open roles{{ arrow() }}</a>
+    </div>
+  </div>
+</section>
+
+{{ finale(site, "<b>Answered 24 hours, every day.</b> Tell us the site, the dates and the hours, and we’ll reply with a price and the officers we’d send.") }}

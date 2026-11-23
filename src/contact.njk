@@ -1,0 +1,121 @@
+---
+title: Contact and quotes
+description: Get a security quote from Spike Security. Call 020 3757 2767, answered 24 hours, or send the site, the dates and the hours. Office in Cheetham Hill, Manchester.
+permalink: /contact.html
+section: Contact
+dock: false
+schemaPage: business
+---
+{% from "macros.njk" import pagehead, faqs, map %}
+{% set send = "Send" if site.formEndpoint else "Open in my email app" %}
+{{ pagehead("Tell us the site, the dates and the hours.", "Need cover tonight? Call " + (site.phone | replace(" ", "&nbsp;")) + ", answered 24 hours. For anything planned, send the details and we’ll reply with a price and the officers we’d send.") }}
+
+<section class="sec sec--flush" aria-label="Get a quote">
+  <div class="wrap contact">
+    <div class="contact-form" id="quote">
+      <h2 class="sub-title">Get a quote</h2>
+      <p class="form-intro">{% if site.formEndpoint %}{{ site.replyPromise }}{% else %}This opens your email app with everything filled in, ready to send to {{ site.email }}. {{ site.replyPromise }}{% endif %}</p>
+      <form class="form" data-form data-to="{{ site.email }}" data-subject="Quote request" data-endpoint="{{ site.formEndpoint }}" action="mailto:{{ site.email }}?subject=Quote%20request" method="post" enctype="text/plain" novalidate>
+        <fieldset>
+          <legend>The job</legend>
+          <div class="field">
+            <label for="q-service">Service</label>
+            <select id="q-service" name="Service" required>
+              <option value="">Choose a service…</option>
+              {% for s in services %}<option value="{{ s.name }}" data-slug="{{ s.slug }}">{{ s.name }}</option>{% endfor %}
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-where">Where</label>
+            <span class="hint" id="q-where-hint">The venue, town or postcode</span>
+            <input id="q-where" name="Where" required autocomplete="off" aria-describedby="q-where-hint" placeholder="For example, Deansgate, M3…">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="q-dates">Dates</label>
+              <span class="hint" id="q-dates-hint">One date, a range, or a pattern</span>
+              <input id="q-dates" name="Dates" required autocomplete="off" aria-describedby="q-dates-hint" placeholder="For example, every Friday and Saturday…">
+            </div>
+            <div class="field">
+              <label for="q-hours">Hours <span class="opt">optional</span></label>
+              <span class="hint" id="q-hours-hint">Start and finish</span>
+              <input id="q-hours" name="Hours" autocomplete="off" aria-describedby="q-hours-hint" placeholder="For example, 9pm to 3am…">
+            </div>
+          </div>
+          <div class="field field--short">
+            <label for="q-officers">Officers <span class="opt">if you know</span></label>
+            <input id="q-officers" name="Officers" type="number" inputmode="numeric" min="1" max="500" autocomplete="off">
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>You</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="q-name">Your name</label>
+              <input id="q-name" name="Name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="q-company">Company <span class="opt">optional</span></label>
+              <input id="q-company" name="Company" autocomplete="organization">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="q-phone">Phone</label>
+              <span class="hint" id="q-phone-hint">So the supervisor can call you back</span>
+              <input id="q-phone" name="Phone" type="tel" inputmode="tel" autocomplete="tel" required data-phone aria-describedby="q-phone-hint">
+            </div>
+            <div class="field">
+              <label for="q-email">Email <span class="opt">optional</span></label>
+              <span class="hint" id="q-email-hint">For the written quote</span>
+              <input id="q-email" name="Email" type="email" autocomplete="email" spellcheck="false" aria-describedby="q-email-hint">
+            </div>
+          </div>
+          <div class="field">
+            <label for="q-msg">Anything else <span class="opt">optional</span></label>
+            <textarea id="q-msg" name="Message" rows="4" placeholder="Licence conditions, the crowd you expect, anything we should know…"></textarea>
+          </div>
+        </fieldset>
+        <div class="form-actions">
+          <button class="btn btn--primary btn--lg" type="submit">{{ send }}</button>
+          <p class="form-note">Prefer to talk? Call <a class="link" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>, any time.</p>
+        </div>
+        {% include "form-status.njk" %}
+      </form>
+    </div>
+
+    <aside class="contact-info" aria-label="Contact details">
+      <div class="ci-block">
+        <h2 class="foot-h">Call, 24 hours</h2>
+        <a class="ci-tel" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>
+        <p>Answered {{ site.operations }}. For urgent cover, call rather than email.</p>
+      </div>
+      <div class="ci-block">
+        <h2 class="foot-h">Email</h2>
+        <p><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a> for quotes and questions</p>
+        <p><a class="link" href="mailto:{{ site.careersEmail }}">{{ site.careersEmail }}</a> for jobs</p>
+      </div>
+      <div class="ci-block">
+        <h2 class="foot-h">Office</h2>
+        <address>{{ site.office.street }}<br>{{ site.office.area }}<br>{{ site.office.city }} {{ site.office.postcode }}</address>
+        <p class="muted">{{ site.office.hours }}</p>
+      </div>
+      {{ map(site, "office", "Map showing our office on Cheetham Hill Road, Manchester") }}
+    </aside>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="faq-title">
+  <div class="wrap faq-wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="faq-title">Questions we get asked.</h2>
+    </div>
+    {{ faqs([
+      { q: "How quickly can you send officers?", a: site.notice },
+      { q: "Are all your officers licensed?", a: "Yes. Every officer holds a valid SIA licence for their role. We check each licence before every deployment and send you the numbers before the shift." },
+      { q: "Do you offer flexible contracts?", a: "Yes: short-notice one-off cover, rolling monthly agreements and long-term contracts, all set out in a written agreement." },
+      { q: "Which areas do you cover?", a: "Mainly Manchester, Salford, Trafford, Stockport, Bolton and Bury, and across the North West. Further afield, call us and we’ll tell you straight away if we can cover it." }
+    ]) }}
+  </div>
+</section>

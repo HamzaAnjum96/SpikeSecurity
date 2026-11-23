@@ -1,0 +1,19 @@
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="/" class="foot-brand" aria-label="Spike Security home"><svg viewBox="0 0 2080.8 453.19" aria-hidden="true" focusable="false"><use href="#ss-horizontal"/></svg></a>
+      <p class="foot-line">{{ site.line }}</p>
+    </div>
+    <div class="foot-grid">
+      <div><h2 class="foot-h">Call, 24 hours</h2><a class="foot-big" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a></div>
+      <div><h2 class="foot-h">Email</h2><a href="mailto:{{ site.email }}">{{ site.email }}</a><br><a href="mailto:{{ site.careersEmail }}">{{ site.careersEmail }}</a></div>
+      <div><h2 class="foot-h">Office</h2><address>{{ site.office.street }}<br>{{ site.office.city }} {{ site.office.postcode | replace(" ", "&nbsp;") | safe }}</address><p class="muted">{{ site.office.hours }}</p></div>
+      <nav class="foot-nav" aria-label="Services"><h2 class="foot-h">Services</h2><ul>{% for s in services %}<li><a href="/{{ s.slug }}">{{ s.name }}</a></li>{% endfor %}</ul></nav>
+      <nav class="foot-nav" aria-label="Company"><h2 class="foot-h">Company</h2><ul><li><a href="/how-we-work">How we work</a></li><li><a href="/about">About</a></li><li><a href="/careers">Careers</a></li><li><a href="/contact">Contact</a></li><li><a href="/branding">Brand</a></li></ul></nav>
+    </div>
+    <div class="foot-legal">
+      <p>{{ site.legalName }}. Registered in England and Wales, company number <span class="tnum">{{ site.companyNumber }}</span>. Registered office: {{ site.registeredOffice }}.</p>
+      <ul><li><a href="/legal">Legal</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/sitemap">Site map</a></li></ul>
+    </div>
+  </div>
+</footer>

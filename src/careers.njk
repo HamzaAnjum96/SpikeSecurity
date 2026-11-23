@@ -1,0 +1,126 @@
+---
+title: Security jobs in Manchester
+description: Door supervisor and event security jobs in Manchester and the North West. Paid weekly. Apply from your phone in a few minutes, no CV needed.
+permalink: /careers.html
+section: Careers
+---
+{% from "macros.njk" import pagehead, finale, arrow %}
+{% set send = "Send" if site.formEndpoint else "Open in my email app" %}
+{{ pagehead("Good officers get steady shifts.", "Door supervisors and event security officers with an SIA licence: apply from your phone in a few minutes. No CV needed.", '<a class="btn btn--primary btn--lg" href="#apply">Apply</a><a class="btn btn--ghost btn--lg" href="#roles">See open roles</a>') }}
+
+<section class="sec" id="roles" aria-labelledby="roles-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="roles-title">Open roles.</h2>
+      <p class="sec-lede">Every role needs a valid SIA licence. We are an equal opportunities employer.</p>
+    </div>
+    <ul class="roles roles--full">
+      {% for r in roles %}
+      <li><a href="#apply" data-role="{{ r.code }}"><span class="role-t">{{ r.title }}</span><span class="role-m">{{ r.place }} · {{ r.pattern }} · {{ r.licence }}</span><span class="role-s">{{ r.summary }}</span><span class="role-go">Apply{{ arrow() }}</span></a></li>
+      {% endfor %}
+    </ul>
+    <p class="after-list">Don’t see the right role? Apply anyway and choose “Any role”: we recruit all year round.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="get-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="get-title">What you get.</h2>
+    </div>
+    <ul class="inc inc--single">
+      <li><h3>Paid weekly</h3><p>With overtime when you want it.</p></li>
+      <li><h3>Shifts that suit you</h3><p>Days, nights, weekends or a set rota. Tell us what works and we build around it.</p></li>
+      <li><h3>Training</h3><p>Help with your SIA licence, first aid training and conflict management refreshers.</p></li>
+      <li><h3>Somewhere to go</h3><p>From officer to supervisor to operations. We promote from within.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="apply-steps-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="apply-steps-title">How to apply.</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Send the form</h3><p>It takes a few minutes on a phone. No CV needed.</p></li>
+      <li><h3>We call you</h3><p>Within 2 working days.</p></li>
+      <li><h3>Interview</h3><p>Face to face at our Manchester office, or by video. We keep it simple.</p></li>
+      <li><h3>Vetting and briefing</h3><p>BS 7858 vetting, a licence check and a site briefing before your first shift. We help with every step.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="apply" aria-labelledby="apply-title">
+  <div class="wrap form-wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="apply-title">Apply.</h2>
+      <p class="sec-lede">{% if site.formEndpoint %}We’ll call you within 2 working days.{% else %}This opens your email app with your answers filled in, ready to send to {{ site.careersEmail }}. Attach a CV if you have one.{% endif %}</p>
+    </div>
+    <form class="form" data-form data-to="{{ site.careersEmail }}" data-subject="Job application" data-endpoint="{{ site.formEndpoint }}" action="mailto:{{ site.careersEmail }}?subject=Job%20application" method="post" enctype="text/plain" novalidate>
+      <fieldset>
+        <legend>The role</legend>
+        <div class="field">
+          <label for="a-role">Role</label>
+          <select id="a-role" name="Role" required>
+            <option value="">Choose a role…</option>
+            {% for r in roles %}<option value="{{ r.title }} ({{ r.code }})" data-code="{{ r.code }}">{{ r.title }}</option>{% endfor %}
+            <option value="Any role">Any role</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="a-licence">Your SIA licence</label>
+          <select id="a-licence" name="Licence" required>
+            <option value="">Choose one…</option>
+            <option>Door supervisor</option>
+            <option>Security guard</option>
+            <option>CCTV operator</option>
+            <option>Close protection</option>
+            <option>I’m working towards one</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="a-number">Licence number <span class="opt">optional</span></label>
+          <span class="hint" id="a-number-hint">The 16-digit number on your badge</span>
+          <input id="a-number" name="Licence number" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="a-number-hint" placeholder="1234 5678 9012 3456…" data-pattern="^[0-9 ]{16,19}$" data-pattern-message="Enter the 16 digits from your SIA badge, or leave this blank">
+        </div>
+        <fieldset class="choices">
+          <legend>When can you work? <span class="opt">choose any</span></legend>
+          <label class="choice"><input type="checkbox" name="Availability" value="Weekdays"><span>Weekdays</span></label>
+          <label class="choice"><input type="checkbox" name="Availability" value="Weeknights"><span>Weeknights</span></label>
+          <label class="choice"><input type="checkbox" name="Availability" value="Weekends"><span>Weekends</span></label>
+          <label class="choice"><input type="checkbox" name="Availability" value="Events"><span>Events</span></label>
+        </fieldset>
+        <fieldset class="choices" data-required-group="Right to work">
+          <legend>Do you have the right to work in the UK?</legend>
+          <label class="choice"><input type="radio" name="Right to work" value="Yes" required><span>Yes</span></label>
+          <label class="choice"><input type="radio" name="Right to work" value="No"><span>No</span></label>
+        </fieldset>
+      </fieldset>
+      <fieldset>
+        <legend>You</legend>
+        <div class="field">
+          <label for="a-name">Full name</label>
+          <input id="a-name" name="Name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="a-phone">Phone</label>
+          <input id="a-phone" name="Phone" type="tel" inputmode="tel" autocomplete="tel" required data-phone>
+        </div>
+        <div class="field">
+          <label for="a-email">Email <span class="opt">optional</span></label>
+          <input id="a-email" name="Email" type="email" autocomplete="email" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="a-msg">Anything else <span class="opt">optional</span></label>
+          <textarea id="a-msg" name="Message" rows="4" placeholder="Experience, the area you live in, when you can start…"></textarea>
+        </div>
+      </fieldset>
+      <div class="form-actions">
+        <button class="btn btn--primary btn--lg" type="submit">{{ send }}</button>
+        <p class="form-note">Questions first? Call {{ site.phone | replace(" ", "&nbsp;") | safe }} or email <a class="link" href="mailto:{{ site.careersEmail }}">{{ site.careersEmail }}</a>.</p>
+      </div>
+      {% include "form-status.njk" %}
+    </form>
+  </div>
+</section>

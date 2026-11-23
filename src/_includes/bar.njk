@@ -1,0 +1,28 @@
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="/" aria-label="Spike Security home"><svg viewBox="0 0 2080.8 453.19" aria-hidden="true" focusable="false"><use href="#ss-horizontal"/></svg></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        {% for item in site.nav %}<li><a href="{{ item.url }}"{% if (page.url | canon) == item.url or ((page.url | canon).startsWith(item.url + '/')) or (section == item.label) %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="bar-actions">
+      <a class="bar-tel" href="{{ site.phoneHref }}"><span>24h</span><span class="tnum">{{ site.phone | replace(" ", "&nbsp;") | safe }}</span></a>
+      <a class="btn btn--ghost btn--sm bar-quote" href="/contact#quote">Get a quote</a>
+      <a class="bar-call" href="{{ site.phoneHref }}" aria-label="Call {{ site.phone }}, answered 24 hours">Call</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav class="wrap" aria-label="Menu">
+      <ul class="menu-list">
+        <li><a href="/">Home</a></li>
+        {% for item in site.nav %}<li><a href="{{ item.url }}"{% if (page.url | canon) == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+      <a class="menu-tel" href="{{ site.phoneHref }}"><span class="label">Call, 24 hours</span><span class="tnum">{{ site.phone | replace(" ", "&nbsp;") | safe }}</span></a>
+      <a class="btn btn--primary btn--lg menu-quote" href="/contact#quote">Get a quote</a>
+    </nav>
+  </div>
+</header>

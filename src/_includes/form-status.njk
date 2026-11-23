@@ -1,0 +1,23 @@
+{# Shown after a valid submit. Without a form server, the visitor's email app sends the message:
+   say so plainly, and give them the text to copy if no app opens. Never report a send that did not happen. #}
+<div class="form-status" role="status" aria-live="polite" tabindex="-1" hidden>
+  <div data-state="handoff">
+    <h3 class="form-status-title">Your email app should be open now.</h3>
+    <p>Press send there and it comes straight to us. If nothing opened, copy the message below and email it to <a class="link" data-to-link href="#"></a>, or call <a class="link" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>.</p>
+    <label class="label" data-copy-label>Your message</label>
+    <textarea class="copy-text" rows="9" readonly></textarea>
+    <div class="form-status-actions">
+      <button type="button" class="btn btn--ghost btn--sm" data-copy>Copy the message</button>
+      <a class="btn btn--ghost btn--sm" data-reopen href="#">Open my email app again</a>
+    </div>
+  </div>
+  <div data-state="sent" hidden>
+    <h3 class="form-status-title">Sent.</h3>
+    <p data-ref-line hidden>Your reference is <strong data-ref></strong>.</p>
+    <p>{{ site.replyPromise }} Need cover tonight? Call <a class="link" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>.</p>
+  </div>
+  <div data-state="failed" hidden>
+    <h3 class="form-status-title">That didn’t send.</h3>
+    <p>Your answers are still in the form. Try again, or call <a class="link" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>.</p>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+---
+pagination:
+  data: services
+  size: 1
+  alias: svc
+permalink: "/{{ svc.slug }}.html"
+section: Services
+eleventyComputed:
+  title: "{{ svc.title }}"
+  description: "{{ svc.description }}"
+---
+{% from "macros.njk" import pagehead, serviceRows, faqs, finale, arrow %}
+{% set quoteHref = "/contact?service=" + svc.slug + "#quote" %}
+{{ pagehead(svc.headline, svc.lede, '<a class="btn btn--primary btn--lg" href="' + quoteHref + '">Get a quote</a><a class="tel" href="' + site.phoneHref + '"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n">' + (site.phone | replace(" ", "&nbsp;")) + '</span></a>') }}
+
+<section class="sec" aria-labelledby="inc-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="inc-title">What you get.</h2>
+      <p class="sec-lede">{{ svc.name }} from Spike, for {{ svc.bestFor | lower }} across Manchester and the North West.</p>
+    </div>
+    <div class="inc-grid">
+      <ul class="inc">
+        {% for i in svc.includes %}<li><h3>{{ i.h }}</h3><p>{{ i.p }}</p></li>{% endfor %}
+      </ul>
+      <div class="good-for">
+        <h3>Good for</h3>
+        <ul>{% for g in svc.goodFor %}<li>{{ g }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "steps.njk" %}
+
+<section class="sec" aria-labelledby="faq-title">
+  <div class="wrap faq-wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="faq-title">Questions we get asked.</h2>
+    </div>
+    {{ faqs(svc.faqs) }}
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="other-title">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title" id="other-title">Other services.</h2></div>
+    {{ serviceRows(services | reject("equalto", svc)) }}
+  </div>
+</section>
+
+{{ finale(site, "<b>Answered 24 hours, every day.</b> Tell us the site, the dates and the hours, and we’ll reply with a price and the officers we’d send.", "Get a quote", quoteHref) }}

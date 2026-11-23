@@ -104,7 +104,7 @@ components:
 
 # Spike Security design system (brand v3.0)
 
-> Source of truth for the brand defined on `/branding` (`branding.html`). It is a **draft for approval**: the live pages still use the v2 "Night Watch" stylesheet (`css/style.css`, Fraunces, Manrope and JetBrains Mono) until the site is rolled over to this system. New work should target this file. `css/branding.css` is the reference implementation of these tokens. The rollover of the rest of the site is planned in [`docs/site-improvement-plan.md`](docs/site-improvement-plan.md).
+> Source of truth for the brand defined on `/branding` (`branding.html`). The website (`src/`, built with Eleventy) uses this system: `src/assets/css/site.css` implements it for the site, and `css/branding.css` for the brand guidelines page. The plan for the site is in [`docs/site-improvement-plan.md`](docs/site-improvement-plan.md).
 
 ## 1. Overview
 
@@ -113,7 +113,7 @@ Spike Security protects venues, events, shops and offices across Manchester and 
 - **Dark first.** Obsidian is the canvas for every screen we control: the hours we keep.
 - **Orange on purpose.** Spike Orange is the shield's colour and the brand's single signal. It carries large, deliberate moments (the mark, signs, hi-vis, one call to action, a section numeral) and never decorates: labels, list numbers and icons stay bone or ash.
 - **One family, three widths.** Archivo, condensed for signs and headlines, normal for reading, expanded for labels.
-- **Spec-sheet rigour.** Hairline rules, square corners, numbered sections and figures, like a standards manual rather than a magazine.
+- **Spec-sheet rigour.** Hairline rules and square corners, like a standards manual rather than a magazine. Numbers appear only where order matters.
 
 Physical scene: an operations manager checking cover on a phone in a car park after dark; a door supervisor's jacket under a streetlight; a sign on a site hoarding at 3am. Everything must read at a distance, in low light.
 
@@ -177,7 +177,12 @@ Avoid cards. Group with rules and spacing. Where a framed area is needed (artwor
 `input`: obsidian 2 fill, 1px `#46474A` border, square, 48px tall, label above in normal-width SemiBold. Focus: 2px orange outline and orange border. Segmented controls for small sets of options, with the selected option in bone.
 
 ### Section opening (signature component)
-Every section opens with a **hanging numeral**: the section number in condensed Spike Orange, the same size as the headline, with the section name beneath it as a label, set in the left margin beside the headline. It is the section's one orange element. Never put a small label *above* a heading (a kicker); the numeral sits beside it. Screen readers get the name through a visually hidden prefix in the heading ("Logo: One shield. Drawn once.").
+- **Website:** a section opens with its statement headline alone, in condensed capitals, with an optional supporting sentence beside it on the 12-column grid. No label above, no number.
+- **Brand guidelines and other manuals:** sections open with a **hanging numeral**: the number in condensed Spike Orange, the size of the headline, with the section name beneath it, set in the margin beside the headline. Screen readers get the name through a visually hidden prefix ("Logo: One shield. Drawn once.").
+- Never put a small label *above* a heading (a kicker), on any surface.
+
+### Numbers
+Number things only when the order matters: booking steps, how to apply, clauses someone will cite. Lists of services, benefits, promises, figures and facts are not numbered; rules and spacing separate them. The brand guidelines page is the exception, because it is a manual people refer to by section.
 
 ### Quick picks
 Where people download files, lead with the three or four files most people need, named by what they are for ("Word, PowerPoint and anything printed on white paper"), not by format. Rows with hairlines and a 44px download square, never cards.
@@ -186,7 +191,19 @@ Where people download files, lead with the three or four files most people need,
 Two styles built from tables, inline styles and Arial. **Dark block**: the horizontal logo as a hosted image on obsidian. **Light**: the shield image with "Spike Security" as live text that takes the reader's text colour. Both carry the registered office, as UK trading-disclosure rules require. No text under 11px.
 
 ### Navigation
-A slim sticky bar (60px): the shield, section links in expanded capitals with an orange 2px underline for the current section, and one primary action on the right. On small screens the links scroll horizontally and the active link stays in view.
+A slim sticky bar (60px): the horizontal lockup, page links in expanded capitals with an orange 2px underline for the current page, the 24-hour number and a ghost "Get a quote". Below 1100px the links move into a menu panel (large condensed links, the number, one orange button). On phones the bar holds the lockup, a "Call" button and "Menu", and a dock with "Call 24h" and "Get a quote" appears once the page's own buttons scroll away and hides again at the orange finale, so only one orange button is ever on screen. On the brand guidelines page the bar's links scroll horizontally instead.
+
+### Website components
+- **Cover:** the brand line as display type inside the `h1`, followed by a plain sentence about what Spike does; the primary button and the 24-hour number beside it. Until commissioned photographs exist, the cover's second column is the shield in Signal mode.
+- **Facts strip:** four checkable facts (SIA licence with a link to the public register, BS 7858, insurance, company number) on hairlines. Replaces any "stats" or live-status panel.
+- **Rows:** services, sectors, roles and links are rows on hairlines with an arrow, on the same 12-column grid as the headline above them. No cards.
+- **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale.
+- **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set at full width in condensed obsidian, like the back of a van, then a sentence and an obsidian button.
+- **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, the shield as the pin, town names on small obsidian sign plates. Off until the visitor presses "Show the map" (the tiles come from a third party), with "Turn the map off" underneath.
+- **Forms:** labels above fields, hints in ash, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
+- **Footer:** the lockup and the brand line, the number, email, office, links, and the trading disclosure (registered name, number, England and Wales, registered office). On phones the page links are hidden; the menu already has them.
+
+Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.8125 to 0.9375 rem, document field labels 0.6875 rem, the phone number in condensed 75% width with tabular figures.
 
 ### The Shield and the Supergraphic (signature components)
 - The shield is one path, copied verbatim from `resources/SPIKE SECURITY LOGO.svg`. Lockups (horizontal, stacked) pair it with the wordmark SPIKE SECURITY in Archivo 62%/800 (+3% tracking, with the word space opened by 0.10em so the two words separate at small sizes and at distance), cap height 0.40 of the shield (horizontal) with a 0.20 gap and the cap centre at 47% of the shield's height (its visual centre). Clear space: a quarter of the shield's height. Minimum: shield 16px or 6 mm, horizontal lockup 120px or 30 mm.
@@ -213,5 +230,5 @@ A slim sticky bar (60px): the shield, section links in expanded capitals with an
 - Fake live data: status lights, "live" readouts or counters that are not real.
 - Add shadows, gradients, glass, rounded cards or a second accent colour.
 - Use em dashes in interface copy, or drop caps and serif italics in headlines.
-- Put small labels above headings, colour labels or list numbers orange, or use stock photography of "security guards".
+- Put small labels above headings, colour labels or list numbers orange, number lists that have no order, or use stock photography of "security guards".
 - Write in rule-of-three fragments ("No alarm, no fear, no fuss."). Say the specific thing in a full sentence.

@@ -1,0 +1,46 @@
+---
+title: Legal information and website terms
+description: The legal notice for Spike Security Limited and the terms for using this website.
+permalink: /legal.html
+---
+{% from "macros.njk" import pagehead %}
+{{ pagehead("Legal information and website terms.", "The legal notice for " + site.legalName + " and the terms for using this website. Last reviewed November 2026.") }}
+<section class="sec sec--flush">
+  <div class="wrap prose">
+    <h2>Company information</h2>
+    <p>This website is operated by <strong>{{ site.legalName }}</strong>, a company registered in England and Wales, company number <strong class="tnum">{{ site.companyNumber }}</strong>. Registered office: {{ site.registeredOffice }}, United Kingdom. Principal operating address: {{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}.</p>
+    <p>For all correspondence, email <a href="mailto:{{ site.email }}">{{ site.email }}</a> or call <a href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>.</p>
+
+    <h2>Licensing and regulation</h2>
+    <p>Spike Security supplies security personnel regulated by the Security Industry Authority (SIA). All operational staff deployed on licensable security activity hold current SIA licences appropriate to their role. Vetting is carried out to the BS 7858:2019 standard.</p>
+
+    <h2>Use of this website</h2>
+    <p>By using this website you agree to these terms. You may browse the site for your own personal or business use. You may not reproduce, redistribute or use its content for commercial purposes without our written consent.</p>
+    <p>We work to keep this site accurate and up to date, but information is provided “as is”. Specific service terms, including pricing, availability and deployment details, are confirmed in a written proposal before any engagement.</p>
+
+    <h2>Service contracts</h2>
+    <p>All security services are delivered under a separate written agreement between {{ site.legalName }} and the client. Nothing on this website is an offer or a contract by itself. Service terms, indemnities, insurance provisions and cancellation policies are set out in the signed agreement.</p>
+
+    <h2>Intellectual property</h2>
+    <p>All content on this site, including text, branding, the logo, photography and layout, is owned by {{ site.legalName }} or used with permission. The Spike Security wordmark and shield are trademarks of the company. Suppliers and partners may use the logo as set out in our <a href="/branding">brand guidelines</a>.</p>
+
+    <h2>Liability</h2>
+    <p>To the fullest extent permitted by law, {{ site.legalName }} does not accept liability for any loss arising from reliance on information on this website. Nothing in these terms limits liability for death or personal injury caused by negligence, or any other liability that cannot be limited under English law.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of England and Wales. Any dispute in connection with this website is subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+    <h2>Third-party services</h2>
+    <ul>
+      <li><strong>Maps, only if you ask for one.</strong> Our maps use Leaflet (open-source software, BSD 2-Clause licence, served from our own site) with map tiles and data from <strong>OpenStreetMap contributors</strong> (ODbL licence). Nothing loads from OpenStreetMap until you press “Show the map”. OpenStreetMap’s terms are at <a href="https://www.openstreetmap.org/copyright" rel="noopener">openstreetmap.org/copyright</a>.</li>
+      <li><strong>Fonts.</strong> Our typeface, Archivo, is licensed under the SIL Open Font License and served from our own site.</li>
+      <li><strong>External links.</strong> Where this site links to other websites, such as the SIA register or Google Maps, those sites have their own terms and privacy policies.</li>
+    </ul>
+
+    <h2>Changes to these terms</h2>
+    <p>We may update these terms from time to time. The version in force is the one published on this page, and the date at the top shows when it was last reviewed.</p>
+
+    <h2>Contact</h2>
+    <p>For legal enquiries, complaints or takedown requests, email <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+  </div>
+</section>

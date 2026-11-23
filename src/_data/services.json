@@ -1,0 +1,279 @@
+[
+  {
+    "slug": "door-supervisors",
+    "name": "Door supervisors",
+    "short": "Licensed door teams who check ID, manage the queue and deal with trouble calmly, by the book.",
+    "bestFor": "Bars, clubs, venues",
+    "title": "Door supervisors in Manchester",
+    "description": "SIA-licensed door supervisors for bars, clubs and venues in Manchester and the North West. Named officers, licence numbers before the shift, a written report after it.",
+    "headline": "Calm on the door, all night.",
+    "lede": "SIA-licensed door supervisors for bars, clubs, late venues and private functions. They are the first people your guests meet, so we send officers who are firm, polite and easy to deal with.",
+    "includes": [
+      {
+        "h": "Entry and ID checks",
+        "p": "Checking age and condition at the door, applying your admissions policy and keeping the queue moving."
+      },
+      {
+        "h": "Inside the venue",
+        "p": "Regular walks of the floor, toilets and smoking areas, so problems are spotted before they grow."
+      },
+      {
+        "h": "Handling trouble",
+        "p": "Officers trained in conflict management, who talk people down first and record every incident."
+      },
+      {
+        "h": "First aid",
+        "p": "First aid training, and every treatment written up for your accident book."
+      }
+    ],
+    "goodFor": [
+      "Bars and pubs",
+      "Nightclubs",
+      "Late-licence venues",
+      "Private parties and functions",
+      "Hotels and restaurants"
+    ],
+    "faqs": [
+      {
+        "q": "Are your door supervisors licensed?",
+        "a": "Yes. Every officer holds an SIA door supervisor licence, and we send you the name and licence number of each one before the shift."
+      },
+      {
+        "q": "Can we have the same officers each week?",
+        "a": "Tell us when you book. We plan rotas so regular venues see familiar faces wherever we can."
+      },
+      {
+        "q": "How much notice do you need?",
+        "a": "For planned work, two to three days. For urgent cover, call 020 3757 2767: we can often send officers within hours."
+      }
+    ]
+  },
+  {
+    "slug": "event-security",
+    "name": "Event security",
+    "short": "Planning and staffing from the first risk assessment to the last car out of the car park.",
+    "bestFor": "Concerts, sport, private events",
+    "title": "Event security in Manchester and the North West",
+    "description": "Event security teams for concerts, festivals, sport and private events across the North West: planning, crowd management and front-of-house, delivered by licensed officers.",
+    "headline": "From the first gate to the last car out.",
+    "lede": "Security for concerts, festivals, sporting fixtures, corporate events and private functions. We plan with you, staff the event with licensed officers and run it on the day.",
+    "includes": [
+      {
+        "h": "Planning with you",
+        "p": "We walk the site, read your plans and agree numbers, positions and timings before anyone is booked."
+      },
+      {
+        "h": "Gates and searches",
+        "p": "Ticket and bag checks that keep queues short and stay polite."
+      },
+      {
+        "h": "Crowd management",
+        "p": "Officers placed where crowds build: entrances, bars, stage fronts and exits."
+      },
+      {
+        "h": "Briefed supervisors",
+        "p": "A named supervisor runs the team on the day and is your single point of contact."
+      }
+    ],
+    "goodFor": [
+      "Concerts and gigs",
+      "Festivals",
+      "Sporting fixtures",
+      "Corporate events",
+      "Weddings and private functions"
+    ],
+    "faqs": [
+      {
+        "q": "How many officers will we need?",
+        "a": "It depends on the crowd, the site and the licence conditions. Send us the details and we will recommend a number and explain why."
+      },
+      {
+        "q": "Can you work with our event management company?",
+        "a": "Yes. We plan with whoever is running the event and follow the agreed event plan."
+      },
+      {
+        "q": "How much notice do you need?",
+        "a": "As much as you can give. For large events, talk to us early so we can plan the team properly."
+      }
+    ]
+  },
+  {
+    "slug": "retail-security",
+    "name": "Retail security",
+    "short": "Uniformed or plain-clothes officers who put thieves off and know the law on stopping one.",
+    "bestFor": "Shops, retail parks",
+    "title": "Retail security officers in Manchester",
+    "description": "Uniformed and plain-clothes retail security officers for shops and retail parks in Manchester and the North West, trained in loss prevention and customer service.",
+    "headline": "Fewer losses, and a shop floor that still feels friendly.",
+    "lede": "Uniformed and plain-clothes officers for shops and retail parks. A visible officer puts most thieves off; the ones who try anyway meet someone who knows the law and keeps calm.",
+    "includes": [
+      {
+        "h": "Visible deterrence",
+        "p": "Uniformed officers at entrances and on the floor, so customers feel safe and thieves move on."
+      },
+      {
+        "h": "Plain-clothes officers",
+        "p": "Store detectives for persistent losses, working to the law on stopping and detaining a suspect."
+      },
+      {
+        "h": "Customer service",
+        "p": "Officers who help customers and staff, not just watch them."
+      },
+      {
+        "h": "Incident reports",
+        "p": "Every incident written up, so you have a record for the police and your insurer."
+      }
+    ],
+    "goodFor": [
+      "High-street shops",
+      "Supermarkets",
+      "Retail parks",
+      "Shopping centres",
+      "Pop-up and seasonal stores"
+    ],
+    "faqs": [
+      {
+        "q": "Uniformed or plain-clothes?",
+        "a": "Uniformed officers deter; plain-clothes officers catch persistent offenders. Many shops use both. We will advise once we know where the losses are."
+      },
+      {
+        "q": "Can you cover several stores?",
+        "a": "Yes. Tell us the sites and hours and we will plan the cover across them."
+      }
+    ]
+  },
+  {
+    "slug": "office-security",
+    "name": "Office security",
+    "short": "Officers who know your building, your staff and who should be signing in.",
+    "bestFor": "Offices, receptions, HQs",
+    "title": "Office and reception security in Manchester",
+    "description": "Uniformed security officers for offices, receptions and headquarters in Manchester and the North West: access control, reception and patrols, briefed on your building.",
+    "headline": "Officers who know who should be signing in.",
+    "lede": "Uniformed officers for offices, receptions and headquarters. We brief them on your building, your people and your procedures, so they protect the place without getting in the way of work.",
+    "includes": [
+      {
+        "h": "Access control",
+        "p": "Checking passes, signing in visitors and keeping doors that should be shut, shut."
+      },
+      {
+        "h": "Reception",
+        "p": "A professional first face for visitors, who knows your staff and your procedures."
+      },
+      {
+        "h": "Patrols",
+        "p": "Regular checks of floors, plant rooms, car parks and fire exits, logged with times."
+      },
+      {
+        "h": "Several sites",
+        "p": "One plan and one point of contact across all of your buildings."
+      }
+    ],
+    "goodFor": [
+      "Offices and headquarters",
+      "Shared office buildings",
+      "Reception desks",
+      "Business parks"
+    ],
+    "faqs": [
+      {
+        "q": "Can officers follow our own procedures?",
+        "a": "Yes. Give us your site instructions and we brief every officer on them before their first shift."
+      },
+      {
+        "q": "Do you provide cover for holidays and sickness?",
+        "a": "Yes. If your regular officer is away, we send a replacement who has been briefed on your site."
+      }
+    ]
+  },
+  {
+    "slug": "mobile-patrols",
+    "name": "Mobile patrols",
+    "short": "Unannounced night visits, alarm response and keyholding, each one logged with times and photos.",
+    "bestFor": "Empty or multi-site premises",
+    "title": "Mobile patrols, keyholding and alarm response in Manchester",
+    "description": "Mobile security patrols, keyholding and alarm response across Manchester and the North West. Unannounced visits at irregular times, every one logged.",
+    "headline": "Unannounced visits, every one logged.",
+    "lede": "Security without a full-time officer on site. Our patrol officers visit at irregular times through the night, hold your keys and respond when your alarm goes off.",
+    "includes": [
+      {
+        "h": "Patrol visits",
+        "p": "Unannounced visits at irregular times, checking doors, windows, gates and fences."
+      },
+      {
+        "h": "Keyholding",
+        "p": "We hold your keys securely, so you are not the one called out at 3am."
+      },
+      {
+        "h": "Alarm response",
+        "p": "An officer attends when your alarm is triggered, checks the site and secures it."
+      },
+      {
+        "h": "A log of every visit",
+        "p": "Times, findings and photos for each visit, so you can see the work was done."
+      }
+    ],
+    "goodFor": [
+      "Empty and vacant property",
+      "Building sites",
+      "Warehouses and yards",
+      "Offices and shops after hours",
+      "Several sites on one route"
+    ],
+    "faqs": [
+      {
+        "q": "How many visits a night?",
+        "a": "As many as the site needs. We will suggest a pattern once we know the site and the risk."
+      },
+      {
+        "q": "Is a patrol cheaper than a static officer?",
+        "a": "Usually, yes. Patrols suit sites that need checking rather than constant presence. We will tell you honestly which one your site needs."
+      }
+    ]
+  },
+  {
+    "slug": "cctv-monitoring",
+    "name": "CCTV monitoring",
+    "short": "Your cameras watched remotely, with a patrol or the police sent when something happens.",
+    "bestFor": "Sites with cameras and no night staff",
+    "title": "Remote CCTV monitoring in Manchester",
+    "description": "Remote CCTV monitoring for sites across Manchester and the North West: your cameras watched, incidents reported, and a patrol or the police sent when needed.",
+    "headline": "Your cameras, watched when you are not.",
+    "lede": "Remote monitoring of the cameras you already have. When something happens, we act: a patrol officer sent to site, or the police called.",
+    "includes": [
+      {
+        "h": "Monitoring",
+        "p": "Your cameras watched remotely during the hours you choose."
+      },
+      {
+        "h": "Response",
+        "p": "A patrol officer or the police sent when an incident needs it."
+      },
+      {
+        "h": "Incident reports",
+        "p": "A written report of every incident, with the footage times, for you and your insurer."
+      },
+      {
+        "h": "Works with patrols",
+        "p": "Combine monitoring with mobile patrols for sites that need both."
+      }
+    ],
+    "goodFor": [
+      "Building sites",
+      "Yards and depots",
+      "Empty property",
+      "Car parks",
+      "Sites with cameras but no night staff"
+    ],
+    "faqs": [
+      {
+        "q": "Will it work with our cameras?",
+        "a": "Send us the make and model of your system and we will check before you sign anything."
+      },
+      {
+        "q": "Who handles the footage?",
+        "a": "Footage is handled under UK data protection law and the ICO’s guidance on surveillance cameras, and only shared with you, your insurer or the police."
+      }
+    ]
+  }
+]

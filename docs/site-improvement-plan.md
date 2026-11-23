@@ -1,10 +1,33 @@
 # Spike Security: site improvement plan
 
-**Status:** proposal, November 2026. Nothing on the live site has been changed.
+**Status:** in progress. Phases 0 to 3 are live on www.spikesecurity.co.uk as of 23 November 2026; see [Progress](#progress) for what changed from this plan along the way.
 **Covers:** moving the whole site to brand v3.0, removing the AI tells, the tone of the copy, and making the site look like a designer with a budget built it.
 **Companion files:** [`DESIGN.md`](../DESIGN.md) (the brand system), [`PRODUCT.md`](../PRODUCT.md) (users, purpose, principles), the homepage frame in [`site-plan/`](site-plan/) (open [`homepage-frame.html`](site-plan/homepage-frame.html) in a browser, or see the images below).
 
 Where a skill asked a question, it has been answered on your behalf. Every one of those answers is listed in [section 10](#10-decisions-made-on-your-behalf) so you can overrule any of them.
+
+---
+
+## Progress
+
+**Done and live**
+
+- **Phase 0.** The contact form no longer fakes a send; the hidden testimonials and the unevidenced claims are gone; the theme colour is obsidian.
+- **Phases 1 to 3** (apart from the claims register). The whole site is rebuilt on brand v3.0 with Eleventy (`src/`), deployed from `_site/` only: home, services and six service pages, how we work, about, careers with an application form, contact with a quote form, legal, privacy, site map and a 404. One font file (88 KB, self-hosted), no icon font, no third-party requests until a visitor turns a map on. Every page loads in 4 requests and about 170 KB, against 4.3 MB before.
+- **Checks.** No AI-tell patterns from the Impeccable detector on any page; no contrast failures; every page reflows at 200% text on a phone; tap targets 44 px (links inside sentences excepted); 29 behaviour checks pass (menu, dock, both forms, FAQs, 404).
+
+**Changed from the plan**
+
+- **Numbering.** Numbers now appear only where order matters (booking steps, how to apply). Section headings have no numerals on the website, and services, promises, figures and facts are not numbered. DESIGN.md has the rule.
+- **The shift report** uses the one-colour obsidian shield, so the paper stays greyscale.
+- **Careers** has no shield graphic behind it; the section is copy and a list of roles.
+- **The area map** is a real map (Leaflet, as on Horizon), not the schematic, behind a "Show the map" button. CARTO's dark tiles, which the old contact page used, now return "API key required" on every tile, so the maps use OpenStreetMap's tiles, darkened to the brand's greys, with town names on obsidian sign plates.
+- **The phone footer** hides the page links, which the menu already has.
+- **Hosting stays on GitHub Pages.** The Cloudflare account connected to this project has no domains in it, so there was nothing to move to safely. The build now deploys only `_site/`.
+- **Forms** open the visitor's email app with everything filled in, and say so plainly, until a form service is connected. Set `formEndpoint` in `src/_data/site.json` and the same forms post to it, with sending, sent and failed states already built.
+- **No placeholder photo frames on the live site.** Until the shoot, the home cover carries the shield in Signal mode.
+
+**Still to do:** the photo shoot, case studies and Google Business Profile (Phase 4), a form service, and the facts in [section 11](#11-facts-only-spike-can-confirm). The homepage frame in `docs/site-plan/` is kept as the original direction; the live site supersedes it.
 
 ---
 

@@ -1,0 +1,84 @@
+---
+title: How we work
+description: How Spike Security checks licences, vets officers to BS 7858, runs each shift and reports back. Everything here can be checked.
+permalink: /how-we-work.html
+section: How we work
+---
+{% from "macros.njk" import pagehead, finale, arrow %}
+{{ pagehead("Everything here, you can check.", "Who we send, how we check them, how a shift runs and what you get in writing afterwards. If something on this page is not true for your booking, we want to hear about it.") }}
+
+<section class="sec" aria-labelledby="licence-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="licence-title">Every officer holds an SIA licence.</h2>
+    </div>
+    <div class="split-body">
+      <p>The Security Industry Authority licenses everyone who works as a door supervisor or security guard in the UK. Each officer we send holds the licence their role needs, and wears the badge on duty.</p>
+      <p>You don’t have to take our word for it. Every SIA badge carries a 16-digit licence number. Enter it on the SIA’s public register to see the holder’s name, the type of licence and when it expires.</p>
+      <a class="link link--solo" href="{{ site.siaRegister }}" rel="noopener">Check a licence on the SIA register{{ arrow() }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="vetting-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="vetting-title">Vetted to BS&nbsp;7858.</h2>
+    </div>
+    <div class="split-body">
+      <p>BS 7858 is the British Standard for screening people who work in security. Before anyone works a shift for us, we check:</p>
+      <ul class="ticks">
+        <li>their identity and their right to work in the UK</li>
+        <li>five years of employment and education history, with any gaps explained</li>
+        <li>their criminal record</li>
+        <li>their credit history</li>
+      </ul>
+      <p>Then we check their SIA licence and brief them on your site before their first shift.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--paper" id="record" aria-labelledby="record-title">
+  <div class="wrap record">
+    <div>
+      <div class="sec-head">
+        <h2 class="sec-title" id="record-title">Before, during and after every shift.</h2>
+      </div>
+      <ul class="promises">
+        <li><h3>Before the shift</h3><p>The name and SIA licence number of every officer, by email. Each one briefed on your site and your instructions.</p></li>
+        <li><h3>During the shift</h3><p>One named supervisor you can reach, on site or by phone, all night.</p></li>
+        <li><h3>After the shift</h3><p>A written report the next morning: who worked, the hours, and every incident logged with the time.</p></li>
+      </ul>
+    </div>
+    <figure class="doc-fig">
+      {% include "report.njk" %}
+      <figcaption>A sample report with invented details. Yours names your site, your officers and your night.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="terms-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="terms-title">Insured, and in writing.</h2>
+    </div>
+    <div class="split-body">
+      <p>We are insured for the work we do, and we send our insurance certificates with every quote.</p>
+      <p>Every booking is covered by a written agreement that sets out the service, the price, the insurance and the cancellation terms. Short-notice cover, rolling monthly agreements and long-term contracts all work the same way.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="wrong-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 class="sec-title" id="wrong-title">If something goes wrong.</h2>
+    </div>
+    <div class="split-body">
+      <p>Tell us straight away: call {{ site.phone | replace(" ", "&nbsp;") | safe }}, answered 24 hours, or email <a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a>. A manager will read the shift report, talk to the officers and come back to you.</p>
+      <p>CCTV footage and personal data are handled under UK data protection law and the ICO’s guidance. Our <a class="link" href="/privacy">privacy notice</a> explains how.</p>
+    </div>
+  </div>
+</section>
+
+{{ finale(site, "<b>Answered 24 hours, every day.</b> Ask us anything on this page, or tell us the site, the dates and the hours and we’ll reply with a price.") }}

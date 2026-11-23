@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Deploy static site
+    name: Build and deploy the site
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,14 +30,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build with Eleventy
+        run: npm run build
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Deploy the entire repository root (all HTML/CSS/JS/assets)
-          path: '.'
+          # Only the built site is published; docs, scripts and source stay private
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
