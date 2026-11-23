@@ -44,20 +44,39 @@
 </section>
 {% endmacro %}
 
-{# A real street map (Leaflet, OpenStreetMap tiles darkened to the brand) behind a one-click consent gate #}
-{% macro map(site, mode="area", label="Map") %}
-<figure class="map" data-map="{{ mode }}" data-lat="{{ site.office.lat }}" data-lon="{{ site.office.lon }}">
+{# A real street map (Leaflet, OpenStreetMap tiles darkened to the brand) behind a one-click consent gate.
+   The area map's gate is a drawn coverage diagram, so the section works without the street map. #}
+{% macro map(site, mode="area", label="Map", reach=null) %}
+<figure class="map" data-map="{{ mode }}" data-lat="{{ site.office.lat }}" data-lon="{{ site.office.lon }}"{% if reach %} data-bounds='{{ reach.bounds | dump | safe }}'{% endif %}>
   <div class="map-frame">
     <div class="map-canvas" role="region" aria-label="{{ label }}" tabindex="-1"></div>
+    {% if mode == "area" and reach %}
+    <div class="map-gate map-gate--reach">
+      <div class="reach">
+        {% for r in reach.rings %}<span class="reach-ring" style="--r: {{ r.km }}" aria-hidden="true"></span>{% endfor %}
+        {% for r in reach.rings %}<span class="reach-ring-label reach-ring-label--{{ r.mi }} data" style="--r: {{ r.km }}" aria-hidden="true">{{ r.mi }} mi</span>{% endfor %}
+        <p class="reach-office"><svg viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg><span>Our office</span></p>
+        <ul class="reach-list" aria-label="Distance from our office">
+          {% for t in reach.points %}<li class="reach-pt reach-pt--{{ t.label }}" style="--x: {{ t.x }}; --y: {{ t.y }}"><b>{{ t.name }}</b><span class="data">{{ t.miles }}<span aria-hidden="true"> mi</span><span class="sr-only"> miles</span></span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% else %}
     <div class="map-gate">
       <svg class="map-gate-pin" viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg>
-      {% if mode == "area" %}<p class="map-gate-title">Where we work</p>
-      <p class="map-gate-text">{{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}. On call across {{ site.areas | join(", ") }}.</p>{% endif %}
-      <button class="btn btn--ghost btn--sm map-on" type="button">Show the map</button>
+      <button class="btn btn--ghost btn--sm map-on" type="button">Show the street map</button>
       <p class="map-gate-note">The map loads from OpenStreetMap, so it needs your OK first.</p>
     </div>
+    {% endif %}
   </div>
-  <figcaption><span class="map-credit" hidden>Map © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a>. <button type="button" class="map-off">Turn the map off</button></span>{% if mode == "office" %}<a class="map-directions" href="https://www.google.com/maps/search/?api=1&amp;query={{ site.office.lat }}%2C{{ site.office.lon }}" rel="noopener">Directions in Google Maps</a>{% endif %}</figcaption>
+  <figcaption>
+    {% if mode == "area" and reach %}
+    <p class="reach-key">Straight-line distance from our office<span class="reach-key-rings">, with rings at {{ reach.rings[0].mi }} and {{ reach.rings[1].mi }} miles</span>.</p>
+    <p class="reach-street"><button class="btn btn--ghost btn--sm map-on" type="button">Show the street map</button><span class="map-gate-note">It loads from OpenStreetMap, so it needs your OK first.</span></p>
+    {% endif %}
+    <span class="map-credit" hidden>Map © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a>. <button type="button" class="map-off">Turn the map off</button></span>{% if mode == "office" %}<a class="map-directions" href="https://www.google.com/maps/search/?api=1&amp;query={{ site.office.lat }}%2C{{ site.office.lon }}" rel="noopener">Directions in Google Maps</a>{% endif %}
+  </figcaption>
 </figure>
 {% endmacro %}
 

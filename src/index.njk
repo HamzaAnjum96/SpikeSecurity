@@ -68,7 +68,7 @@ schemaPage: business
       <p class="sec-lede">Our office is on Cheetham Hill Road, just north of the city centre. We work most often in <strong>{{ site.areas | join(", ") | replace(", Bury", " and Bury") }}</strong>. Further afield? Call us and we’ll tell you straight away if we can cover it.</p>
     </div>
     <div class="area">
-      {{ map(site, "area", "Map of Greater Manchester showing our office and the areas we cover") }}
+      {{ map(site, "area", "Map of Greater Manchester showing our office and the areas we cover", reach) }}
     </div>
   </div>
 </section>

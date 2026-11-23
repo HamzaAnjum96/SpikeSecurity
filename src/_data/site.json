@@ -24,14 +24,74 @@
   "operations": "24 hours, every day",
   "replyPromise": "We aim to reply within 4 hours in office hours, and within 12 hours outside them.",
   "notice": "For planned work we need two to three days’ notice. For urgent cover, call: we can often send officers within hours.",
-  "areas": ["Manchester", "Salford", "Trafford", "Stockport", "Bolton", "Bury"],
+  "areas": [
+    "Manchester",
+    "Salford",
+    "Trafford",
+    "Stockport",
+    "Bolton",
+    "Bury"
+  ],
+  "areaPoints": [
+    {
+      "name": "Manchester",
+      "lat": 53.4794,
+      "lon": -2.2453,
+      "label": "right"
+    },
+    {
+      "name": "Salford",
+      "lat": 53.4875,
+      "lon": -2.2901,
+      "label": "left"
+    },
+    {
+      "name": "Trafford",
+      "lat": 53.4466,
+      "lon": -2.3086,
+      "label": "left"
+    },
+    {
+      "name": "Stockport",
+      "lat": 53.4083,
+      "lon": -2.1494,
+      "label": "right"
+    },
+    {
+      "name": "Bolton",
+      "lat": 53.5769,
+      "lon": -2.4282,
+      "label": "right"
+    },
+    {
+      "name": "Bury",
+      "lat": 53.5933,
+      "lon": -2.2966,
+      "label": "right"
+    }
+  ],
   "siaRegister": "https://rolh.services.sia.homeoffice.gov.uk/",
   "formEndpoint": "",
   "nav": [
-    { "label": "Services", "url": "/services" },
-    { "label": "How we work", "url": "/how-we-work" },
-    { "label": "About", "url": "/about" },
-    { "label": "Careers", "url": "/careers" },
-    { "label": "Contact", "url": "/contact" }
+    {
+      "label": "Services",
+      "url": "/services"
+    },
+    {
+      "label": "How we work",
+      "url": "/how-we-work"
+    },
+    {
+      "label": "About",
+      "url": "/about"
+    },
+    {
+      "label": "Careers",
+      "url": "/careers"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact"
+    }
   ]
 }

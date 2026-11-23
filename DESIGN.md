@@ -178,7 +178,7 @@ Display (`display`) is reserved for one line per page. Section headlines (`headl
 
 ## 4. Elevation
 
-Flat by design. **No shadows, no blur, no glass.** Depth comes from surface steps (obsidian → obsidian 2 → graphite) and 1px rules. Corners are square everywhere (`rounded.none`); the only circle is a profile picture crop. Focus is a 2px Spike Orange outline offset 3px (obsidian on bone or orange surfaces).
+Flat by design. **No shadows, no blur, no glass.** Depth comes from surface steps (obsidian → obsidian 2 → graphite) and 1px rules. Corners are square everywhere (`rounded.none`); the only circles are a profile picture crop and the distance rings of the coverage diagram, which are geometry rather than decoration. Focus is a 2px Spike Orange outline offset 3px (obsidian on bone or orange surfaces).
 
 ## 5. Components
 
@@ -217,10 +217,12 @@ A slim sticky bar (60px): the horizontal lockup, page links in sentence case wit
 - **Rows:** services, sectors, roles and links are rows on hairlines with an arrow, on the same 12-column grid as the headline above them. No cards.
 - **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale, and Martian Mono for times, dates and references.
 - **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set across the full width in Martian Mono Bold, obsidian on orange, like a road sign, then a sentence and an obsidian button.
-- **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, sharp on high-density screens, the shield as the pin and "Our office" on a small obsidian plate where there is room. Off until the visitor allows maps in the cookie prompt, with "Turn the map off" underneath.
+- **Coverage diagram:** the home page shows where we work as a drawing, not a placeholder: north up and to scale, the orange shield at the office, hairline rings at 5 and 10 miles, and each area we cover most as a bone square with its name and its straight-line distance in Martian Mono. Positions and distances are worked out from the coordinates in `src/_data/site.json` (`areaPoints`), so the drawing and the street map never disagree. It needs no cookies and no third party.
+- **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, sharp on high-density screens, the shield as the pin and "Our office" on a small obsidian plate where there is room. Off until the visitor allows maps in the cookie prompt or presses "Show the street map"; on the home page the street map replaces the coverage diagram in the same frame, framed on the same areas, with "Turn the map off" underneath.
+- **Pairs:** two short statements may sit side by side under condensed headlines, divided by a hairline, to break a run of statement-and-text sections (how we work: insurance, and what happens if something goes wrong).
 - **Forms:** labels above fields, hints in ash, phone and licence numbers typed in Martian Mono, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
 - **Footer:** three calm rows: the lockup and the page links; the 24-hour number, email and office; then the trading disclosure (registered name, number, England and Wales, registered office) with legal links and "Cookie settings". On phones the page links are hidden; the menu already has them.
-- **Cookie prompt:** the site needs no cookies; maps are the one optional extra. A small panel (a bottom sheet on phones) asks once, with two equal buttons, "Allow maps" and "No thanks". It never blocks the page. "Show the map" and the footer's "Cookie settings" reopen it.
+- **Cookie prompt:** the site needs no cookies; maps are the one optional extra. A small panel (a bottom sheet on phones) asks once, with two equal buttons, "Allow maps" and "No thanks". It never blocks the page. "Show the street map" and the footer's "Cookie settings" reopen it.
 
 Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.8125 to 0.9375 rem, document field labels 0.6875 rem. The phone number is Martian Mono SemiBold: 0.875 rem in the bar, 1.375 to 1.75 rem on the cover, 1.5 to 1.875 rem on the contact page, and Bold across the full width of the finale (up to 10 rem). Steps are numbered 01 to 04 in Martian Mono Medium, in ash.
 

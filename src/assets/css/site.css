@@ -79,7 +79,7 @@ h1, h2, h3 { text-wrap: balance; }
 /* Reflow safety at large text sizes (WCAG 1.4.4, 1.4.10): one-column grids may never grow past the
    viewport. Declared early so the multi-column layouts below still override it. */
 .cover-grid, .record, .area, .contact, .careers, .split, .inc-grid, .sec-head, .page-head-grid, .finale, .finale-row,
-.sitemap-grid, .steps, .line-list, .inc, .form, .form fieldset, .field, .field-row, .facts-list > div, .map, .doc-fig, .contact-info, .ci-block { grid-template-columns: minmax(0, 1fr); }
+.sitemap-grid, .steps, .line-list, .inc, .form, .form fieldset, .field, .field-row, .facts-list > div, .map, .doc-fig, .contact-info, .ci-block, .duo { grid-template-columns: minmax(0, 1fr); }
 .sec-lede, .page-lede, .form-intro, .form-note, .split-body p, .facts li, .role-m, .role-s { overflow-wrap: anywhere; }
 ::selection { background: var(--orange); color: var(--obsidian); }
 [hidden] { display: none !important; }
@@ -291,6 +291,20 @@ html:not(.js) .js-only { display: none !important; }
   .split > :last-child { grid-column: 8 / span 5; }
 }
 
+/* Two short statements side by side, to break a run of split sections */
+.duo { display: grid; gap: var(--s8); }
+.duo-title {
+  font-size: clamp(2rem, 3.6vw, 3.25rem); font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase;
+  letter-spacing: 0.005em; line-height: 0.9; max-width: 16ch; margin-bottom: var(--s5); overflow-wrap: anywhere; hyphens: auto;
+}
+.duo p { max-width: 52ch; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.65; }
+.duo p + p { margin-top: var(--s4); }
+.duo > * + * { border-top: 1px solid var(--line); padding-top: var(--s7); }
+@media (min-width: 900px) {
+  .duo { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s7); }
+  .duo > * + * { border-top: 0; padding-top: 0; border-left: 1px solid var(--line); padding-left: var(--s7); }
+}
+
 /* Service rows, not cards */
 .svc { border-top: 1px solid var(--line-strong); }
 .svc li { border-bottom: 1px solid var(--line); }
@@ -421,26 +435,81 @@ html:not(.js) .js-only { display: none !important; }
   .doc-log th { width: 4.25rem; }
 }
 
-/* ── Area: a real map, behind the cookie prompt ─────────── */
+/* ── Maps: a drawn coverage diagram, and street maps behind the cookie prompt ── */
 .area { display: block; }
-@media (min-width: 1000px) { [data-map="area"] .map-frame { aspect-ratio: 21 / 9; } }
-/* While maps are off, the frame is a compact strip instead of an empty map-sized box */
-.map:not(.is-on) .map-frame { aspect-ratio: auto; }
-@media (min-width: 800px) {
-  .map:not(.is-on) .map-gate { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: var(--s6); row-gap: var(--s2); align-items: center; }
-  .map:not(.is-on) .map-gate-pin { grid-row: 1 / span 2; margin: 0; padding: 0; }
-  .map:not(.is-on) .map-gate-title { grid-column: 2; }
-  .map:not(.is-on) .map-gate-text { grid-column: 2; }
-  .map:not(.is-on) .map-gate .btn { grid-column: 3; grid-row: 1; margin: 0; justify-self: end; }
-  .map:not(.is-on) .map-gate-note { grid-column: 3; grid-row: 2; max-width: 30ch; text-align: right; }
-  .contact-info .map:not(.is-on) .map-gate { display: flex; align-items: flex-start; }
-  .contact-info .map:not(.is-on) .map-gate-note { text-align: left; }
-}
 .map { display: grid; gap: var(--s3); }
 .map-frame { position: relative; display: grid; aspect-ratio: 4 / 3; background: var(--obsidian-2); border: 1px solid var(--line); }
 /* no overflow: hidden here, or the aspect ratio stops growing to fit the gate text (Leaflet clips its own canvas) */
 .map-canvas { overflow: hidden; }
 [data-map="office"] .map-frame { aspect-ratio: 1 / 1; }
+/* While the office map is off, its frame is a compact panel instead of an empty map-sized box */
+[data-map="office"]:not(.is-on) .map-frame { aspect-ratio: auto; }
+/* The area frame keeps its shape: the diagram fills it until the street map takes its place */
+[data-map="area"] .map-frame { aspect-ratio: 5 / 4; }
+[data-map="area"] figcaption { display: grid; gap: var(--s4); align-content: start; font-size: 0.9375rem; }
+@media (min-width: 1000px) {
+  [data-map="area"] { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s6); align-items: start; }
+  [data-map="area"] .map-frame { grid-column: 1 / span 8; aspect-ratio: 3 / 2; }
+  [data-map="area"] figcaption { grid-column: 9 / span 4; }
+}
+.reach-key { max-width: 36ch; }
+.reach-street { display: grid; justify-items: start; gap: var(--s2); }
+.map.is-on .reach-key, .map.is-on .reach-street { display: none; }
+
+/* The coverage diagram: north up and to scale. Each place sits at its distance from the office in km
+   (--x east, --y north, from site.json via src/_data/reach.js); --k turns km into pixels for whatever
+   size the frame is, so one drawing works from phones to desktops. */
+.map-gate.map-gate--reach { padding: 0; display: block; }
+.reach {
+  position: absolute; inset: 0; overflow: hidden; container-type: size;
+  --k: min(100cqh / 25, 100cqw / 26);
+  --ox: calc(50cqw + 3.3 * var(--k) - 2.5rem);
+  --oy: calc(50cqh - 0.6 * var(--k));
+}
+.reach > *, .reach-list > li { position: absolute; margin: 0; }
+.reach-list { inset: 0; }
+.reach-ring {
+  left: var(--ox); top: var(--oy); width: calc(2 * var(--r) * var(--k)); aspect-ratio: 1; translate: -50% -50%;
+  border: 1px solid var(--line-strong); border-radius: 50%;
+}
+.reach-ring + .reach-ring { border-color: var(--line); }
+.reach-ring-label {
+  left: var(--ox); top: calc(var(--oy) + var(--r) * var(--k)); translate: -50% -50%;
+  padding: 0 6px; background: var(--obsidian-2); color: var(--ash); font-size: 0.75rem; line-height: 1.4;
+}
+/* the outer ring is labelled where it crosses due west, and only where that point is in the frame */
+.reach-ring-label--10 { left: calc(var(--ox) - var(--r) * var(--k)); top: var(--oy); }
+@container (width < 600px) { .reach-ring-label--10 { display: none; } }
+.reach-office {
+  left: var(--ox); top: var(--oy); translate: -9px -50%;
+  display: flex; align-items: center; gap: var(--s2); white-space: nowrap;
+  font-size: 0.8125rem; font-weight: 600; line-height: 1.2; color: var(--bone);
+}
+.reach-office svg { width: 18px; height: auto; flex: none; }
+.reach-pt {
+  left: calc(var(--ox) + var(--x) * var(--k)); top: calc(var(--oy) - var(--y) * var(--k));
+  white-space: nowrap; line-height: 1.25;
+  text-shadow: 0 0 3px var(--obsidian-2), 0 0 6px var(--obsidian-2);
+}
+.reach-pt b { display: block; font-size: 0.875rem; font-weight: 600; color: var(--bone); }
+.reach-pt .data { display: block; font-size: 0.75rem; line-height: 1.4; color: var(--ash); }
+.reach-pt::before { content: ''; position: absolute; top: 5px; width: 8px; height: 8px; background: var(--bone); box-shadow: 0 0 0 3px var(--obsidian-2); }
+.reach-pt--right { translate: 12px -9px; }
+.reach-pt--right::before { left: -16px; }
+.reach-pt--left { translate: calc(-100% - 12px) -9px; text-align: right; }
+.reach-pt--left::before { right: -16px; }
+/* With large text in a narrow frame the labels would collide, so the drawing becomes a plain list */
+[data-map="area"] { container: area / inline-size; }
+@container area (width < 16.5em) {
+  [data-map="area"]:not(.is-on) .map-frame { aspect-ratio: auto; }
+  .reach { position: relative; inset: auto; container-type: normal; padding: var(--s5); display: grid; gap: var(--s4); }
+  .reach > *, .reach-list > li { position: static; translate: none; }
+  .reach-ring, .reach-ring-label { display: none; }
+  .reach-list { display: grid; gap: var(--s3); }
+  .reach-list > li { position: relative; inset: auto; padding-left: var(--s5); text-align: left; }
+  .reach-key-rings { display: none; }
+  .reach-pt::before { left: 0; right: auto; top: 0.45em; }
+}
 .map-canvas { position: absolute; inset: 0; background: #0E0F11; }
 /* the gate sits in the flow, so the frame grows if its text needs more room than the aspect ratio gives */
 .map-canvas:focus { outline: none; }
@@ -456,8 +525,8 @@ html:not(.js) .js-only { display: none !important; }
 .map-gate-note { font-size: 0.8125rem; color: var(--ash); max-width: 44ch; line-height: 1.5; }
 .map.is-on .map-gate { display: none; }
 .map figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2) var(--s5); font-size: 0.8125rem; color: var(--ash); line-height: 1.5; }
-.map figcaption button { background: none; border: 0; padding: 0; color: var(--bone); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.2em; cursor: pointer; font-size: inherit; }
-.map figcaption button:hover { text-decoration-color: var(--orange); }
+.map figcaption button:not(.btn) { background: none; border: 0; padding: 0; color: var(--bone); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.2em; cursor: pointer; font-size: inherit; }
+.map figcaption button:not(.btn):hover { text-decoration-color: var(--orange); }
 .map-credit a { color: var(--ash); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.2em; }
 .map-directions { color: var(--bone); text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 0.2em; }
 /* Leaflet, restyled to the brand */

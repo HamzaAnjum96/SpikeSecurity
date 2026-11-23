@@ -307,9 +307,6 @@
     return leaflet;
   }
 
-  // The towns we cover most, used only to frame the area map
-  var AREAS = [[53.5769, -2.4282], [53.5933, -2.2966], [53.4875, -2.2901], [53.4794, -2.2453], [53.4466, -2.3086], [53.4083, -2.1494]];
-
   function map(fig) {
     var canvas = fig.querySelector('.map-canvas');
     var credit = fig.querySelector('.map-credit');
@@ -340,7 +337,9 @@
           L.marker([lat, lon], { keyboard: false, interactive: false, zIndexOffset: 1000,
             icon: L.divIcon({ className: 'map-plate', html: '<span class="map-label">Our office</span>', iconSize: [0, 0], iconAnchor: [0, 0] }) }).addTo(instance);
         }
-        if (mode === 'area') instance.fitBounds(L.latLngBounds(AREAS), { padding: [28, 28], maxZoom: 11 });
+        // the area map is framed on the towns we cover most (site.json, areaPoints)
+        var bounds = []; try { bounds = JSON.parse(fig.dataset.bounds || '[]'); } catch (e) { /* use the office */ }
+        if (mode === 'area' && bounds.length) instance.fitBounds(L.latLngBounds(bounds), { padding: [28, 28], maxZoom: 11 });
         else instance.setView([lat, lon], 15);
         if (status) status.textContent = note;
         if (focus) canvas.focus({ preventScroll: true });
