@@ -58,6 +58,8 @@ def n(v):
 
 
 OFL_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/archivo/OFL.txt'
+MONO_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/chivomono/ChivoMono%5Bwght%5D.ttf'
+MONO_OFL_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/chivomono/OFL.txt'
 ZIP_NAME = 'spike-security-brand-assets.zip'
 
 README = f'''SPIKE SECURITY BRAND ASSETS
@@ -72,7 +74,7 @@ WHICH LOGO FILE?
   Files ending -bg.png include the background colour.
 
 FORMATS
-  SVG and PDF are vector: use them for print, signs, embroidery and vehicles.
+  SVG and PDF are vector: use them for print, signs and embroidery.
   PNG is for documents, slides and the web. Never stretch or recolour the logo.
 
 SIGNS AND UNIFORMS
@@ -88,9 +90,11 @@ COLOURS
   Bone          #EEEAE0   text on dark, light surfaces
   Ember         #B33A06   orange text on light backgrounds
 
-FONT
-  Archivo (SIL Open Font License, free for any use), in the font folder.
-  Email and Office documents without Archivo: use Arial.
+FONTS
+  Archivo for words and Chivo Mono for data (times, references, licence
+  numbers). Both are from Omnibus-Type, free under the SIL Open Font License,
+  in the font folder. Without them: Arial for words, Consolas for data.
+  Email signatures always use Arial.
 
 Questions: {EMAIL} · {PHONE}
 '''
@@ -103,6 +107,11 @@ def ensure_font():
         urllib.request.urlretrieve(FONT_URL, FONT)
     if not (WORK / 'OFL.txt').exists():
         urllib.request.urlretrieve(OFL_URL, WORK / 'OFL.txt')
+    if not (WORK / 'ChivoMono-VF.ttf').exists():
+        print('Downloading Chivo Mono (SIL Open Font License)…')
+        urllib.request.urlretrieve(MONO_URL, WORK / 'ChivoMono-VF.ttf')
+    if not (WORK / 'OFL-ChivoMono.txt').exists():
+        urllib.request.urlretrieve(MONO_OFL_URL, WORK / 'OFL-ChivoMono.txt')
 
 
 def package():
@@ -118,7 +127,9 @@ def package():
                 if f.is_file() and not f.name.endswith('-preview.jpg'):
                     z.write(f, f'{top}/{sub}/{f.name}')
         z.write(FONT, f'{top}/font/Archivo-VariableFont_wdth,wght.ttf')
-        z.write(WORK / 'OFL.txt', f'{top}/font/OFL.txt')
+        z.write(WORK / 'OFL.txt', f'{top}/font/OFL-Archivo.txt')
+        z.write(WORK / 'ChivoMono-VF.ttf', f'{top}/font/ChivoMono-VariableFont_wght.ttf')
+        z.write(WORK / 'OFL-ChivoMono.txt', f'{top}/font/OFL-ChivoMono.txt')
     print(f'Packaged {target.relative_to(ROOT)} ({target.stat().st_size / 1e6:.1f} MB)')
 
 
@@ -219,7 +230,7 @@ html,body{{width:{w}{unit};height:{h}{unit};overflow:hidden}}
 body{{font-family:Archivo,Arial,sans-serif;background:{C['obsidian']};color:{C['bone']};-webkit-font-smoothing:antialiased;font-kerning:normal}}
 .cap{{text-transform:uppercase}}
 .disp{{font-weight:800;font-stretch:62%;text-transform:uppercase;line-height:.9;letter-spacing:.005em}}
-.label{{font-weight:600;font-stretch:125%;text-transform:uppercase;letter-spacing:.14em}}
+.label{{font-weight:600;font-stretch:100%;letter-spacing:0}}
 .o{{color:{C['orange']}}}
 {extra_css}
 </style></head><body>{body}</body></html>'''
@@ -254,7 +265,7 @@ def compositions(H_):
       <div style="position:absolute;left:740px;right:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:30px">
         {lk(C['orange'], C['bone'], 46)}
         <p class="disp" style="font-size:84px">On site. On time.<br><span class="o">On record.</span></p>
-        <p class="label" style="font-size:15px;color:{C['ash']}">Licensed security · Manchester &amp; the North West</p>
+        <p class="label" style="font-size:19px;color:{C['ash']}">Licensed security · Manchester &amp; the North West</p>
       </div>''', 1584, 396), 1584, 396)
 
     # Link preview / Open Graph card
@@ -263,7 +274,7 @@ def compositions(H_):
       <div style="position:absolute;left:72px;top:72px;bottom:66px;width:560px;display:flex;flex-direction:column;justify-content:space-between">
         {lk(C['orange'], C['bone'], 52)}
         <p class="disp" style="font-size:112px;line-height:.88">On site.<br>On time.<br><span class="o">On record.</span></p>
-        <p class="label" style="font-size:16px;color:{C['ash']}">{WEB}</p>
+        <p class="label" style="font-size:20px;color:{C['ash']}">{WEB}</p>
       </div>''', 1200, 630), 1200, 630)
 
     # Signs: A3 portrait, vector PDF + PNG preview
@@ -278,7 +289,7 @@ def compositions(H_):
       .disp{{white-space:nowrap}}
       .body{{font-weight:500;font-stretch:100%;font-size:8mm;line-height:1.3;max-width:220mm}}
       .tel{{font-weight:800;font-stretch:62%;font-size:26mm;line-height:.9;letter-spacing:.01em;color:{C['orange']};font-variant-numeric:tabular-nums;white-space:nowrap}}
-      .lab{{font-weight:600;font-stretch:125%;text-transform:uppercase;letter-spacing:.14em;font-size:5.2mm;color:{C['ash']}}}
+      .lab{{font-weight:600;font-stretch:100%;letter-spacing:0;font-size:6.6mm;color:{C['ash']}}}
     '''
     foot = lambda first: f'''
         <p class="lab" style="margin-bottom:7mm">{first}</p>
@@ -324,7 +335,7 @@ MATRIX = [  # colourway id, row name, what it is for
     ('dark', 'Full colour, dark', 'Orange shield, bone name. The primary logo for every dark surface.'),
     ('light', 'Full colour, light', 'Orange shield, obsidian name. For white paper, bone and pale photos.'),
     ('orange', 'Orange', 'One colour. Embroidery and single-colour print on dark garments.'),
-    ('bone', 'Bone', 'One colour. Photography, etching and dark vehicles.'),
+    ('bone', 'Bone', 'One colour. Photography, etching and dark garments.'),
     ('obsidian', 'Obsidian', 'One colour. Hi-vis, Spike Orange panels and print on light stock.'),
 ]
 SHIELD_FOR = {'dark': 'orange', 'light': 'orange', 'orange': 'orange', 'bone': 'bone', 'obsidian': 'obsidian'}

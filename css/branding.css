@@ -5,6 +5,10 @@
    DESIGN.md.
    ============================================================ */
 
+/* Fonts are served from our own site (see the privacy notice). Paths resolve from /css/ to /assets/fonts/. */
+@font-face { font-family: 'Archivo'; src: url('../assets/fonts/archivo-latin.woff2') format('woff2'); font-weight: 100 900; font-stretch: 62% 125%; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Chivo Mono'; src: url('../assets/fonts/chivo-mono-latin.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+
 :root {
   color-scheme: dark;
 
@@ -26,6 +30,7 @@
 
   /* Type: one family, three widths */
   --font: 'Archivo', 'Arial Narrow', 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  --mono: 'Chivo Mono', ui-monospace, Consolas, 'Courier New', monospace;
   --condensed: 62%;
   --semi: 87%;
   --expanded: 125%;
@@ -83,7 +88,7 @@ h3, h4 { text-wrap: balance; }
 /* Reflow safety at large text sizes (WCAG 1.4.4): one-column grids may not grow past the
    viewport. Declared early so the multi-column layouts below still override it. */
 .cover-grid, .anatomy, .lockups, .matrix, .space, .width, .scale, .sg-pair, .steps, .traits, .words,
-.garments, .livery, .signs, .social, .sig-form, .field-set, .install-list, .pack-body, .picks-list,
+.garments, .signs, .social, .sig-form, .field-set, .install-list, .pack-body, .picks-list,
 .photo-list, .rules, .swatch, .lockup, .sg, .garment, .sign, .social-item, .minsize { grid-template-columns: minmax(0, 1fr); }
 ::selection { background: var(--orange); color: var(--obsidian); }
 
@@ -92,6 +97,8 @@ h3, h4 { text-wrap: balance; }
   outline-offset: 3px;
 }
 
+/* The Record Rule: monospace marks data people check or copy, never headings, labels, body text or decoration */
+.data, .copy, .s-data { font-family: var(--mono); font-weight: 450; letter-spacing: 0; }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
@@ -552,12 +559,12 @@ html:not(.js) .js-only { display: none !important; }
   min-height: 32px; margin: -4px 0; padding: 4px 8px 4px 0;
   background: none; border: 0; cursor: pointer;
   flex-wrap: wrap; max-width: 100%;
-  font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+  font-weight: 500; letter-spacing: 0;
   text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.25em;
   transition: color var(--fast) var(--ease), text-decoration-color var(--fast) var(--ease);
 }
 .copy::after {
-  content: 'Copy'; font-size: 0.8125rem; font-weight: 600; font-stretch: 100%; letter-spacing: 0; color: var(--ash); opacity: 0; transition: opacity var(--fast) var(--ease);
+  content: 'Copy'; font-family: var(--font); font-size: 0.8125rem; font-weight: 600; font-stretch: 100%; letter-spacing: 0; color: var(--ash); opacity: 0; transition: opacity var(--fast) var(--ease);
 }
 .copy:hover, .copy:focus-visible { text-decoration-color: var(--orange); }
 .copy:hover::after, .copy:focus-visible::after { opacity: 1; }
@@ -594,13 +601,16 @@ html:not(.js) .js-only { display: none !important; }
 
 /* ── 03 Type ──────────────────────────────────────────────── */
 .widths { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 1px solid var(--line); }
-@media (min-width: 1000px) { .widths { grid-template-columns: 4fr 5fr 4fr; } .width + .width { border-left: 1px solid var(--line); padding-left: var(--s6); } .width { padding-right: var(--s6); } }
+@media (min-width: 800px) { .widths { grid-template-columns: repeat(2, minmax(0, 1fr)); } .width:nth-child(even) { border-left: 1px solid var(--line); padding-left: var(--s6); } .width { padding-right: var(--s6); } }
 .width { display: grid; grid-template-rows: auto 1fr auto; gap: var(--s5); padding-top: var(--s6); padding-bottom: var(--s6); border-bottom: 1px solid var(--line); }
 .width-spec { color: var(--ash); }
 .width-sample { color: var(--bone); overflow-wrap: anywhere; hyphens: auto; }
 .width-sample--c { font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase; font-size: clamp(3rem, 5.4vw, 4.75rem); line-height: 0.86; letter-spacing: 0.005em; }
 .width-sample--n { font-size: clamp(1.25rem, 1.8vw, 1.625rem); line-height: 1.45; max-width: 26ch; }
 .width-sample--e { font-weight: 700; font-stretch: var(--semi); font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.15; letter-spacing: -0.005em; }
+.width-sample--m { font-family: var(--mono); font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.6; color: var(--bone); }
+.width-sample--m span { color: var(--ash); margin-right: 0.6ch; }
+.width-sample--m br + span:last-child { color: var(--bone); }
 .width-use { color: var(--ash); font-size: 0.9375rem; }
 
 .axis { margin-top: var(--s8); padding: var(--s6) var(--s5); background: var(--obsidian-2); border: 1px solid var(--line); display: grid; gap: var(--s4); }
@@ -697,34 +707,6 @@ html:not(.js) .js-only { display: none !important; }
 
 .g-dim { fill: none; stroke: var(--ash); stroke-width: 1; }
 .g-dim-t { fill: var(--ash); font-size: 11px; font-weight: 600; font-stretch: 100%; letter-spacing: 0; }
-
-/* Vehicle livery: side elevation of a panel van */
-.livery { display: grid; gap: var(--s6); }
-.livery-art { margin: 0; padding: clamp(16px, 3vw, 40px); background: var(--obsidian-2); border: 1px solid var(--line); display: grid; gap: var(--s5); }
-.livery-views { display: grid; gap: var(--s6); align-items: end; }
-@media (min-width: 800px) { .livery-views { grid-template-columns: minmax(0, 69fr) minmax(0, 31fr); gap: var(--s6); } }
-.livery-view { display: grid; gap: var(--s3); }
-.livery-view svg { width: 100%; height: auto; display: block; }
-.livery-cap { font-size: 0.875rem; font-weight: 600; color: var(--bone); }
-.livery-note { color: var(--ash); font-size: 0.9375rem; max-width: 70ch; }
-/* Van elevations: 1 unit = 5 mm */
-.v-ground { stroke: var(--line); stroke-width: 1.5; }
-.v-body { fill: #0E0F11; stroke: var(--line-strong); stroke-width: 1.6; stroke-linejoin: round; }
-.v-bumper { fill: #141518; stroke: var(--line-strong); stroke-width: 1.2; stroke-linejoin: round; }
-.v-glass { fill: #1E2025; stroke: var(--line-strong); stroke-width: 1; }
-.v-seam { fill: none; stroke: #2F3033; stroke-width: 1.4; }
-.v-crease { fill: none; stroke: #1F2124; stroke-width: 1.4; }
-.v-trim { fill: var(--graphite); stroke: var(--line-strong); stroke-width: 1; }
-.v-lamp { fill: #26282D; stroke: var(--line-strong); stroke-width: 1; }
-.v-tyre { fill: #060708; stroke: var(--line); stroke-width: 1.5; }
-.v-rim { fill: #17181B; stroke: var(--line-strong); stroke-width: 1.2; }
-.v-hub { fill: var(--line); }
-.v-spoke { stroke: var(--line); stroke-width: 6; stroke-linecap: round; }
-.v-plate { fill: none; stroke: var(--line-strong); stroke-width: 1.2; }
-.v-num { fill: var(--bone); font-size: 30px; font-weight: 800; font-stretch: var(--condensed); letter-spacing: 0.01em; }
-.v-small { fill: var(--ash); font-size: 12px; font-weight: 600; }
-.v-dim { fill: none; stroke: var(--ash); stroke-width: 1; }
-.v-dimt { fill: var(--ash); font-size: 13px; font-weight: 600; }
 
 /* Photography: rules, not stock pictures */
 .photo-list { display: grid; border-top: 1px solid var(--line); }

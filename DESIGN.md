@@ -48,6 +48,18 @@ typography:
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: "normal"
+  data:
+    fontFamily: "'Chivo Mono', Consolas, 'Courier New', monospace"
+    fontSize: "0.9375rem"
+    fontWeight: 450
+    lineHeight: 1.5
+    letterSpacing: "normal"
+  button:
+    fontFamily: "Archivo, Arial, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: "normal"
   label:
     fontFamily: "Archivo, Arial, sans-serif"
     fontSize: "0.875rem"
@@ -67,7 +79,7 @@ components:
   button-primary:
     backgroundColor: "{colors.spike-orange}"
     textColor: "{colors.obsidian}"
-    typography: "{typography.label}"
+    typography: "{typography.button}"
     rounded: "{rounded.none}"
     padding: "12px 20px"
     height: "48px"
@@ -112,7 +124,7 @@ Spike Security protects venues, events, shops and offices across Manchester and 
 
 - **Dark first.** Obsidian is the canvas for every screen we control: the hours we keep.
 - **Orange on purpose.** Spike Orange is the shield's colour and the brand's single signal. It carries large, deliberate moments (the mark, signs, hi-vis, one call to action, a section numeral) and never decorates: labels, list numbers and icons stay bone or ash.
-- **One family, three widths.** Archivo: condensed for signs and headlines, semi-condensed for subheads, normal for reading, labels and buttons.
+- **Two typefaces, one foundry.** Archivo for words, at three widths: condensed for signs and headlines, semi-condensed for subheads, normal for reading, labels and buttons. Chivo Mono for the record: times, references and licence numbers.
 - **Spec-sheet rigour.** Hairline rules and square corners, like a standards manual rather than a magazine. Numbers appear only where order matters.
 
 Physical scene: an operations manager checking cover on a phone in a car park after dark; a door supervisor's jacket under a streetlight; a sign on a site hoarding at 3am. Everything must read at a distance, in low light.
@@ -142,7 +154,9 @@ Default proportion on everyday surfaces is **70 obsidian / 20 bone / 10 orange**
 
 ## 3. Typography
 
-**Archivo** (variable: width 62 to 125%, weight 100 to 900; SIL Open Font License, Google Fonts) is the only typeface. One family, used at three widths:
+**Archivo** (variable: width 62 to 125%, weight 100 to 900) sets every word. **Chivo Mono** (variable weight), from the same foundry, Omnibus-Type, sets data. Both are under the SIL Open Font License, on Google Fonts, in the brand pack and served from our own site.
+
+Archivo is used at three widths:
 
 | Width | Role | Treatment |
 |---|---|---|
@@ -150,6 +164,7 @@ Default proportion on everyday surfaces is **70 obsidian / 20 bone / 10 orange**
 | 87% semi-condensed | Subheads, component titles | Bold 700, sentence case |
 | 100% normal | Body, forms, documents | Regular 400, 1.65 to 1.7 line-height, max 54 to 62ch |
 | 100% normal | Labels, buttons, navigation, tags | SemiBold 600 (buttons Bold 700), sentence case, no extra tracking |
+| Chivo Mono | Data: times, references, licence numbers, colour values | Regular 400 to Medium 500, about 94% of the surrounding size |
 
 The expanded widths are not used for text. Wide, spaced-out capitals read as a template and are hard to read small.
 
@@ -157,8 +172,9 @@ The expanded widths are not used for text. Wide, spaced-out capitals read as a t
 Display (`display`) is reserved for one line per page. Section headlines (`headline`) are short statements, not topic names ("One shield. Drawn once."), set deliberately smaller than the display line so the cover keeps its weight. Subheads (`subhead`) name groups. Labels (`label`) carry numbering ("01 Logo"), figure captions ("Fig. 02 · Construction and clear space") and metadata. Numbers people act on use tabular figures.
 
 ### Named Rules
-- **Capitals are for display lines and signs.** Headlines, signs and vehicle livery use condensed capitals. Everything else, including labels, buttons and menus, is sentence case. Never set body copy condensed.
-- **Fallbacks.** Email uses Arial. Office documents use Archivo where installed, otherwise Arial. Never Impact, Bebas or a serif in place of the condensed capitals.
+- **Capitals are for display lines and signs.** Headlines and signs use condensed capitals. Everything else, including labels, buttons and menus, is sentence case. Never set body copy condensed.
+- **The Record Rule.** Chivo Mono marks data people check or copy: times in reports and logs, reference numbers, licence numbers, colour values, file names. Regular or Medium, sentence case, never bold. Never for headlines, labels, buttons or body text, and never as decoration: a monospace that means "technical" is costume.
+- **Fallbacks.** Email uses Arial. Office documents use Archivo and Chivo Mono where installed, otherwise Arial for words and Consolas for data. Never Impact, Bebas or a serif in place of the condensed capitals.
 
 ## 4. Elevation
 
@@ -199,10 +215,10 @@ A slim sticky bar (60px): the horizontal lockup, page links in sentence case wit
 - **Cover:** the brand line as display type inside the `h1`, followed by a plain sentence about what Spike does; the primary button and the 24-hour number beside it. Until commissioned photographs exist, the cover's second column is the shield in Signal mode.
 - **Facts strip:** four checkable facts (SIA licence with a link to the public register, BS 7858, insurance, company number) on hairlines. Replaces any "stats" or live-status panel.
 - **Rows:** services, sectors, roles and links are rows on hairlines with an arrow, on the same 12-column grid as the headline above them. No cards.
-- **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale.
-- **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set at full width in condensed obsidian, like the back of a van, then a sentence and an obsidian button.
+- **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale, and Chivo Mono for times, dates and references.
+- **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set at full width in condensed obsidian, like a road sign, then a sentence and an obsidian button.
 - **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, sharp on high-density screens, the shield as the pin and "Our office" on a small obsidian plate where there is room. Off until the visitor allows maps in the cookie prompt, with "Turn the map off" underneath.
-- **Forms:** labels above fields, hints in ash, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
+- **Forms:** labels above fields, hints in ash, licence numbers typed in Chivo Mono, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
 - **Footer:** three calm rows: the lockup and the page links; the 24-hour number, email and office; then the trading disclosure (registered name, number, England and Wales, registered office) with legal links and "Cookie settings". On phones the page links are hidden; the menu already has them.
 - **Cookie prompt:** the site needs no cookies; maps are the one optional extra. A small panel (a bottom sheet on phones) asks once, with two equal buttons, "Allow maps" and "No thanks". It never blocks the page. "Show the map" and the footer's "Cookie settings" reopen it.
 
@@ -212,7 +228,7 @@ Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.812
 - The shield is one path, copied verbatim from `resources/SPIKE SECURITY LOGO.svg`. Lockups (horizontal, stacked) pair it with the wordmark SPIKE SECURITY in Archivo 62%/800 (+3% tracking, with the word space opened by 0.10em so the two words separate at small sizes and at distance), cap height 0.40 of the shield (horizontal) with a 0.20 gap and the cap centre at 47% of the shield's height (its visual centre). Clear space: a quarter of the shield's height. Minimum: shield 16px or 6 mm, horizontal lockup 120px or 30 mm.
 - Five colourways: full colour on dark (orange + bone), full colour on light (orange + obsidian), and one-colour orange, bone and obsidian.
 - **Supergraphic**: a deep crop of the shield (at least 3× any logo on the surface) showing a curve and the diagonal. Signal mode is orange on obsidian; Shadow mode is graphite on obsidian and may sit behind text. One crop per surface; never text over Signal orange; the full logo still appears.
-- **Applications.** Uniform back print 280 mm wide, 80 mm below the collar (inks: Pantone Orange 021 C, white for bone). Vans: black or graphite; one Signal crop on the rear quarter of each side, ending at the sliding-door seam, and one on the left rear door, ending at the centre seam; logo on both cab doors at least 500 mm wide; the 24-hour number on the sliding doors and the right rear door, at least 100 mm tall. The brand page shows both views drawn to scale. Site signs are supplied as A3 PDFs with 3 mm bleed.
+- **Applications.** Uniform back print 280 mm wide, 80 mm below the collar (inks: Pantone Orange 021 C, white for bone). Site signs are supplied as A3 PDFs with 3 mm bleed.
 - **Photography.** Our own officers, with consent, on sites we cover; working, not posing; real light (dusk, streetlights, venue lighting), with orange appearing only where it really is. No identifiable members of the public, no readable licence numbers, no client sites without permission.
 - Artwork generator: `scripts/brand-assets/` (outlined SVG, PDF and PNG; it also keeps the page's inline artwork in sync).
 
@@ -227,6 +243,7 @@ Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.812
 - End long pages on the brand colour: an orange section with obsidian type and an obsidian button.
 
 ### Don't:
+- Use monospace for headlines, labels, buttons or body text, or to make something look technical.
 - Recolour, stretch, rotate, outline or add effects to the shield, or retype the wordmark.
 - Put bone or white text on orange, or orange text on light backgrounds.
 - Use tactical or fear-based imagery and copy: skulls, crosshairs, camouflage, "elite", "don't become the next victim".

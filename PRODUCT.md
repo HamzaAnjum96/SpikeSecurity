@@ -10,7 +10,7 @@ brand
 
 **Applicants (secondary).** SIA licence holders and people working towards one: door supervisors, event and static officers. Mobile-first, usually in the evening. Their job: find steady, fairly paid shifts with a professional employer.
 
-**Brand users (the brand page).** Spike office staff building quotes, rotas and email signatures; uniform, signage and vehicle suppliers who need print-ready artwork; clients and partners who list Spike on their own material.
+**Brand users (the brand page).** Spike office staff building quotes, rotas and email signatures; uniform and signage suppliers who need print-ready artwork; clients and partners who list Spike on their own material.
 
 ## Product Purpose
 
@@ -38,7 +38,7 @@ Anchor references:
 - "Tactical" security branding: skulls, eagles, crosshairs, camouflage, "elite" or "military-grade" language.
 - Navy-and-gold heraldic crests (the retired v1 look).
 - Stock photos of men in suits with earpieces, or door staff with folded arms.
-- Black-and-yellow hazard tape everywhere, and anything that imitates police livery.
+- Black-and-yellow hazard tape everywhere, and anything that could be mistaken for the police.
 - Dark-mode SaaS styling: neon glows, glassmorphism, gradient text.
 - Fear-based copy ("Don't become the next victim").
 - Dashboard theatre: status lights, "live" readouts or numbers that are not real.

@@ -21,15 +21,17 @@ Where a skill asked a question, it has been answered on your behalf. Every one o
 - **Numbering.** Numbers now appear only where order matters (booking steps, how to apply). Section headings have no numerals on the website, and services, promises, figures and facts are not numbered. DESIGN.md has the rule.
 - **The shift report** uses the one-colour obsidian shield, so the paper stays greyscale.
 - **Careers** has no shield graphic behind it; the section is copy and a list of roles.
-- **The area map** is a real map (Leaflet, as on Horizon), not the schematic, behind a "Show the map" button. CARTO's dark tiles, which the old contact page used, now return "API key required" on every tile, so the maps use OpenStreetMap's tiles, darkened to the brand's greys, with town names on obsidian sign plates.
+- **The area map** is a real map (Leaflet, as on Horizon), not the schematic, full width once maps are allowed, with no duplicate "Who we work for" list beside it (it repeated the six service links). CARTO's dark tiles, which the old contact page used, now return "API key required" on every tile, so the maps use OpenStreetMap's tiles, darkened to the brand's greys, with town names on obsidian sign plates.
 - **The phone footer** hides the page links, which the menu already has.
 - **Hosting stays on GitHub Pages.** The Cloudflare account connected to this project has no domains in it, so there was nothing to move to safely. The build now deploys only `_site/`.
 - **Forms** open the visitor's email app with everything filled in, and say so plainly, until a form service is connected. Set `formEndpoint` in `src/_data/site.json` and the same forms post to it, with sending, sent and failed states already built.
 - **No placeholder photo frames on the live site.** Until the shoot, the home cover carries the shield in Signal mode.
-- **Labels, buttons and menus** are sentence case at Archivo's normal width. The wide, spaced-out capitals ("MENU", "OFFICES, RECEPTIONS, HQS") read as a template and were hard to read small. The brand page and DESIGN.md follow the same rule; signs and vehicle artwork keep their condensed capitals.
+- **Labels, buttons and menus** are sentence case at Archivo's normal width. The wide, spaced-out capitals ("MENU", "OFFICES, RECEPTIONS, HQS") read as a template and were hard to read small. The brand page and DESIGN.md follow the same rule; signs keep their condensed capitals.
 - **Cookie prompt.** Maps load only after the visitor allows them in a small cookie prompt (a bottom sheet on phones) with two equal buttons. "Show the map" opens it, and "Cookie settings" in the footer reopens it. It never blocks the page.
 - **Footer** cut to three calm rows on desktop: logo and page links; number, email and office; legal line.
-- **Van livery** on the brand page redrawn to scale: kerb side and rear doors, with the crop ending at a door seam and dimensioned logo and number.
+- **Vehicles** are no longer part of the brand: the van drawing and the livery rules are gone from the brand page and DESIGN.md.
+- **Brand pack refreshed.** Site signs and social images use the calmer sentence-case labels, the pack includes Chivo Mono with its licence, and the brand page now loads its fonts from our own site, as the privacy notice says.
+- **Chivo Mono for data.** Times, dates and references in the shift report, licence numbers, the email preview in the forms and colour values on the brand page use Chivo Mono, from Archivo's foundry. Words stay in Archivo (the Record Rule in DESIGN.md).
 
 **Still to do:** the photo shoot, case studies and Google Business Profile (Phase 4), a form service, and the facts in [section 11](#11-facts-only-spike-can-confirm). The homepage frame in `docs/site-plan/` is kept as the original direction; the live site supersedes it.
 
@@ -64,7 +66,7 @@ Where a skill asked a question, it has been answered on your behalf. Every one o
 2. **Rebuild on brand v3.0.** One typeface (Archivo), obsidian and bone with one orange signal, hanging section numerals instead of labels, rows and rules instead of cards, no icon font. This also fixes most of the accessibility and speed problems: the current pages load 4.1 MB of fonts each, and 3.9 MB of that is an icon font.
 3. **Show proof instead of adjectives.** Make "On site. On time. On record." concrete: licence numbers before the shift, a named supervisor, a written report by 9am. Show a real (redacted) report on the site.
 4. **Rewrite the copy in Spike's voice.** Plain British English, specifics over adjectives, one label per action, no invented claims.
-5. **Spend where an AI cannot fake it.** A one-day photo shoot of real Spike officers, three case studies with client permission, and real kit (uniform, van, signs) in the pictures.
+5. **Spend where an AI cannot fake it.** A one-day photo shoot of real Spike officers, three case studies with client permission, and real kit (uniforms, signs) in the pictures.
 
 **What it looks like.** The homepage frame below is built from the brand system only. The grey "shot" panels mark where the commissioned photographs go.
 
@@ -138,7 +140,7 @@ Each of these is a pattern that generated sites repeat. Together they make the s
 | "Why choose us" tick list | Homepage | Generic and unprovable | The "On record" promises and a sample report |
 | Five-star testimonials (hidden, still in the source) | Homepage | Invented: "three years" of service from a company founded in 2025 | Removed. Later: real case studies and linked genuine reviews |
 | Stock photos: sticky notes on a whiteboard, glass towers, hands with a pen | About, Home, page heroes | Nothing to do with security in Manchester | Commissioned photographs of Spike officers at work |
-| Centred banner: "Ready to Secure Your Business?" | Every page | The default ending of a template | An orange finale with the 24-hour number set like the back of a van |
+| Centred banner: "Ready to Secure Your Business?" | Every page | The default ending of a template | An orange finale with the 24-hour number set like a road sign |
 | Mission, Vision and Values cards | About | Corporate boilerplate | Named people, the office, company facts |
 | "Getting started is simple" 1-2-3 | Services, Careers | Template process strip | Timed steps with real numbers on each service page |
 | Grain overlay, fade-in on scroll | Every page | Decorative motion; hides content until JavaScript runs | One cover entrance; nothing else moves |
@@ -213,7 +215,7 @@ PRODUCT.md defines success as "a buyer calling or sending an enquiry within one 
 
 ### 4.1 The design brief (Impeccable shape, confirmed on your behalf)
 
-1. **Summary.** The public website for Spike Security, rebuilt on brand v3.0: home, services, how we work, about, careers, contact and quote, plus legal pages. It has to prove quickly that Spike is licensed, reliable and reachable, and look unmistakably like the same company as the uniforms, vans and signs.
+1. **Summary.** The public website for Spike Security, rebuilt on brand v3.0: home, services, how we work, about, careers, contact and quote, plus legal pages. It has to prove quickly that Spike is licensed, reliable and reachable, and look unmistakably like the same company as the uniforms and signs.
 2. **Primary user action.** Buyers: call the 24-hour number or send a quote request with the site, dates and hours. Applicants: apply from a phone in under three minutes.
 3. **Design direction.**
    - **Colour strategy:** Restrained on obsidian, with one drenched orange section per page (the finale). About 70 obsidian, 20 bone, 10 orange, as DESIGN.md sets out.
@@ -242,7 +244,7 @@ Open [`site-plan/homepage-frame.html`](site-plan/homepage-frame.html) in a brows
 | 02 On record | "You'll know who is on your door." Before, during and after the shift; a sample shift report | Bone paper section; the brand line made into a real document |
 | 03 Area | "Inside the M60, and well beyond it." A schematic M60 map with the office in Cheetham Hill; sector links | A signage-style diagram drawn for Spike, not a stock map |
 | 04 Careers | "Good officers get steady shifts." Open roles with location and shift pattern | The shield crop in Shadow mode behind the list |
-| Finale | The 24-hour number at full width on orange, a sentence, an obsidian button | The van's rear panel on a web page |
+| Finale | The 24-hour number at full width on orange, a sentence, an obsidian button | A road sign on a web page |
 | Footer | Number, email, office, links, trading disclosure, the brand line | Registered name, number, place of registration and office, as the 2015 trading disclosure rules require |
 
 ### 4.3 Principles for every page
@@ -503,7 +505,7 @@ One photographer, one evening into night, two or three locations, real Spike off
 | 1 | A door supervisor at a venue entrance after dark, portrait and landscape | Home cover, Door supervisors |
 | 2 | Two officers checking ID at a bar door; the public not identifiable | Door supervisors |
 | 3 | Officers at an event gate or barrier at dusk, wide | Event security |
-| 4 | The liveried van at a site gate at night; an officer checking a padlock by torch | Mobile patrols |
+| 4 | A patrol officer checking a padlock at a site gate by torchlight | Mobile patrols |
 | 5 | An officer at a shop entrance (with the client's permission) | Retail security |
 | 6 | An officer at a reception desk signing in a visitor | Office security |
 | 7 | A supervisor briefing a team before a shift | Careers, How we work |
@@ -520,7 +522,7 @@ Rules from DESIGN.md: working, not posing; real light (dusk, streetlights, venue
 | Photographer, one day plus editing | 30 to 40 finished photographs, licensed for web, print and social | typical UK freelance day rates run from about £600 to £1,500; get three quotes |
 | Copywriter, two to three days | Interviews with you and two officers, then every page rewritten to section 5 | about £350 to £600 a day |
 | Three case studies | One venue, one event, one retail client: the problem, who we sent, what happened, with numbers and the client's name and quote (with written permission) | copywriter time, plus the client's sign-off |
-| Real kit in the photographs | Uniforms printed, van liveried and signs made to the brand spec before the shoot | already specified on `/branding` |
+| Real kit in the photographs | Uniforms printed and signs made to the brand spec before the shoot | already specified on `/branding` |
 | A real report template | The shift report designed once and used by supervisors every night, then shown on the site | an afternoon of design, then free |
 | Custom pictograms (optional) | Six to eight icons drawn from the shield | a few days of illustration |
 | Build | Eleventy rebuild to this plan | roadmap below |
