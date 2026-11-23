@@ -49,9 +49,9 @@ typography:
     lineHeight: 1.5
     letterSpacing: "normal"
   data:
-    fontFamily: "'Chivo Mono', Consolas, 'Courier New', monospace"
-    fontSize: "0.9375rem"
-    fontWeight: 450
+    fontFamily: "'Martian Mono', Consolas, 'Courier New', monospace"
+    fontSize: "0.875rem"
+    fontWeight: 400
     lineHeight: 1.5
     letterSpacing: "normal"
   button:
@@ -114,7 +114,7 @@ components:
     height: "32px"
 ---
 
-# Spike Security design system (brand v3.0)
+# Spike Security design system (brand v3.1)
 
 > Source of truth for the brand defined on `/branding` (`branding.html`). The website (`src/`, built with Eleventy) uses this system: `src/assets/css/site.css` implements it for the site, and `css/branding.css` for the brand guidelines page. The plan for the site is in [`docs/site-improvement-plan.md`](docs/site-improvement-plan.md).
 
@@ -124,7 +124,7 @@ Spike Security protects venues, events, shops and offices across Manchester and 
 
 - **Dark first.** Obsidian is the canvas for every screen we control: the hours we keep.
 - **Orange on purpose.** Spike Orange is the shield's colour and the brand's single signal. It carries large, deliberate moments (the mark, signs, hi-vis, one call to action, a section numeral) and never decorates: labels, list numbers and icons stay bone or ash.
-- **Two typefaces, one foundry.** Archivo for words, at three widths: condensed for signs and headlines, semi-condensed for subheads, normal for reading, labels and buttons. Chivo Mono for the record: times, references and licence numbers.
+- **Two typefaces: one for words, one for numbers.** Archivo for words, at three widths: condensed for signs and headlines, semi-condensed for subheads, normal for reading, labels and buttons. Martian Mono, a typeface built for code, for the numbers people dial, check or copy: the phone number, times, references, licence and company numbers.
 - **Spec-sheet rigour.** Hairline rules and square corners, like a standards manual rather than a magazine. Numbers appear only where order matters.
 
 Physical scene: an operations manager checking cover on a phone in a car park after dark; a door supervisor's jacket under a streetlight; a sign on a site hoarding at 3am. Everything must read at a distance, in low light.
@@ -154,7 +154,7 @@ Default proportion on everyday surfaces is **70 obsidian / 20 bone / 10 orange**
 
 ## 3. Typography
 
-**Archivo** (variable: width 62 to 125%, weight 100 to 900) sets every word. **Chivo Mono** (variable weight), from the same foundry, Omnibus-Type, sets data. Both are under the SIL Open Font License, on Google Fonts, in the brand pack and served from our own site.
+**Archivo** (variable: width 62 to 125%, weight 100 to 900) sets every word. **Martian Mono** (variable: width 75 to 112.5%, weight 100 to 800, by Evil Martians) sets the numbers, always at **87.5% width**; the website serves a copy fixed at that width (24 KB). Its zero is slashed, so it can never be misread as an O. Both are under the SIL Open Font License, on Google Fonts, in the brand pack and served from our own site.
 
 Archivo is used at three widths:
 
@@ -164,17 +164,17 @@ Archivo is used at three widths:
 | 87% semi-condensed | Subheads, component titles | Bold 700, sentence case |
 | 100% normal | Body, forms, documents | Regular 400, 1.65 to 1.7 line-height, max 54 to 62ch |
 | 100% normal | Labels, buttons, navigation, tags | SemiBold 600 (buttons Bold 700), sentence case, no extra tracking |
-| Chivo Mono | Data: times, references, licence numbers, colour values | Regular 400 to Medium 500, about 94% of the surrounding size |
+| Martian Mono 87.5% | Numbers: the phone number, times and dates in records, references, licence and company numbers, colour values, measurements, steps and chapters | Regular 400 in text at 0.9× the surrounding size (its capitals are taller than Archivo’s), Medium 500 in logs, SemiBold 600 to Bold 700 for the phone number at large sizes |
 
 The expanded widths are not used for text. Wide, spaced-out capitals read as a template and are hard to read small.
 
 ### Hierarchy
-Display (`display`) is reserved for one line per page. Section headlines (`headline`) are short statements, not topic names ("One shield. Drawn once."), set deliberately smaller than the display line so the cover keeps its weight. Subheads (`subhead`) name groups. Labels (`label`) carry numbering ("01 Logo"), figure captions ("Fig. 02 · Construction and clear space") and metadata. Numbers people act on use tabular figures.
+Display (`display`) is reserved for one line per page. Section headlines (`headline`) are short statements, not topic names ("One shield. Drawn once."), set deliberately smaller than the display line so the cover keeps its weight. Subheads (`subhead`) name groups. Labels (`label`) carry figure captions and metadata. Numbers people act on are set in Martian Mono, whose figures all share one width, so columns of times and numbers line up.
 
 ### Named Rules
 - **Capitals are for display lines and signs.** Headlines and signs use condensed capitals. Everything else, including labels, buttons and menus, is sentence case. Never set body copy condensed.
-- **The Record Rule.** Chivo Mono marks data people check or copy: times in reports and logs, reference numbers, licence numbers, colour values, file names. Regular or Medium, sentence case, never bold. Never for headlines, labels, buttons or body text, and never as decoration: a monospace that means "technical" is costume.
-- **Fallbacks.** Email uses Arial. Office documents use Archivo and Chivo Mono where installed, otherwise Arial for words and Consolas for data. Never Impact, Bebas or a serif in place of the condensed capitals.
+- **The Record Rule.** Martian Mono sets the numbers people dial, check or copy: the phone number wherever it appears (bar, footer, finale, signs), times and dates in reports and logs, reference, licence and company numbers, colour values and measurements, and the numbers that put things in order (steps, chapters). Numbers that are simply part of a sentence ("within 2 working days", "24 hours") stay in Archivo. Never set words in it: no headlines, labels, buttons or body text. A monospace that only means "technical" is costume.
+- **Fallbacks.** Email uses Arial. Office documents use Archivo and Martian Mono where installed, otherwise Arial for words and Consolas for numbers. Never Impact, Bebas or a serif in place of the condensed capitals.
 
 ## 4. Elevation
 
@@ -215,20 +215,20 @@ A slim sticky bar (60px): the horizontal lockup, page links in sentence case wit
 - **Cover:** the brand line as display type inside the `h1`, followed by a plain sentence about what Spike does; the primary button and the 24-hour number beside it. Until commissioned photographs exist, the cover's second column is the shield in Signal mode.
 - **Facts strip:** four checkable facts (SIA licence with a link to the public register, BS 7858, insurance, company number) on hairlines. Replaces any "stats" or live-status panel.
 - **Rows:** services, sectors, roles and links are rows on hairlines with an arrow, on the same 12-column grid as the headline above them. No cards.
-- **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale, and Chivo Mono for times, dates and references.
-- **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set at full width in condensed obsidian, like a road sign, then a sentence and an obsidian button.
+- **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale, and Martian Mono for times, dates and references.
+- **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set across the full width in Martian Mono Bold, obsidian on orange, like a road sign, then a sentence and an obsidian button.
 - **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, sharp on high-density screens, the shield as the pin and "Our office" on a small obsidian plate where there is room. Off until the visitor allows maps in the cookie prompt, with "Turn the map off" underneath.
-- **Forms:** labels above fields, hints in ash, licence numbers typed in Chivo Mono, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
+- **Forms:** labels above fields, hints in ash, phone and licence numbers typed in Martian Mono, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
 - **Footer:** three calm rows: the lockup and the page links; the 24-hour number, email and office; then the trading disclosure (registered name, number, England and Wales, registered office) with legal links and "Cookie settings". On phones the page links are hidden; the menu already has them.
 - **Cookie prompt:** the site needs no cookies; maps are the one optional extra. A small panel (a bottom sheet on phones) asks once, with two equal buttons, "Allow maps" and "No thanks". It never blocks the page. "Show the map" and the footer's "Cookie settings" reopen it.
 
-Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.8125 to 0.9375 rem, document field labels 0.6875 rem, the phone number in condensed 75% width with tabular figures.
+Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.8125 to 0.9375 rem, document field labels 0.6875 rem. The phone number is Martian Mono SemiBold: 0.875 rem in the bar, 1.375 to 1.75 rem on the cover, 1.5 to 1.875 rem on the contact page, and Bold across the full width of the finale (up to 10 rem). Steps are numbered 01 to 04 in Martian Mono Medium, in ash.
 
 ### The Shield and the Supergraphic (signature components)
 - The shield is one path, copied verbatim from `resources/SPIKE SECURITY LOGO.svg`. Lockups (horizontal, stacked) pair it with the wordmark SPIKE SECURITY in Archivo 62%/800 (+3% tracking, with the word space opened by 0.10em so the two words separate at small sizes and at distance), cap height 0.40 of the shield (horizontal) with a 0.20 gap and the cap centre at 47% of the shield's height (its visual centre). Clear space: a quarter of the shield's height. Minimum: shield 16px or 6 mm, horizontal lockup 120px or 30 mm.
 - Five colourways: full colour on dark (orange + bone), full colour on light (orange + obsidian), and one-colour orange, bone and obsidian.
 - **Supergraphic**: a deep crop of the shield (at least 3× any logo on the surface) showing a curve and the diagonal. Signal mode is orange on obsidian; Shadow mode is graphite on obsidian and may sit behind text. One crop per surface; never text over Signal orange; the full logo still appears.
-- **Applications.** Uniform back print 280 mm wide, 80 mm below the collar (inks: Pantone Orange 021 C, white for bone). Site signs are supplied as A3 PDFs with 3 mm bleed.
+- **Applications.** Uniform back print 280 mm wide, 80 mm below the collar (inks: Pantone Orange 021 C, white for bone). Site signs are supplied as A3 PDFs with 3 mm bleed; the 24-hour number on them is Martian Mono Bold in orange.
 - **Photography.** Our own officers, with consent, on sites we cover; working, not posing; real light (dusk, streetlights, venue lighting), with orange appearing only where it really is. No identifiable members of the public, no readable licence numbers, no client sites without permission.
 - Artwork generator: `scripts/brand-assets/` (outlined SVG, PDF and PNG; it also keeps the page's inline artwork in sync).
 

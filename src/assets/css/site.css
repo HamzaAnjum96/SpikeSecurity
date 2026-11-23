@@ -1,8 +1,9 @@
 /* ============================================================
    Spike Security website, brand v3.0
-   Tokens and rules come from DESIGN.md. One typeface (Archivo at
-   three widths), obsidian and bone, one orange signal, hairlines,
-   square corners, no shadows, no icon font.
+   Tokens and rules come from DESIGN.md. Archivo for words at three
+   widths, Martian Mono for the numbers people dial, check or copy,
+   obsidian and bone, one orange signal, hairlines, square corners,
+   no shadows, no icon font.
    ============================================================ */
 
 @font-face {
@@ -13,13 +14,25 @@
   font-style: normal;
   font-display: swap;
 }
-/* Chivo Mono, from Archivo's foundry, for data only: downloaded only on pages that use it */
+/* Martian Mono for the record: numbers, times and references. The file is fixed at the
+   brand's 87.5% width (only the weight axis is kept), Latin only, 24 KB. */
 @font-face {
-  font-family: 'Chivo Mono';
-  src: url('/assets/fonts/chivo-mono-latin.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'Martian Mono';
+  src: url('/assets/fonts/martian-mono-latin.woff2') format('woff2');
+  font-weight: 100 800;
   font-style: normal;
   font-display: swap;
+}
+/* Size-adjusted stand-ins so numbers keep Martian Mono's width (0.65em per figure) while it loads */
+@font-face {
+  font-family: 'Martian Mono Consolas';
+  src: local('Consolas');
+  size-adjust: 118%; ascent-override: 85%; descent-override: 17%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Martian Mono Fallback';
+  src: local('Menlo'), local('DejaVu Sans Mono'), local('Courier New'), local('Droid Sans Mono');
+  size-adjust: 108%; ascent-override: 93%; descent-override: 18.5%; line-gap-override: 0%;
 }
 /* Metric-matched fallback so the page does not jump when Archivo arrives */
 @font-face {
@@ -37,7 +50,7 @@
   --placeholder: #88837A;
   --orange: #FF5B1A; --ember: #B33A06; --line-on-orange: #C94A17;
   --font: 'Archivo', 'Archivo Fallback', 'Arial Narrow', Arial, sans-serif;
-  --mono: 'Chivo Mono', ui-monospace, Consolas, 'Courier New', monospace;
+  --mono: 'Martian Mono', 'Martian Mono Consolas', 'Martian Mono Fallback', ui-monospace, monospace;
   --condensed: 62%; --semi: 87%; --expanded: 125%;
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
   --gutter: clamp(16px, 4vw, 48px); --max: 1320px; --bar-h: 60px;
@@ -77,10 +90,14 @@ html:not(.js) .js-only { display: none !important; }
 .wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
 .nb { white-space: nowrap; }
 .tnum { font-variant-numeric: tabular-nums; }
+/* The Record Rule: Martian Mono sets the numbers people dial, check or copy (phone and company numbers,
+   times, references, licence numbers), never headlines, labels, body text or decoration.
+   0.9em matches its tall capitals to Archivo's, so a number sits level with the words around it. */
+.data, .tel-n, .ci-tel, .foot-big, .finale-tel, .steps li::before {
+  font-family: var(--mono); font-stretch: normal; letter-spacing: 0; font-variant-numeric: normal; font-feature-settings: normal;
+}
+.data { font-weight: 400; font-size: 0.9em; }
 .muted { color: var(--ash); }
-/* The Record Rule: monospace marks data people check or copy (times, references, licence numbers),
-   never headings, labels or body text, and never decoration */
-.data { font-family: var(--mono); font-weight: 450; letter-spacing: 0; font-size: 0.94em; }
 
 .label {
   display: block; font-size: 0.875rem; font-weight: 600; font-stretch: 100%;
@@ -139,6 +156,7 @@ html:not(.js) .js-only { display: none !important; }
   transition: color var(--fast) var(--ease);
 }
 .bar-tel span:first-child { font-size: 0.8125rem; font-weight: 600; color: var(--ash); }
+.bar-tel .data { font-size: 0.875rem; font-weight: 500; }
 .bar-tel:hover { color: var(--orange); }
 .bar-call, .menu-btn { display: none; }
 @media (max-width: 1099px) {
@@ -173,7 +191,7 @@ html:not(.js) .js-only { display: none !important; }
 }
 .menu-list a[aria-current="page"] { color: var(--orange); }
 .menu-tel { display: grid; gap: 2px; color: var(--bone); text-decoration: none; min-height: 48px; }
-.menu-tel .tnum { font-size: 2rem; font-weight: 800; font-stretch: 75%; line-height: 1; }
+.menu-tel .data { font-size: 1.5rem; font-weight: 600; line-height: 1.15; }
 .menu-quote { width: 100%; }
 @media (min-width: 1100px) { .menu { display: none !important; } }
 
@@ -194,8 +212,8 @@ html:not(.js) .js-only { display: none !important; }
 .tel { display: grid; gap: 2px; color: var(--bone); text-decoration: none; min-height: 48px; align-content: center; }
 .tel-l { font-size: 0.875rem; font-weight: 600; color: var(--ash); }
 .tel-n {
-  font-size: clamp(1.75rem, 2.6vw, 2.25rem); font-weight: 800; font-stretch: 75%; line-height: 1; letter-spacing: 0.01em;
-  font-variant-numeric: tabular-nums; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em;
+  font-size: clamp(1.375rem, 2vw, 1.75rem); font-weight: 600; line-height: 1.15;
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.22em;
   text-decoration-color: var(--line-strong); transition: text-decoration-color var(--fast) var(--ease);
 }
 .tel:hover .tel-n { text-decoration-color: var(--orange); }
@@ -314,14 +332,14 @@ html:not(.js) .js-only { display: none !important; }
 
 /* Steps: a real sequence, so these are numbered */
 .steps { display: grid; counter-reset: step; border-top: 1px solid var(--line-strong); }
-.steps li { counter-increment: step; display: grid; grid-template-columns: 3rem minmax(0, 1fr); column-gap: var(--s4); padding: var(--s5) 0; border-bottom: 1px solid var(--line); }
-.steps li::before { content: counter(step); grid-row: 1 / span 2; font-size: 2rem; font-weight: 800; font-stretch: var(--condensed); line-height: 1; color: var(--ash); font-variant-numeric: tabular-nums; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); column-gap: var(--s4); padding: var(--s5) 0; border-bottom: 1px solid var(--line); }
+.steps li::before { content: counter(step, decimal-leading-zero); grid-row: 1 / span 2; font-size: 1rem; font-weight: 500; line-height: 1.5; color: var(--ash); }
 .steps h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 700; font-stretch: var(--semi); line-height: 1.2; }
 .steps p { color: var(--ash); max-width: 44ch; margin-top: var(--s1); }
 @media (min-width: 1000px) {
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--s6); border-top: 0; }
   .steps li { grid-template-columns: 1fr; border-bottom: 0; border-top: 1px solid var(--line-strong); padding-top: var(--s5); align-content: start; row-gap: var(--s3); }
-  .steps li::before { grid-row: auto; font-size: 2.75rem; }
+  .steps li::before { grid-row: auto; }
 }
 
 /* FAQs */
@@ -384,7 +402,7 @@ html:not(.js) .js-only { display: none !important; }
 .doc-id { display: flex; align-items: center; gap: var(--s3); }
 .doc-id svg { width: 22px; height: auto; --shield: var(--obsidian); }
 .doc-id b { font-size: 1.375rem; font-weight: 800; font-stretch: var(--condensed); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; }
-.doc-ref { font-size: 0.8125rem; font-weight: 600; color: var(--stone); font-variant-numeric: tabular-nums; text-align: right; }
+.doc-ref { font-size: 0.8125rem; font-weight: 600; color: var(--stone); text-align: right; }
 .doc-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--line-light); }
 .doc-meta div { padding: var(--s3) var(--s5); border-bottom: 1px solid var(--line-light); }
 .doc-meta div:nth-child(odd) { border-right: 1px solid var(--line-light); }
@@ -395,7 +413,7 @@ html:not(.js) .js-only { display: none !important; }
 .doc-log { width: 100%; border-collapse: collapse; }
 .doc-log caption { text-align: left; padding: var(--s4) var(--s5) var(--s2); font-size: 0.75rem; font-weight: 600; color: var(--stone); }
 .doc-log th, .doc-log td { text-align: left; vertical-align: top; padding: var(--s3) var(--s5); border-top: 1px solid var(--line-light); }
-.doc-log th { width: 5.5rem; font-size: 0.9375rem; font-weight: 500; line-height: 1.5; }
+.doc-log th { width: 5.5rem; font-size: 0.875rem; font-weight: 500; line-height: 1.6; }
 .doc-foot { display: flex; justify-content: space-between; gap: var(--s4); flex-wrap: wrap; padding: var(--s4) var(--s5); border-top: 2px solid var(--obsidian); font-size: 0.8125rem; color: var(--stone); }
 .doc-fig figcaption { font-size: 0.875rem; color: var(--stone); }
 @media (max-width: 479px) {
@@ -415,7 +433,8 @@ html:not(.js) .js-only { display: none !important; }
   .map:not(.is-on) .map-gate-text { grid-column: 2; }
   .map:not(.is-on) .map-gate .btn { grid-column: 3; grid-row: 1; margin: 0; justify-self: end; }
   .map:not(.is-on) .map-gate-note { grid-column: 3; grid-row: 2; max-width: 30ch; text-align: right; }
-  .contact-info .map:not(.is-on) .map-gate { display: flex; }
+  .contact-info .map:not(.is-on) .map-gate { display: flex; align-items: flex-start; }
+  .contact-info .map:not(.is-on) .map-gate-note { text-align: left; }
 }
 .map { display: grid; gap: var(--s3); }
 .map-frame { position: relative; display: grid; aspect-ratio: 4 / 3; background: var(--obsidian-2); border: 1px solid var(--line); }
@@ -544,13 +563,10 @@ html:not(.js) .js-only { display: none !important; }
 .contact-info { display: grid; gap: var(--s6); }
 .ci-block { display: grid; gap: var(--s2); padding-top: var(--s5); border-top: 1px solid var(--line-strong); }
 .foot-h { font-size: 0.875rem; font-weight: 600; color: var(--ash); line-height: 1.4; margin: 0; }
-.ci-tel { color: var(--bone); text-decoration: none; font-size: clamp(2rem, 3.4vw, 2.75rem); font-weight: 800; font-stretch: 75%; line-height: 1; font-variant-numeric: tabular-nums; }
+.ci-tel { color: var(--bone); text-decoration: none; font-size: clamp(1.5rem, 2.3vw, 1.875rem); font-weight: 600; line-height: 1.15; justify-self: start; }
 .ci-tel:hover { color: var(--orange); }
 .ci-block p, .ci-block address { color: var(--bone); font-style: normal; line-height: 1.6; }
 .ci-block p.muted { color: var(--ash); }
-/* The Record Rule: monospace marks data people check or copy (times, references, licence numbers),
-   never headings, labels or body text, and never decoration */
-.data { font-family: var(--mono); font-weight: 450; letter-spacing: 0; font-size: 0.94em; }
 
 /* ── Prose (legal pages) ──────────────────────────────────── */
 .prose { max-width: 72ch; }
@@ -563,7 +579,7 @@ html:not(.js) .js-only { display: none !important; }
 .prose a { color: inherit; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 0.22em; overflow-wrap: anywhere; }
 .prose a:hover { color: var(--orange); }
 .prose strong { font-weight: 700; }
-.prose code { font-family: inherit; font-weight: 600; background: var(--obsidian-2); padding: 1px 6px; border: 1px solid var(--line); }
+.prose code { font-family: var(--mono); font-size: 0.875em; font-weight: 400; background: var(--obsidian-2); padding: 1px 6px; border: 1px solid var(--line); }
 .ticks { display: grid; gap: var(--s2); }
 .ticks li { position: relative; padding-left: var(--s6); font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
 .ticks li::before { content: ''; position: absolute; left: 2px; top: 0.45em; width: 14px; height: 8px; border-left: 2px solid var(--bone); border-bottom: 2px solid var(--bone); transform: rotate(-45deg); }
@@ -581,8 +597,9 @@ html:not(.js) .js-only { display: none !important; }
 .finale { display: grid; gap: var(--s6); }
 .finale-tel {
   display: inline-block; color: var(--obsidian); text-decoration: none;
-  font-size: min(calc((min(100vw, var(--max) + 2 * var(--gutter)) - 2 * var(--gutter)) / 5.12), 16rem);
-  font-weight: 800; font-stretch: var(--condensed); line-height: 0.86; letter-spacing: 0.005em; font-variant-numeric: tabular-nums;
+  /* thirteen characters at 0.65em each, so 8.5em fills the column without breaking */
+  font-size: min(calc((min(100vw, var(--max) + 2 * var(--gutter)) - 2 * var(--gutter)) / 8.5), 10rem);
+  font-weight: 700; line-height: 1; white-space: nowrap; min-height: 44px;
 }
 .finale-tel:hover { text-decoration: underline; text-decoration-thickness: 0.06em; text-underline-offset: 0.08em; }
 .finale-row { display: grid; gap: var(--s5); padding-top: var(--s5); border-top: 2px solid var(--obsidian); align-items: end; }
@@ -605,10 +622,7 @@ html:not(.js) .js-only { display: none !important; }
 .foot-contact a { color: var(--bone); text-decoration: none; overflow-wrap: anywhere; justify-self: start; }
 .foot-contact a:hover { color: var(--orange); }
 .foot-contact .muted { color: var(--ash); }
-/* The Record Rule: monospace marks data people check or copy (times, references, licence numbers),
-   never headings, labels or body text, and never decoration */
-.data { font-family: var(--mono); font-weight: 450; letter-spacing: 0; font-size: 0.94em; }
-.foot-big { font-size: 1.625rem; font-weight: 800; font-stretch: 75%; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.foot-big { font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
 @media (min-width: 800px) { .foot-contact { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--s6); } }
 .foot-legal { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s2) var(--s6); padding-top: var(--s4); font-size: 0.8125rem; color: var(--ash); line-height: 1.6; }
 .foot-legal p { max-width: 72ch; }
@@ -656,6 +670,8 @@ html:not(.js) .js-only { display: none !important; }
   .dock .btn { min-height: 52px; padding: 0 8px; }
   .cover-actions .btn, .page-actions .btn { flex: 1 1 100%; }
   .foot { padding-bottom: calc(var(--s6) + 72px); }
+  /* keep keyboard focus and anchor jumps clear of the dock */
+  html { scroll-padding-bottom: 88px; }
 }
 
 /* ── Motion: one entrance, nothing else moves on load ─────── */

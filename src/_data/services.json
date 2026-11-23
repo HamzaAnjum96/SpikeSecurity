@@ -44,7 +44,7 @@
       },
       {
         "q": "How much notice do you need?",
-        "a": "For planned work, two to three days. For urgent cover, call 020 3757 2767: we can often send officers within hours."
+        "a": "For planned work, two to three days. For urgent cover, call <a class=\"link data nb\" translate=\"no\" href=\"tel:+442037572767\">020 3757 2767</a>: we can often send officers within hours."
       }
     ]
   },

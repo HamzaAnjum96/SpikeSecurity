@@ -30,8 +30,8 @@ Where a skill asked a question, it has been answered on your behalf. Every one o
 - **Cookie prompt.** Maps load only after the visitor allows them in a small cookie prompt (a bottom sheet on phones) with two equal buttons. "Show the map" opens it, and "Cookie settings" in the footer reopens it. It never blocks the page.
 - **Footer** cut to three calm rows on desktop: logo and page links; number, email and office; legal line.
 - **Vehicles** are no longer part of the brand: the van drawing and the livery rules are gone from the brand page and DESIGN.md.
-- **Brand pack refreshed.** Site signs and social images use the calmer sentence-case labels, the pack includes Chivo Mono with its licence, and the brand page now loads its fonts from our own site, as the privacy notice says.
-- **Chivo Mono for data.** Times, dates and references in the shift report, licence numbers, the email preview in the forms and colour values on the brand page use Chivo Mono, from Archivo's foundry. Words stay in Archivo (the Record Rule in DESIGN.md).
+- **Brand pack refreshed.** Site signs and social images use the calmer sentence-case labels, the signs set the 24-hour number in Martian Mono, the pack includes both fonts with their licences, and the brand page loads its fonts from our own site, as the privacy notice says.
+- **Martian Mono for the numbers** (brand 3.1). A typeface built for code, with a slashed zero, at 87.5% width. It sets the phone number everywhere it appears (bar, cover, menu, contact, footer and the full-width finale), times, dates and references in the shift report, company and licence numbers, the numbered steps, the phone and licence fields in the forms, and colour values and measurements on the brand page. It replaced Chivo Mono, which did not read as code. Words stay in Archivo (the Record Rule in DESIGN.md).
 
 **Still to do:** the photo shoot, case studies and Google Business Profile (Phase 4), a form service, and the facts in [section 11](#11-facts-only-spike-can-confirm). The homepage frame in `docs/site-plan/` is kept as the original direction; the live site supersedes it.
 

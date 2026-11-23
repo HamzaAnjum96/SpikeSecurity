@@ -1,3 +1,4 @@
+{% from "macros.njk" import phone %}
 {# How booking works: a real sequence, so this is one of the few numbered lists on the site #}
 <section class="sec" id="booking" aria-labelledby="booking-title">
   <div class="wrap">
@@ -6,7 +7,7 @@
       <p class="sec-lede">{{ site.notice }} One night, a season or an ongoing contract: we do short-notice cover, rolling monthly agreements and long-term contracts.</p>
     </div>
     <ol class="steps">
-      <li><h3>Tell us the job</h3><p>The site, the dates and the hours. Call {{ site.phone | replace(" ", "&nbsp;") | safe }} or <a class="link" href="/contact#quote">send the details</a>.</p></li>
+      <li><h3>Tell us the job</h3><p>The site, the dates and the hours. Call {{ phone(site) }} or <a class="link" href="/contact#quote">send the details</a>.</p></li>
       <li><h3>Get a price and a plan</h3><p>How many officers, which licences and what they will do. {{ site.replyPromise }}</p></li>
       <li><h3>Before the shift</h3><p>The name and SIA licence number of every officer, by email, and a named supervisor to call.</p></li>
       <li><h3>After the shift</h3><p>A written report the next morning, with every incident logged and timed.</p></li>

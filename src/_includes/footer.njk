@@ -7,12 +7,12 @@
       </nav>
     </div>
     <div class="foot-contact">
-      <p><a class="foot-big" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a><span class="muted">Answered 24 hours</span></p>
+      <p><a class="foot-big" translate="no" href="{{ site.phoneHref }}">{{ site.phone }}</a><span class="muted">Answered 24 hours</span></p>
       <p><a href="mailto:{{ site.email }}">{{ site.email }}</a><a href="mailto:{{ site.careersEmail }}">{{ site.careersEmail }}</a></p>
       <p><span>{{ site.office.street }}, {{ site.office.city }} {{ site.office.postcode | replace(" ", "&nbsp;") | safe }}</span><span class="muted">Office: {{ site.office.hours }}</span></p>
     </div>
     <div class="foot-legal">
-      <p>{{ site.legalName }}. Registered in England and Wales, company number <span class="tnum">{{ site.companyNumber }}</span>. Registered office: {{ site.registeredOffice }}.</p>
+      <p>{{ site.legalName }}. Registered in England and Wales, company number <span class="data" translate="no">{{ site.companyNumber }}</span>. Registered office: {{ site.registeredOffice }}.</p>
       <ul><li><a href="/legal">Legal</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/sitemap">Site map</a></li><li><a href="/branding">Brand</a></li><li><button type="button" class="foot-cookies" data-consent-open>Cookie settings</button></li></ul>
     </div>
   </div>

@@ -132,21 +132,29 @@
     var to = f.dataset.to;
     var endpoint = f.dataset.endpoint;
 
-    // Check a field when you leave it, but never move the layout while a tap is still in progress:
-    // an error appearing on pointerdown would push the next control away before the click lands.
+    // Check a field when you leave it, but never move the layout while a click or tap is still landing:
+    // an error appearing or disappearing would shift the button under the pointer and the click would be lost.
+    // With a mouse, focus leaves on press, so wait for the release. With touch, focus leaves after the finger
+    // lifts, in the same task as the click, so the next tick is late enough.
     var pointerDown = false, queued = [];
-    doc.addEventListener('pointerdown', function () { pointerDown = true; }, true);
-    doc.addEventListener('pointerup', function () {
+    var later = function (fn) { if (pointerDown) queued.push(fn); else setTimeout(fn, 0); };
+    var release = function () {
       pointerDown = false;
       setTimeout(function () { queued.splice(0).forEach(function (fn) { fn(); }); }, 0);
-    }, true);
+    };
+    doc.addEventListener('pointerdown', function () { pointerDown = true; }, true);
+    doc.addEventListener('pointerup', release, true);
+    doc.addEventListener('pointercancel', release, true);
     f.addEventListener('focusout', function (e) {
       var el = e.target;
       if (!el.name || el.type === 'radio' || el.type === 'checkbox') return;
-      var run = function () { if (el.value.trim() || el.hasAttribute('aria-invalid')) { var m = check(el); clearError(el); if (m) showError(el, m); } };
-      if (pointerDown) queued.push(run); else run();
+      later(function () { if (el.value.trim() || el.hasAttribute('aria-invalid')) { var m = check(el); clearError(el); if (m) showError(el, m); } });
     });
-    f.addEventListener('change', function (e) { if (e.target.hasAttribute('aria-invalid') || e.target.type === 'radio') { clearError(e.target); } });
+    f.addEventListener('change', function (e) {
+      var el = e.target;
+      if (el.type === 'radio') clearError(el);
+      else if (el.hasAttribute('aria-invalid')) later(function () { clearError(el); });
+    });
 
     f.addEventListener('submit', function (e) {
       e.preventDefault();

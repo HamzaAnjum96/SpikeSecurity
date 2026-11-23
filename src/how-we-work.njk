@@ -4,7 +4,7 @@ description: How Spike Security checks licences, vets officers to BS 7858, runs 
 permalink: /how-we-work.html
 section: How we work
 ---
-{% from "macros.njk" import pagehead, finale, arrow %}
+{% from "macros.njk" import pagehead, finale, arrow, phone %}
 {{ pagehead("Everything here, you can check.", "Who we send, how we check them, how a shift runs and what you get in writing afterwards. If something on this page is not true for your booking, we want to hear about it.") }}
 
 <section class="sec" aria-labelledby="licence-title">
@@ -75,7 +75,7 @@ section: How we work
       <h2 class="sec-title" id="wrong-title">If something goes wrong.</h2>
     </div>
     <div class="split-body">
-      <p>Tell us straight away: call {{ site.phone | replace(" ", "&nbsp;") | safe }}, answered 24 hours, or email <a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a>. A manager will read the shift report, talk to the officers and come back to you.</p>
+      <p>Tell us straight away: call {{ phone(site) }}, answered 24 hours, or email <a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a>. A manager will read the shift report, talk to the officers and come back to you.</p>
       <p>CCTV footage and personal data are handled under UK data protection law and the ICO’s guidance. Our <a class="link" href="/privacy">privacy notice</a> explains how.</p>
     </div>
   </div>

@@ -60,7 +60,7 @@ function svgPage(svg, w, h, transparent) {
         const ctx = await browser.newContext();
         const page = await ctx.newPage();
         await page.goto(url, { waitUntil: 'load' });
-        await page.evaluate(async () => { await document.fonts.load('800 20px Archivo'); await document.fonts.ready; });
+        await page.evaluate(async () => { await document.fonts.load('800 20px Archivo'); await document.fonts.load('700 20px "Martian Mono"'); await document.fonts.ready; });
         await page.pdf({ path: job.out, width: `${job.width_mm}mm`, height: `${job.height_mm}mm`, printBackground: true, preferCSSPageSize: true, pageRanges: '1' });
         await ctx.close();
       } else {
@@ -70,10 +70,11 @@ function svgPage(svg, w, h, transparent) {
         await page.goto(url, { waitUntil: 'load' });
         const ok = await page.evaluate(async () => {
           await document.fonts.load('800 20px Archivo');
+          await document.fonts.load('700 20px "Martian Mono"');
           await document.fonts.ready;
-          return document.fonts.check('800 20px Archivo');
+          return document.fonts.check('800 20px Archivo') && document.fonts.check('700 20px "Martian Mono"');
         });
-        if (!ok) throw new Error(`Archivo did not load for ${job.html}`);
+        if (!ok) throw new Error(`Archivo or Martian Mono did not load for ${job.html}`);
         // job.clip (CSS px) crops to the trim when the page carries print bleed
         const opts = { path: job.out, clip: job.clip || { x: 0, y: 0, width: vw, height: vh } };
         if (job.jpeg) Object.assign(opts, { type: 'jpeg', quality: 84 });

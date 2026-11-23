@@ -58,8 +58,9 @@ def n(v):
 
 
 OFL_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/archivo/OFL.txt'
-MONO_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/chivomono/ChivoMono%5Bwght%5D.ttf'
-MONO_OFL_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/chivomono/OFL.txt'
+MONO_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/martianmono/MartianMono%5Bwdth,wght%5D.ttf'
+MONO_OFL_URL = 'https://raw.githubusercontent.com/google/fonts/main/ofl/martianmono/OFL.txt'
+MONO = WORK / 'MartianMono-VF.ttf'
 ZIP_NAME = 'spike-security-brand-assets.zip'
 
 README = f'''SPIKE SECURITY BRAND ASSETS
@@ -91,10 +92,11 @@ COLOURS
   Ember         #B33A06   orange text on light backgrounds
 
 FONTS
-  Archivo for words and Chivo Mono for data (times, references, licence
-  numbers). Both are from Omnibus-Type, free under the SIL Open Font License,
-  in the font folder. Without them: Arial for words, Consolas for data.
-  Email signatures always use Arial.
+  Archivo for words. Martian Mono, at 87.5% width, for the numbers people
+  dial, check or copy: the phone number, times, references, licence and
+  company numbers, colour values. Both are free under the SIL Open Font
+  License, in the font folder. Without them: Arial for words, Consolas for
+  numbers. Email signatures always use Arial.
 
 Questions: {EMAIL} · {PHONE}
 '''
@@ -107,11 +109,11 @@ def ensure_font():
         urllib.request.urlretrieve(FONT_URL, FONT)
     if not (WORK / 'OFL.txt').exists():
         urllib.request.urlretrieve(OFL_URL, WORK / 'OFL.txt')
-    if not (WORK / 'ChivoMono-VF.ttf').exists():
-        print('Downloading Chivo Mono (SIL Open Font License)…')
-        urllib.request.urlretrieve(MONO_URL, WORK / 'ChivoMono-VF.ttf')
-    if not (WORK / 'OFL-ChivoMono.txt').exists():
-        urllib.request.urlretrieve(MONO_OFL_URL, WORK / 'OFL-ChivoMono.txt')
+    if not MONO.exists():
+        print('Downloading Martian Mono (SIL Open Font License)…')
+        urllib.request.urlretrieve(MONO_URL, MONO)
+    if not (WORK / 'OFL-MartianMono.txt').exists():
+        urllib.request.urlretrieve(MONO_OFL_URL, WORK / 'OFL-MartianMono.txt')
 
 
 def package():
@@ -128,8 +130,8 @@ def package():
                     z.write(f, f'{top}/{sub}/{f.name}')
         z.write(FONT, f'{top}/font/Archivo-VariableFont_wdth,wght.ttf')
         z.write(WORK / 'OFL.txt', f'{top}/font/OFL-Archivo.txt')
-        z.write(WORK / 'ChivoMono-VF.ttf', f'{top}/font/ChivoMono-VariableFont_wght.ttf')
-        z.write(WORK / 'OFL-ChivoMono.txt', f'{top}/font/OFL-ChivoMono.txt')
+        z.write(MONO, f'{top}/font/MartianMono-VariableFont_wdth,wght.ttf')
+        z.write(WORK / 'OFL-MartianMono.txt', f'{top}/font/OFL-MartianMono.txt')
     print(f'Packaged {target.relative_to(ROOT)} ({target.stat().st_size / 1e6:.1f} MB)')
 
 
@@ -221,9 +223,10 @@ def back_print_svg(B, shield_fill, text_fill, title):
 
 # ── HTML compositions (rendered by render.cjs) ─────────────────────────────
 def page(body, w, h, extra_css='', unit='px'):
-    font = FONT.as_uri()
+    font, mono = FONT.as_uri(), MONO.as_uri()
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{{font-family:Archivo;src:url("{font}") format("truetype");font-weight:100 900;font-stretch:62% 125%}}
+@font-face{{font-family:"Martian Mono";src:url("{mono}") format("truetype");font-weight:100 800;font-stretch:75% 112.5%}}
 @page{{size:{w}{unit} {h}{unit};margin:0}}
 *{{box-sizing:border-box;margin:0;padding:0}}
 html,body{{width:{w}{unit};height:{h}{unit};overflow:hidden}}
@@ -231,6 +234,7 @@ body{{font-family:Archivo,Arial,sans-serif;background:{C['obsidian']};color:{C['
 .cap{{text-transform:uppercase}}
 .disp{{font-weight:800;font-stretch:62%;text-transform:uppercase;line-height:.9;letter-spacing:.005em}}
 .label{{font-weight:600;font-stretch:100%;letter-spacing:0}}
+.mono{{font-family:"Martian Mono",Consolas,monospace;font-stretch:87.5%;letter-spacing:0}}
 .o{{color:{C['orange']}}}
 {extra_css}
 </style></head><body>{body}</body></html>'''
@@ -288,7 +292,7 @@ def compositions(H_):
       .bot{{position:absolute;left:0;right:0;bottom:0;height:{158 + BLEED}mm;padding:18mm {22 + BLEED}mm {20 + BLEED}mm;display:flex;flex-direction:column}}
       .disp{{white-space:nowrap}}
       .body{{font-weight:500;font-stretch:100%;font-size:8mm;line-height:1.3;max-width:220mm}}
-      .tel{{font-weight:800;font-stretch:62%;font-size:26mm;line-height:.9;letter-spacing:.01em;color:{C['orange']};font-variant-numeric:tabular-nums;white-space:nowrap}}
+      .tel{{font-family:"Martian Mono",Consolas,monospace;font-weight:700;font-stretch:87.5%;font-size:20mm;line-height:1;letter-spacing:0;color:{C['orange']};white-space:nowrap}}
       .lab{{font-weight:600;font-stretch:100%;letter-spacing:0;font-size:6.6mm;color:{C['ash']}}}
     '''
     foot = lambda first: f'''

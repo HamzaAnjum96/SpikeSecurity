@@ -14,7 +14,7 @@ schemaPage: business
       </h1>
       <div class="cover-actions" id="cover-actions">
         <a class="btn btn--primary btn--lg" href="/contact#quote">Get a quote</a>
-        <a class="tel" href="{{ site.phoneHref }}"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n">{{ site.phone | replace(" ", "&nbsp;") | safe }}</span></a>
+        <a class="tel" href="{{ site.phoneHref }}"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n" translate="no">{{ site.phone }}</span></a>
       </div>
     </div>
     <div class="cover-art" aria-hidden="true">
@@ -26,7 +26,7 @@ schemaPage: business
       <li><b>SIA licensed</b>Every officer. <a href="{{ site.siaRegister }}" rel="noopener">Check any badge on the public register</a>.</li>
       <li><b>Vetted to BS&nbsp;7858</b>The British Standard for screening security staff.</li>
       <li><b>Insured</b>Certificates sent with every quote.</li>
-      <li><b>Registered company</b>{{ site.legalName }}, no.&nbsp;<span class="tnum">{{ site.companyNumber }}</span>.</li>
+      <li><b>Registered company</b>{{ site.legalName }}, no.&nbsp;<span class="data" translate="no">{{ site.companyNumber }}</span>.</li>
     </ul>
   </div>
 </section>
@@ -80,7 +80,7 @@ schemaPage: business
     </div>
     <div class="careers">
       <div class="careers-copy">
-        <p>If you hold an SIA door supervisor or security guard licence, you can apply from your phone in a few minutes. No CV needed.</p>
+        <p>If you hold an SIA door supervisor or security guard licence, you can apply from your phone in a few minutes. No&nbsp;CV needed.</p>
         <p>We pay weekly, with overtime when you want it.</p>
         <a class="btn btn--ghost" href="/careers">See all roles</a>
       </div>

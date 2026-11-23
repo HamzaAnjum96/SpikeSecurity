@@ -6,9 +6,9 @@ section: Contact
 dock: false
 schemaPage: business
 ---
-{% from "macros.njk" import pagehead, faqs, map %}
+{% from "macros.njk" import pagehead, faqs, map, phone %}
 {% set send = "Send" if site.formEndpoint else "Open in my email app" %}
-{{ pagehead("Tell us the site, the dates and the hours.", "Need cover tonight? Call " + (site.phone | replace(" ", "&nbsp;")) + ", answered 24 hours. For anything planned, send the details and we’ll reply with a price and the officers we’d send.") }}
+{{ pagehead("Tell us the site, the dates and the hours.", "Need cover tonight? Call " + phone(site) + ", answered 24 hours. For anything planned, send the details and we’ll reply with a price and the officers we’d send.") }}
 
 <section class="sec sec--flush" aria-label="Get a quote">
   <div class="wrap contact">
@@ -64,7 +64,7 @@ schemaPage: business
             <div class="field">
               <label for="q-phone">Phone</label>
               <span class="hint" id="q-phone-hint">So the supervisor can call you back</span>
-              <input id="q-phone" name="Phone" type="tel" inputmode="tel" autocomplete="tel" required data-phone aria-describedby="q-phone-hint">
+              <input id="q-phone" class="data" name="Phone" type="tel" inputmode="tel" autocomplete="tel" required data-phone aria-describedby="q-phone-hint">
             </div>
             <div class="field">
               <label for="q-email">Email <span class="opt">optional</span></label>
@@ -79,7 +79,7 @@ schemaPage: business
         </fieldset>
         <div class="form-actions">
           <button class="btn btn--primary btn--lg" type="submit">{{ send }}</button>
-          <p class="form-note">Prefer to talk? Call <a class="link" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>, any time.</p>
+          <p class="form-note">Prefer to talk? Call {{ phone(site) }}, any time.</p>
         </div>
         {% include "form-status.njk" %}
       </form>
@@ -88,7 +88,7 @@ schemaPage: business
     <aside class="contact-info" aria-label="Contact details">
       <div class="ci-block">
         <h2 class="foot-h">Call, 24 hours</h2>
-        <a class="ci-tel" href="{{ site.phoneHref }}">{{ site.phone | replace(" ", "&nbsp;") | safe }}</a>
+        <a class="ci-tel" translate="no" href="{{ site.phoneHref }}">{{ site.phone }}</a>
         <p>Answered {{ site.operations }}. For urgent cover, call rather than email.</p>
       </div>
       <div class="ci-block">

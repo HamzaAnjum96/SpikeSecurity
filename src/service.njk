@@ -11,13 +11,12 @@ eleventyComputed:
 ---
 {% from "macros.njk" import pagehead, serviceRows, faqs, finale, arrow %}
 {% set quoteHref = "/contact?service=" + svc.slug + "#quote" %}
-{{ pagehead(svc.headline, svc.lede, '<a class="btn btn--primary btn--lg" href="' + quoteHref + '">Get a quote</a><a class="tel" href="' + site.phoneHref + '"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n">' + (site.phone | replace(" ", "&nbsp;")) + '</span></a>') }}
+{{ pagehead(svc.headline, svc.lede, '<a class="btn btn--primary btn--lg" href="' + quoteHref + '">Get a quote</a><a class="tel" href="' + site.phoneHref + '"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n" translate="no">' + site.phone + '</span></a>') }}
 
 <section class="sec" aria-labelledby="inc-title">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="sec-title" id="inc-title">What you get.</h2>
-      <p class="sec-lede">{{ svc.name }} from Spike, for {{ svc.bestFor | lower }} across Manchester and the North West.</p>
     </div>
     <div class="inc-grid">
       <ul class="inc">

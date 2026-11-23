@@ -6,7 +6,7 @@ noindex: true
 sitemap: false
 ---
 {% from "macros.njk" import pagehead, arrow %}
-{{ pagehead("Wrong door.", "There is no page at this address. It may have moved, or the link may have a typo.", '<a class="btn btn--primary btn--lg" href="/">Go to the homepage</a><a class="tel" href="' + site.phoneHref + '"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n">' + (site.phone | replace(" ", "&nbsp;")) + '</span></a>') }}
+{{ pagehead("Wrong door.", "There is no page at this address. It may have moved, or the link may have a typo.", '<a class="btn btn--primary btn--lg" href="/">Go to the homepage</a><a class="tel" href="' + site.phoneHref + '"><span class="tel-l">Need cover tonight? Call 24/7</span><span class="tel-n" translate="no">' + site.phone + '</span></a>') }}
 <section class="sec sec--flush">
   <div class="wrap sectors sectors--narrow">
     <ul>

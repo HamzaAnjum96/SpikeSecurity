@@ -4,9 +4,9 @@ description: Door supervisor and event security jobs in Manchester and the North
 permalink: /careers.html
 section: Careers
 ---
-{% from "macros.njk" import pagehead, finale, arrow %}
+{% from "macros.njk" import pagehead, finale, arrow, phone %}
 {% set send = "Send" if site.formEndpoint else "Open in my email app" %}
-{{ pagehead("Good officers get steady shifts.", "Door supervisors and event security officers with an SIA licence: apply from your phone in a few minutes. No CV needed.", '<a class="btn btn--primary btn--lg" href="#apply">Apply</a><a class="btn btn--ghost btn--lg" href="#roles">See open roles</a>') }}
+{{ pagehead("Good officers get steady shifts.", "Door supervisors and event security officers with an SIA licence: apply from your phone in a few minutes. No&nbsp;CV needed.", '<a class="btn btn--primary btn--lg" href="#apply">Apply</a><a class="btn btn--ghost btn--lg" href="#roles">See open roles</a>') }}
 
 <section class="sec" id="roles" aria-labelledby="roles-title">
   <div class="wrap">
@@ -43,7 +43,7 @@ section: Careers
       <h2 class="sec-title" id="apply-steps-title">How to apply.</h2>
     </div>
     <ol class="steps">
-      <li><h3>Send the form</h3><p>It takes a few minutes on a phone. No CV needed.</p></li>
+      <li><h3>Send the form</h3><p>It takes a few minutes on a phone. No&nbsp;CV needed.</p></li>
       <li><h3>We call you</h3><p>Within 2 working days.</p></li>
       <li><h3>Interview</h3><p>Face to face at our Manchester office, or by video. We keep it simple.</p></li>
       <li><h3>Vetting and briefing</h3><p>BS 7858 vetting, a licence check and a site briefing before your first shift. We help with every step.</p></li>
@@ -105,7 +105,7 @@ section: Careers
         </div>
         <div class="field">
           <label for="a-phone">Phone</label>
-          <input id="a-phone" name="Phone" type="tel" inputmode="tel" autocomplete="tel" required data-phone>
+          <input id="a-phone" class="data" name="Phone" type="tel" inputmode="tel" autocomplete="tel" required data-phone>
         </div>
         <div class="field">
           <label for="a-email">Email <span class="opt">optional</span></label>
@@ -118,7 +118,7 @@ section: Careers
       </fieldset>
       <div class="form-actions">
         <button class="btn btn--primary btn--lg" type="submit">{{ send }}</button>
-        <p class="form-note">Questions first? Call {{ site.phone | replace(" ", "&nbsp;") | safe }} or email <a class="link" href="mailto:{{ site.careersEmail }}">{{ site.careersEmail }}</a>.</p>
+        <p class="form-note">Questions first? Call {{ phone(site) }} or email <a class="link" href="mailto:{{ site.careersEmail }}">{{ site.careersEmail }}</a>.</p>
       </div>
       {% include "form-status.njk" %}
     </form>
