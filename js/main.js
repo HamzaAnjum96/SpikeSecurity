@@ -207,21 +207,26 @@
       }
 
       if (valid) {
-        // Simulate successful submission
+        // The site has no form server yet, so hand the message to the visitor's own
+        // email app, and say so plainly. Never report a send that did not happen.
+        const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+        const svc = document.getElementById('service');
+        const serviceName = svc && svc.selectedIndex > 0 ? svc.options[svc.selectedIndex].text : 'General enquiry';
+        const body = [
+          'Name: ' + val('fullName'),
+          'Email: ' + val('email'),
+          'Phone: ' + (val('phone') || 'not given'),
+          'Company: ' + (val('company') || 'not given'),
+          'Service: ' + serviceName,
+          '',
+          val('message')
+        ].join('\n');
+        const subject = 'Enquiry: ' + serviceName;
         const successEl = document.getElementById('formSuccess');
-        const submitBtn = contactForm.querySelector('[type="submit"]');
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending…';
-        }
-        setTimeout(() => {
-          if (successEl) successEl.classList.add('visible');
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Message';
-          }
-          contactForm.reset();
-        }, 900);
+        const copyEl = document.getElementById('formCopy');
+        if (copyEl) copyEl.value = 'To: info@spikesecurity.co.uk\nSubject: ' + subject + '\n\n' + body;
+        if (successEl) successEl.classList.add('visible');
+        window.location.href = 'mailto:info@spikesecurity.co.uk?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       }
     });
   }

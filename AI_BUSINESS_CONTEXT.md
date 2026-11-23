@@ -24,7 +24,7 @@ Spike Security delivers managed security services for commercial clients, venues
 
 ## Compliance & Standards (as stated on the website)
 - SIA-licensed operatives
-- Enhanced DBS checks
+- Criminal record checks (BS 7858 screening)
 - Full insurance coverage
 - BS 7858 vetting standard
 

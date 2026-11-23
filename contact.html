@@ -32,7 +32,7 @@
   <meta name="geo.placename" content="Manchester, UK"/>
   <meta name="geo.position" content="53.5004;-2.2389"/>
   <meta name="ICBM" content="53.5004, -2.2389"/>
-  <meta name="theme-color" content="#0D1B2E"/>
+  <meta name="theme-color" content="#0B0C0E"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -282,7 +282,7 @@
 
               <div>
                 <button type="submit" class="btn btn-primary btn-submit">
-                  <span>Send Message</span>
+                  <span>Open in my email app</span>
                   <span class="btn-caret" aria-hidden="true">→</span>
                 </button>
                 <p style="font-size:0.82rem;color:var(--color-muted);margin-top:var(--space-sm);text-align:center">
@@ -291,8 +291,11 @@
               </div>
             </div>
 
-            <div class="form-success" id="formSuccess" role="alert">
-              ✓ Your message has been sent. We'll be in touch shortly!
+            <div class="form-success" id="formSuccess" role="status">
+              <p><strong>Your email app should now open with this message written out. Press send there to reach us.</strong></p>
+              <p>If nothing opened, copy the message below and email it to <a href="mailto:info@spikesecurity.co.uk">info@spikesecurity.co.uk</a>, or call <a href="tel:+442037572767">020&nbsp;3757&nbsp;2767</a>.</p>
+              <label for="formCopy" class="sr-only">Your message</label>
+              <textarea id="formCopy" class="form-control" rows="7" readonly></textarea>
             </div>
           </form>
         </div>

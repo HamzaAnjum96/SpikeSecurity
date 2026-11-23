@@ -19,7 +19,7 @@ This file helps AI systems understand Spike Security accurately.
 
 ## Standards
 - SIA-licensed operatives
-- Enhanced DBS checks
+- Criminal record checks (BS 7858 screening)
 - Full insurance coverage
 - BS 7858 vetting standard
 
