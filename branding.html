@@ -345,7 +345,7 @@
         <header class="sec-head">
           <p class="sec-num" aria-hidden="true"><b>03</b><span>Type</span></p>
           <h2 class="sec-title" id="type-title"><span class="sr-only">Type: </span>One family, three&nbsp;widths.</h2>
-          <p class="sec-lede">Archivo does everything: condensed for signs and headlines, normal for reading, expanded for labels. It is free under the SIL Open Font License, so anyone can install it.</p>
+          <p class="sec-lede">Archivo does everything: condensed for signs and headlines, semi-condensed for subheads, normal for reading, labels and buttons. It is free under the SIL Open Font License, so anyone can install it.</p>
         </header>
 
         <div class="widths">
@@ -357,12 +357,12 @@
           <article class="width">
             <p class="width-spec label">Normal <span aria-hidden="true">·</span> 100% <span aria-hidden="true">·</span> Regular, SemiBold</p>
             <p class="width-sample width-sample--n">Two SIA-licensed door supervisors will be on site from 9pm to 3am. Your shift report arrives by 9am.</p>
-            <p class="width-use">Everything people read: body copy, forms, documents.</p>
+            <p class="width-use">Everything people read: body copy, forms and documents. Labels, buttons and navigation use it too, in SemiBold and sentence case.</p>
           </article>
           <article class="width">
-            <p class="width-spec label">Expanded <span aria-hidden="true">·</span> 125% <span aria-hidden="true">·</span> SemiBold</p>
-            <p class="width-sample width-sample--e">24-hour response<br/>020&nbsp;3757&nbsp;2767</p>
-            <p class="width-use">Labels, captions and small headings. Capitals, spaced out.</p>
+            <p class="width-spec label">Semi-condensed <span aria-hidden="true">·</span> 87% <span aria-hidden="true">·</span> Bold</p>
+            <p class="width-sample width-sample--e">How booking works</p>
+            <p class="width-use">Subheads and the names of groups. Sentence case, never spaced out.</p>
           </article>
         </div>
 
@@ -384,7 +384,7 @@
             <div class="scale-row" role="row"><span role="rowheader">Subhead</span><span role="cell" class="s-h3">Five colourways</span><span role="cell">24 to 32&nbsp;px</span><span role="cell">87%, 700</span><span role="cell">1.15, 0</span></div>
             <div class="scale-row" role="row"><span role="rowheader">Body</span><span role="cell" class="s-body">We’ll have officers on site within hours.</span><span role="cell">17&nbsp;px</span><span role="cell">100%, 400</span><span role="cell">1.65, 0</span></div>
             <div class="scale-row" role="row"><span role="rowheader">Small</span><span role="cell" class="s-small">Registered in England and Wales.</span><span role="cell">14&nbsp;px</span><span role="cell">100%, 400</span><span role="cell">1.5, 0</span></div>
-            <div class="scale-row" role="row"><span role="rowheader">Label</span><span role="cell" class="s-label">24-hour response</span><span role="cell">12&nbsp;px</span><span role="cell">125%, 600, caps</span><span role="cell">1.2, +14%</span></div>
+            <div class="scale-row" role="row"><span role="rowheader">Label</span><span role="cell" class="s-label">24-hour response</span><span role="cell">14&nbsp;px</span><span role="cell">100%, 600</span><span role="cell">1.4, 0</span></div>
           </div>
         </div>
 
@@ -540,30 +540,68 @@
           </div>
           <div class="livery">
             <figure class="livery-art">
-              <svg viewBox="0 0 860 320" role="img" aria-label="Side view of a black patrol van: an orange crop of the shield across the rear panel, the Spike Security logo on the cab door and the 24-hour number on the side panel.">
-                <defs>
-                  <clipPath id="van-body"><path d="M40 256 L40 76 Q40 60 56 60 L590 60 Q606 60 616 72 L684 152 Q690 160 702 162 L798 176 Q818 180 820 198 L822 256 L724 256 A48 48 0 0 0 628 256 L224 256 A48 48 0 0 0 128 256 Z"/></clipPath>
-                  <clipPath id="van-rear"><rect x="0" y="0" width="334" height="320"/></clipPath>
-                </defs>
-                <path class="v-body" d="M40 256 L40 76 Q40 60 56 60 L590 60 Q606 60 616 72 L684 152 Q690 160 702 162 L798 176 Q818 180 820 198 L822 256 L724 256 A48 48 0 0 0 628 256 L224 256 A48 48 0 0 0 128 256 Z"/>
-                <g clip-path="url(#van-body)"><g clip-path="url(#van-rear)"><use href="#ss-shield" x="-180" y="-60" width="520" height="670"/></g></g>
-                <path class="v-line" d="M336 64 V256 M548 62 V256 M336 110 H548"/>
-                <path class="v-glass" d="M556 74 H600 Q610 74 616 80 L670 146 H556 Z"/>
-                <path class="v-glass" d="M801 184 L818 188 L819 204 L801 200 Z"/>
-                <path class="v-body" d="M688 128 H700 V154 H688 Z"/>
-                <svg x="560" y="186" width="118" height="25.7" viewBox="0 0 2080.8 453.19" aria-hidden="true"><use href="#ss-horizontal"/></svg>
-                <text class="v-small" x="350" y="150" font-size="9.5">24-HOUR RESPONSE</text>
-                <text class="v-text" x="348" y="190" font-size="35">020&nbsp;3757&nbsp;2767</text>
-                <text class="v-small" x="350" y="216" font-size="9.5">SPIKESECURITY.CO.UK</text>
-                <circle class="v-tyre" cx="176" cy="262" r="40"/><circle class="v-hub" cx="176" cy="262" r="17"/>
-                <circle class="v-tyre" cx="676" cy="262" r="40"/><circle class="v-hub" cx="676" cy="262" r="17"/>
-              </svg>
+              <div class="livery-views">
+                <div class="livery-view livery-view--side">
+                  <svg viewBox="0 0 1080 440" role="img" aria-label="Kerb side of a black panel van, drawn to scale: an orange crop of the shield across the rear quarter, ending at the sliding door; the 24-hour number on the sliding door; the Spike Security logo on the cab door, at least 500 millimetres wide.">
+                  <defs><clipPath id="sv-body"><path d="M48 388 Q40 388 40 380 L40 302 L44 298 L44 50 Q44 24 70 24 L770 24 C790 24 800 28 808 38 L906 166 C944 172 990 182 1016 200 C1032 212 1039 236 1040 262 L1042 370 Q1042 388 1026 388 L930 388 L923.1 338 A84 84 0 0 0 756.9 338 L337.1 338 A84 84 0 0 0 170.9 338 L166 388 Z"/></clipPath><clipPath id="sv-quarter"><rect x="0" y="0" width="467" height="296"/><rect x="172" y="0" width="295" height="338"/></clipPath></defs>
+                  <line class="v-ground" x1="0" y1="420" x2="1080" y2="420"/>
+                  <path class="v-body" d="M48 388 Q40 388 40 380 L40 302 L44 298 L44 50 Q44 24 70 24 L770 24 C790 24 800 28 808 38 L906 166 C944 172 990 182 1016 200 C1032 212 1039 236 1040 262 L1042 370 Q1042 388 1026 388 L930 388 L923.1 338 A84 84 0 0 0 756.9 338 L337.1 338 A84 84 0 0 0 170.9 338 L166 388 Z"/>
+                  <g clip-path="url(#sv-body)"><g clip-path="url(#sv-quarter)"><use href="#ss-shield" x="6" y="-250" width="600" height="773.3"/></g></g>
+                  <path class="v-glass" d="M708 38 L786 38 Q800 38 808 50 L888 160 Q891 166 884 166 L708 170 Z"/>
+                  <path class="v-seam" d="M470 30 V338 M698 30 V338 M906 170 C914 214 917 246 912 272"/>
+                  <path class="v-seam" d="M60 172 H464"/>
+                  <path class="v-crease" d="M474 238 C700 237 900 236 1030 236"/>
+                  <rect class="v-trim" x="672" y="176" width="18" height="6" rx="2"/>
+                  <rect class="v-trim" x="716" y="190" width="18" height="6" rx="2"/>
+                  <path class="v-trim" d="M894 148 L926 142 Q936 140 936 150 L936 174 Q936 182 926 181 L900 178 Q894 177 894 170 Z"/>
+                  <path class="v-lamp" d="M44 150 H52 V286 H44 Z"/>
+                  <path class="v-lamp" d="M990 202 C1008 206 1024 214 1033 228 L1036 248 C1016 246 998 238 988 226 Z"/>
+                  <path class="v-bumper" d="M930 296 L1041 296 L1042 370 Q1042 388 1026 388 L930 388 Z"/>
+                  <path class="v-bumper" d="M40 302 L44 298 L168 298 L166 388 L48 388 Q40 388 40 380 Z"/>
+                  <path class="v-seam" d="M944 320 H1034"/>
+                  <circle class="v-tyre" cx="254" cy="350" r="70"/><circle class="v-rim" cx="254" cy="350" r="44"/><circle class="v-hub" cx="254" cy="350" r="13"/>
+                  <path class="v-spoke" d="M254.0 332.0 L254.0 310.0 M271.1 344.4 L292.0 337.6 M264.6 364.6 L277.5 382.4 M243.4 364.6 L230.5 382.4 M236.9 344.4 L216.0 337.6"/>
+                  <circle class="v-tyre" cx="840" cy="350" r="70"/><circle class="v-rim" cx="840" cy="350" r="44"/><circle class="v-hub" cx="840" cy="350" r="13"/>
+                  <path class="v-spoke" d="M840.0 332.0 L840.0 310.0 M857.1 344.4 L878.0 337.6 M850.6 364.6 L863.5 382.4 M829.4 364.6 L816.5 382.4 M822.9 344.4 L802.0 337.6"/>
+                  <text class="v-small" x="490" y="214">24-hour response</text>
+                  <text class="v-num" x="488" y="250">020&#160;3757&#160;2767</text>
+                  <text class="v-small" x="490" y="274">spikesecurity.co.uk</text>
+                  <svg x="736" y="214" width="132" height="28.75" viewBox="0 0 2080.8 453.19"><use href="#ss-horizontal"/></svg>
+                  <path class="v-dim" d="M736 202 V194 M868 202 V194 M736 198 H868"/>
+                  <text class="v-dimt" x="802" y="187" text-anchor="middle">500 mm minimum</text>
+                  <path class="v-dim" d="M646 228.4 H654 M646 250 H654 M650 228.4 V250"/>
+                  <text class="v-dimt" x="657" y="244">100 mm</text>
+                  </svg>
+                  <p class="livery-cap">Kerb side</p>
+                </div>
+                <div class="livery-view livery-view--rear">
+                  <svg viewBox="0 0 480 440" role="img" aria-label="Rear doors of the same van: an orange crop of the shield on the left door, ending at the centre seam; the logo and the 24-hour number on the right door.">
+                  <defs><clipPath id="rv-door"><path d="M50 34 H238.0 V318 H48 Z"/></clipPath></defs>
+                  <line class="v-ground" x1="0" y1="420" x2="480" y2="420"/>
+                  <rect class="v-tyre" x="58" y="356" width="44" height="64" rx="8"/>
+                  <rect class="v-tyre" x="378" y="356" width="44" height="64" rx="8"/>
+                  <path class="v-body" d="M54 24 L426 24 Q438 24 440 40 L444 300 L444 370 Q444 388 428 388 L52 388 Q36 388 36 370 L36 300 L40 40 Q42 24 54 24 Z"/>
+                  <g clip-path="url(#rv-door)"><use href="#ss-shield" x="-60.0" y="-170.0" width="470.0" height="605.7"/></g>
+                  <path class="v-seam" d="M240.0 30 V318 M48 318 H432 M50 34 H430"/>
+                  <path class="v-lamp" d="M40 120 H52 V290 H38 Z M440 120 H428 V290 H442 Z"/>
+                  <path class="v-bumper" d="M36 326 H444 V370 Q444 388 428 388 L52 388 Q36 388 36 370 Z"/>
+                  <rect class="v-trim" x="250.0" y="196" width="22" height="7" rx="2"/>
+                  <rect class="v-plate" x="188.0" y="350" width="104" height="22" rx="2"/>
+                  <svg x="262.0" y="82" width="150" height="32.67" viewBox="0 0 2080.8 453.19"><use href="#ss-horizontal"/></svg>
+                  <text class="v-small" x="262.0" y="236">24-hour response</text>
+                  <text class="v-num" x="260.0" y="270">020&#160;3757&#160;2767</text>
+                  <text class="v-small" x="262.0" y="292">spikesecurity.co.uk</text>
+                  </svg>
+                  <p class="livery-cap">Rear doors</p>
+                </div>
+              </div>
+              <figcaption class="livery-note">A medium panel van, drawn to scale. The crop ends at a door seam on every side, so each panel can be replaced on its own.</figcaption>
             </figure>
-            <dl class="rules">
+            <dl class="rules rules--2">
               <div><dt>Base</dt><dd>Black or graphite vans. Never blue-and-yellow Battenburg, or anything that could pass for police livery.</dd></div>
-              <div><dt>Supergraphic</dt><dd>One Signal crop across the rear panel, ending at a door seam, clear of the number and the logo.</dd></div>
+              <div><dt>Supergraphic</dt><dd>One Signal crop on the rear quarter of each side, ending at the sliding-door seam, and one on the left rear door, ending at the centre seam. Always clear of the number and the logo.</dd></div>
               <div><dt>Logo</dt><dd>Horizontal logo on both cab doors, at least 500&nbsp;mm wide.</dd></div>
-              <div><dt>Number</dt><dd>The 24-hour number on both sides and the rear doors, letters at least 100&nbsp;mm tall.</dd></div>
+              <div><dt>Number</dt><dd>The 24-hour number on both sliding doors and the right rear door, letters at least 100&nbsp;mm tall.</dd></div>
             </dl>
           </div>
         </div>

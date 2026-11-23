@@ -26,6 +26,10 @@ Where a skill asked a question, it has been answered on your behalf. Every one o
 - **Hosting stays on GitHub Pages.** The Cloudflare account connected to this project has no domains in it, so there was nothing to move to safely. The build now deploys only `_site/`.
 - **Forms** open the visitor's email app with everything filled in, and say so plainly, until a form service is connected. Set `formEndpoint` in `src/_data/site.json` and the same forms post to it, with sending, sent and failed states already built.
 - **No placeholder photo frames on the live site.** Until the shoot, the home cover carries the shield in Signal mode.
+- **Labels, buttons and menus** are sentence case at Archivo's normal width. The wide, spaced-out capitals ("MENU", "OFFICES, RECEPTIONS, HQS") read as a template and were hard to read small. The brand page and DESIGN.md follow the same rule; signs and vehicle artwork keep their condensed capitals.
+- **Cookie prompt.** Maps load only after the visitor allows them in a small cookie prompt (a bottom sheet on phones) with two equal buttons. "Show the map" opens it, and "Cookie settings" in the footer reopens it. It never blocks the page.
+- **Footer** cut to three calm rows on desktop: logo and page links; number, email and office; legal line.
+- **Van livery** on the brand page redrawn to scale: kerb side and rear doors, with the crop ending at a door seam and dimensioned logo and number.
 
 **Still to do:** the photo shoot, case studies and Google Business Profile (Phase 4), a form service, and the facts in [section 11](#11-facts-only-spike-can-confirm). The homepage frame in `docs/site-plan/` is kept as the original direction; the live site supersedes it.
 

@@ -53,7 +53,7 @@
       <p class="map-gate-title">{{ "Where we work" if mode == "area" else "Our office" }}</p>
       <p class="map-gate-text">{{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}{% if mode == "area" %}. On call across {{ site.areas | join(", ") }}{% endif %}.</p>
       <button class="btn btn--ghost btn--sm map-on" type="button">Show the map</button>
-      <p class="map-gate-note">The map loads from OpenStreetMap, which will see your IP address.</p>
+      <p class="map-gate-note">The map loads from OpenStreetMap, so it needs your OK first.</p>
     </div>
   </div>
   <figcaption><span class="map-credit" hidden>Map © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a>. <button type="button" class="map-off">Turn the map off</button></span>{% if mode == "office" %}<a class="map-directions" href="https://www.google.com/maps/search/?api=1&amp;query={{ site.office.lat }}%2C{{ site.office.lon }}" rel="noopener">Directions in Google Maps</a>{% endif %}</figcaption>

@@ -50,10 +50,10 @@ typography:
     letterSpacing: "normal"
   label:
     fontFamily: "Archivo, Arial, sans-serif"
-    fontSize: "0.75rem"
+    fontSize: "0.875rem"
     fontWeight: 600
     lineHeight: 1.4
-    letterSpacing: "0.14em"
+    letterSpacing: "normal"
 rounded:
   none: "0px"
 spacing:
@@ -112,7 +112,7 @@ Spike Security protects venues, events, shops and offices across Manchester and 
 
 - **Dark first.** Obsidian is the canvas for every screen we control: the hours we keep.
 - **Orange on purpose.** Spike Orange is the shield's colour and the brand's single signal. It carries large, deliberate moments (the mark, signs, hi-vis, one call to action, a section numeral) and never decorates: labels, list numbers and icons stay bone or ash.
-- **One family, three widths.** Archivo, condensed for signs and headlines, normal for reading, expanded for labels.
+- **One family, three widths.** Archivo: condensed for signs and headlines, semi-condensed for subheads, normal for reading, labels and buttons.
 - **Spec-sheet rigour.** Hairline rules and square corners, like a standards manual rather than a magazine. Numbers appear only where order matters.
 
 Physical scene: an operations manager checking cover on a phone in a car park after dark; a door supervisor's jacket under a streetlight; a sign on a site hoarding at 3am. Everything must read at a distance, in low light.
@@ -149,13 +149,15 @@ Default proportion on everyday surfaces is **70 obsidian / 20 bone / 10 orange**
 | 62% condensed | Display lines, headlines, signs, the wordmark | ExtraBold 800, capitals, line-height 0.86 to 0.9, +0.5% tracking |
 | 87% semi-condensed | Subheads, component titles | Bold 700, sentence case |
 | 100% normal | Body, forms, documents | Regular 400, 1.65 to 1.7 line-height, max 54 to 62ch |
-| 112 to 125% expanded | Labels, kickers, buttons, nav | SemiBold 600 or Bold 700, capitals, +6 to +14% tracking |
+| 100% normal | Labels, buttons, navigation, tags | SemiBold 600 (buttons Bold 700), sentence case, no extra tracking |
+
+The expanded widths are not used for text. Wide, spaced-out capitals read as a template and are hard to read small.
 
 ### Hierarchy
 Display (`display`) is reserved for one line per page. Section headlines (`headline`) are short statements, not topic names ("One shield. Drawn once."), set deliberately smaller than the display line so the cover keeps its weight. Subheads (`subhead`) name groups. Labels (`label`) carry numbering ("01 Logo"), figure captions ("Fig. 02 · Construction and clear space") and metadata. Numbers people act on use tabular figures.
 
 ### Named Rules
-- **Capitals are for signs and labels.** Running text is sentence case. Never set body copy condensed.
+- **Capitals are for display lines and signs.** Headlines, signs and vehicle livery use condensed capitals. Everything else, including labels, buttons and menus, is sentence case. Never set body copy condensed.
 - **Fallbacks.** Email uses Arial. Office documents use Archivo where installed, otherwise Arial. Never Impact, Bebas or a serif in place of the condensed capitals.
 
 ## 4. Elevation
@@ -165,10 +167,10 @@ Flat by design. **No shadows, no blur, no glass.** Depth comes from surface step
 ## 5. Components
 
 ### Buttons
-Two kinds only. `button-primary`: orange fill, obsidian label, expanded capitals; hover flips to bone. `button-ghost`: obsidian with a 1px `#46474A` border and bone label; hover fills graphite. Minimum height 48px (44px touch targets elsewhere). Optional metadata inside the button ("ZIP · 2.8 MB") at 72% opacity.
+Two kinds only. `button-primary`: orange fill, obsidian label in Bold sentence case ("Get a quote"); hover flips to bone. `button-ghost`: obsidian with a 1px `#46474A` border and bone label; hover fills graphite. Minimum height 48px (44px touch targets elsewhere). Optional metadata inside the button ("ZIP · 2.8 MB") at 72% opacity.
 
 ### Chips
-`download-chip`: format labels (SVG, PDF, PNG) as square outlined chips in expanded capitals, 32px tall (44px on touch screens), border at 32% of the current colour.
+`download-chip`: format labels (SVG, PDF, PNG) as square outlined chips in SemiBold, 32px tall (44px on touch screens), border at 32% of the current colour.
 
 ### Cards / Containers
 Avoid cards. Group with rules and spacing. Where a framed area is needed (artwork previews, specimens), use a 1px `line` border on obsidian 2, never a shadow, never nested.
@@ -191,7 +193,7 @@ Where people download files, lead with the three or four files most people need,
 Two styles built from tables, inline styles and Arial. **Dark block**: the horizontal logo as a hosted image on obsidian. **Light**: the shield image with "Spike Security" as live text that takes the reader's text colour. Both carry the registered office, as UK trading-disclosure rules require. No text under 11px.
 
 ### Navigation
-A slim sticky bar (60px): the horizontal lockup, page links in expanded capitals with an orange 2px underline for the current page, the 24-hour number and a ghost "Get a quote". Below 1100px the links move into a menu panel (large condensed links, the number, one orange button). On phones the bar holds the lockup, a "Call" button and "Menu", and a dock with "Call 24h" and "Get a quote" appears once the page's own buttons scroll away and hides again at the orange finale, so only one orange button is ever on screen. On the brand guidelines page the bar's links scroll horizontally instead.
+A slim sticky bar (60px): the horizontal lockup, page links in sentence case with an orange 2px underline for the current page, the 24-hour number and a ghost "Get a quote". Below 1100px the links move into a menu panel (large condensed links, the number, one orange button). On phones the bar holds the lockup, a "Call" button and "Menu", and a dock with "Call 24h" and "Get a quote" appears once the page's own buttons scroll away and hides again at the orange finale, so only one orange button is ever on screen. On the brand guidelines page the bar's links scroll horizontally instead.
 
 ### Website components
 - **Cover:** the brand line as display type inside the `h1`, followed by a plain sentence about what Spike does; the primary button and the 24-hour number beside it. Until commissioned photographs exist, the cover's second column is the shield in Signal mode.
@@ -199,9 +201,10 @@ A slim sticky bar (60px): the horizontal lockup, page links in expanded capitals
 - **Rows:** services, sectors, roles and links are rows on hairlines with an arrow, on the same 12-column grid as the headline above them. No cards.
 - **Paper sections** (bone) hold documents and proof: the shift report, the brand line explained. Documents use the **one-colour obsidian shield**, so the paper stays greyscale.
 - **Finale:** each long page ends on drenched Spike Orange with the 24-hour number set at full width in condensed obsidian, like the back of a van, then a sentence and an obsidian button.
-- **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, the shield as the pin, town names on small obsidian sign plates. Off until the visitor presses "Show the map" (the tiles come from a third party), with "Turn the map off" underneath.
+- **Maps:** Leaflet with OpenStreetMap tiles, darkened in CSS to the brand's warm greys, sharp on high-density screens, the shield as the pin and "Our office" on a small obsidian plate where there is room. Off until the visitor allows maps in the cookie prompt, with "Turn the map off" underneath.
 - **Forms:** labels above fields, hints in ash, errors inline in orange with an "!" mark and the word "Error" for screen readers, focus on the first error. Until a form service is connected, the button reads "Open in my email app" and the confirmation says plainly that the email app sends it, with the message to copy. Never report a send that did not happen.
-- **Footer:** the lockup and the brand line, the number, email, office, links, and the trading disclosure (registered name, number, England and Wales, registered office). On phones the page links are hidden; the menu already has them.
+- **Footer:** three calm rows: the lockup and the page links; the 24-hour number, email and office; then the trading disclosure (registered name, number, England and Wales, registered office) with legal links and "Cookie settings". On phones the page links are hidden; the menu already has them.
+- **Cookie prompt:** the site needs no cookies; maps are the one optional extra. A small panel (a bottom sheet on phones) asks once, with two equal buttons, "Allow maps" and "No thanks". It never blocks the page. "Show the map" and the footer's "Cookie settings" reopen it.
 
 Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.8125 to 0.9375 rem, document field labels 0.6875 rem, the phone number in condensed 75% width with tabular figures.
 
@@ -209,7 +212,7 @@ Web type sizes between the ramp's steps: lede 1.1875 to 1.5 rem, meta text 0.812
 - The shield is one path, copied verbatim from `resources/SPIKE SECURITY LOGO.svg`. Lockups (horizontal, stacked) pair it with the wordmark SPIKE SECURITY in Archivo 62%/800 (+3% tracking, with the word space opened by 0.10em so the two words separate at small sizes and at distance), cap height 0.40 of the shield (horizontal) with a 0.20 gap and the cap centre at 47% of the shield's height (its visual centre). Clear space: a quarter of the shield's height. Minimum: shield 16px or 6 mm, horizontal lockup 120px or 30 mm.
 - Five colourways: full colour on dark (orange + bone), full colour on light (orange + obsidian), and one-colour orange, bone and obsidian.
 - **Supergraphic**: a deep crop of the shield (at least 3× any logo on the surface) showing a curve and the diagonal. Signal mode is orange on obsidian; Shadow mode is graphite on obsidian and may sit behind text. One crop per surface; never text over Signal orange; the full logo still appears.
-- **Applications.** Uniform back print 280 mm wide, 80 mm below the collar (inks: Pantone Orange 021 C, white for bone). Vans: black or graphite, one Signal crop across the rear panel ending at a door seam, logo on both cab doors at least 500 mm wide, the 24-hour number at least 100 mm tall. Site signs are supplied as A3 PDFs with 3 mm bleed.
+- **Applications.** Uniform back print 280 mm wide, 80 mm below the collar (inks: Pantone Orange 021 C, white for bone). Vans: black or graphite; one Signal crop on the rear quarter of each side, ending at the sliding-door seam, and one on the left rear door, ending at the centre seam; logo on both cab doors at least 500 mm wide; the 24-hour number on the sliding doors and the right rear door, at least 100 mm tall. The brand page shows both views drawn to scale. Site signs are supplied as A3 PDFs with 3 mm bleed.
 - **Photography.** Our own officers, with consent, on sites we cover; working, not posing; real light (dusk, streetlights, venue lighting), with orange appearing only where it really is. No identifiable members of the public, no readable licence numbers, no client sites without permission.
 - Artwork generator: `scripts/brand-assets/` (outlined SVG, PDF and PNG; it also keeps the page's inline artwork in sync).
 

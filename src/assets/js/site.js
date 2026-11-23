@@ -6,15 +6,15 @@
 
   function ready(fn) { if (doc.readyState !== 'loading') fn(); else doc.addEventListener('DOMContentLoaded', fn); }
 
-  ready(function () {
+  // Runs last (see the end of the file), once every variable below has its value
+  function init() {
     menu();
     dock();
+    consent();
     doc.querySelectorAll('form[data-form]').forEach(form);
     doc.querySelectorAll('[data-map]').forEach(map);
     prefill();
-    var offAll = doc.querySelector('.map-off-all');
-    if (offAll) offAll.addEventListener('click', function () { setMapConsent(false); offAll.textContent = 'Maps are off on this device'; offAll.disabled = true; });
-  });
+  }
 
   /* ── Menu (tablets and phones) ───────────────────────────── */
   function menu() {
@@ -234,11 +234,53 @@
     });
   }
 
-  /* ── Maps: Leaflet with OpenStreetMap tiles, only after the visitor asks ── */
+  /* ── Cookies and maps ──────────────────────────────────────
+     The site needs no cookies. The one optional extra is the map: its tiles come from
+     OpenStreetMap, so maps stay off until the visitor allows them in the cookie prompt. */
   var KEY = 'spike-consent-v1';
-  function mapConsent() { try { var c = JSON.parse(localStorage.getItem(KEY)); return !!(c && c.functional); } catch (e) { return false; } }
-  function setMapConsent(on) {
-    try { localStorage.setItem(KEY, JSON.stringify({ essential: true, functional: !!on, timestamp: Date.now(), version: 1 })); } catch (e) { /* storage blocked: the choice lasts for this page only */ }
+  var sessionChoice = null;   // used if the browser blocks storage
+  var maps = [];
+  var openConsent = function () {};
+
+  function choice() {
+    try {
+      var c = JSON.parse(localStorage.getItem(KEY));
+      if (c && typeof c.functional === 'boolean') return c.functional;
+    } catch (e) { /* storage unavailable */ }
+    return sessionChoice;
+  }
+  function setChoice(on) {
+    sessionChoice = !!on;
+    try { localStorage.setItem(KEY, JSON.stringify({ essential: true, functional: !!on, timestamp: Date.now(), version: 1 })); } catch (e) { /* this page only */ }
+    maps.forEach(function (m) { if (on) m.on(false); else m.off(); });
+  }
+
+  function consent() {
+    var box = doc.getElementById('consent');
+    if (!box) return;
+    var opener = null;
+    var allow = box.querySelector('[data-allow]');
+    var phone = window.matchMedia('(max-width: 699px)');
+    // On phones the prompt is a bottom sheet: pad the page so nothing can be stuck behind it
+    function pad() { doc.body.style.paddingBottom = (!box.hidden && phone.matches) ? box.offsetHeight + 'px' : ''; }
+    function show() { box.hidden = false; doc.body.classList.add('consent-open'); pad(); }
+    window.addEventListener('resize', pad);
+    function close() {
+      box.hidden = true;
+      doc.body.classList.remove('consent-open');
+      pad();
+      if (opener && doc.contains(opener)) opener.focus({ preventScroll: true });
+      opener = null;
+    }
+    openConsent = function (from) { opener = from || null; show(); allow.focus({ preventScroll: true }); };
+    allow.addEventListener('click', function () { setChoice(true); close(); });
+    box.querySelector('[data-deny]').addEventListener('click', function () { setChoice(false); close(); });
+    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
+    doc.querySelectorAll('[data-consent-open]').forEach(function (b) {
+      b.addEventListener('click', function (e) { e.preventDefault(); openConsent(b); });
+    });
+    // First visit: show the prompt, without taking focus away from the page
+    if (choice() === null) show();
   }
 
   var leaflet = null;
@@ -251,21 +293,20 @@
       var s = doc.createElement('script');
       s.src = '/assets/vendor/leaflet/leaflet.js';
       s.onload = function () { resolve(window.L); };
-      s.onerror = reject;
+      s.onerror = function (e) { leaflet = null; reject(e); };
       doc.head.appendChild(s);
     });
     return leaflet;
   }
 
-  // Centred on OpenStreetMap's own place points, so each plate covers the map's smaller label
-  var AREAS = [
-    ['Bolton', 53.5769, -2.4282], ['Bury', 53.5933, -2.2966], ['Salford', 53.4875, -2.2901],
-    ['Manchester', 53.4794, -2.2453], ['Trafford', 53.4466, -2.3086], ['Stockport', 53.4083, -2.1494]
-  ];
+  // The towns we cover most, used only to frame the area map
+  var AREAS = [[53.5769, -2.4282], [53.5933, -2.2966], [53.4875, -2.2901], [53.4794, -2.2453], [53.4466, -2.3086], [53.4083, -2.1494]];
 
   function map(fig) {
     var canvas = fig.querySelector('.map-canvas');
     var credit = fig.querySelector('.map-credit');
+    var status = fig.querySelector('.map-gate-note');
+    var note = status ? status.textContent : '';
     var instance = null;
     var mode = fig.dataset.map;
     var lat = parseFloat(fig.dataset.lat), lon = parseFloat(fig.dataset.lon);
@@ -276,30 +317,29 @@
       loadLeaflet().then(function (L) {
         if (instance) return;
         instance = L.map(canvas, {
-          zoomControl: mode === 'office', scrollWheelZoom: false, attributionControl: false,
-          dragging: !L.Browser.mobile, tap: false, keyboard: true
+          zoomControl: true, scrollWheelZoom: false, attributionControl: false,
+          dragging: !L.Browser.mobile, tap: false, keyboard: true, zoomSnap: 0.5
         });
-        // OpenStreetMap's standard tiles, darkened in CSS to sit on obsidian (CARTO's dark tiles now need an API key)
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, detectRetina: false }).addTo(instance);
+        // OpenStreetMap tiles, darkened in CSS; retina tiles keep phones sharp
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, detectRetina: true }).addTo(instance);
         var pin = L.divIcon({
           className: 'map-pin',
           html: '<svg viewBox="0 0 351.64 453.19" aria-hidden="true"><use href="#ss-shield"/></svg>',
           iconSize: [30, 39], iconAnchor: [15, 39]
         });
         L.marker([lat, lon], { icon: pin, keyboard: false, title: 'Spike Security office', zIndexOffset: 2000 }).addTo(instance);
-        if (mode === 'area') {
-          AREAS.forEach(function (a) {
-            L.marker([a[1], a[2]], { keyboard: false, interactive: false, icon: L.divIcon({ className: 'map-plate', html: '<span class="map-label">' + a[0] + '</span>', iconSize: [0, 0], iconAnchor: [0, 0] }) }).addTo(instance);
-          });
-          L.marker([lat, lon], { keyboard: false, interactive: false, zIndexOffset: 1000, icon: L.divIcon({ className: 'map-plate', html: '<span class="map-label map-label--office">Our office, Cheetham Hill</span>', iconSize: [0, 0], iconAnchor: [0, 0] }) }).addTo(instance);
-          instance.fitBounds(L.latLngBounds(AREAS.map(function (a) { return [a[1], a[2]]; })), { padding: [36, 36] });
-        } else {
-          instance.setView([lat, lon], 15);
+        if (canvas.clientWidth >= 480) {
+          L.marker([lat, lon], { keyboard: false, interactive: false, zIndexOffset: 1000,
+            icon: L.divIcon({ className: 'map-plate', html: '<span class="map-label">Our office</span>', iconSize: [0, 0], iconAnchor: [0, 0] }) }).addTo(instance);
         }
+        if (mode === 'area') instance.fitBounds(L.latLngBounds(AREAS), { padding: [28, 28], maxZoom: 11 });
+        else instance.setView([lat, lon], 15);
+        if (status) status.textContent = note;
         if (focus) canvas.focus({ preventScroll: true });
       }).catch(function () {
         fig.classList.remove('is-on');
         credit.hidden = true;
+        if (status) status.textContent = 'The map didn’t load. Check your connection and try again.';
       });
     }
 
@@ -311,8 +351,11 @@
       credit.hidden = true;
     }
 
-    fig.querySelector('.map-on').addEventListener('click', function () { setMapConsent(true); on(true); });
-    fig.querySelector('.map-off').addEventListener('click', function () { setMapConsent(false); off(); fig.querySelector('.map-on').focus(); });
-    if (mapConsent()) on(false);
+    maps.push({ on: on, off: off });
+    var button = fig.querySelector('.map-on');
+    button.addEventListener('click', function () { if (choice()) on(true); else openConsent(button); });
+    fig.querySelector('.map-off').addEventListener('click', function () { setChoice(false); button.focus(); });
+    if (choice()) on(false);
   }
+  ready(init);
 })();

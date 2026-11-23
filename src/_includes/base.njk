@@ -34,6 +34,14 @@
 {{ content | safe }}
 </main>
 {% include "footer.njk" %}
+<section class="consent" id="consent" aria-labelledby="consent-title" hidden>
+  <h2 class="consent-title" id="consent-title">Cookies and maps</h2>
+  <p>No tracking or advertising cookies. Our maps load from OpenStreetMap, which sees your IP address. <a class="link" href="/privacy#cookies">More about cookies</a></p>
+  <div class="consent-actions">
+    <button type="button" class="btn btn--ghost btn--sm" data-allow>Allow maps</button>
+    <button type="button" class="btn btn--ghost btn--sm" data-deny>No thanks</button>
+  </div>
+</section>
 {% if dock != false %}{% include "dock.njk" %}{% endif %}
 </body>
 </html>
