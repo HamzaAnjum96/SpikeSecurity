@@ -8,16 +8,25 @@
 <link rel="canonical" href="{{ site.url }}{{ page.url | canon }}">
 {% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
 <meta name="theme-color" content="#0B0C0E">
+{# Link previews (WhatsApp, iMessage, LinkedIn, Facebook, Slack, X): each main page has its own card,
+   made by scripts/og/cards.cjs; every other page uses the home card #}
+{% set ogSlug = (page.url | canon | replace("/", "")) or "home" %}
+{% if not og[ogSlug] %}{% set ogSlug = "home" %}{% endif %}
+{% set ogCard = og[ogSlug] %}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Spike Security">
-<meta property="og:title" content="{{ title or 'Spike Security' }}">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="{{ (title + ' | Spike Security') if title else 'Spike Security: licensed security for Manchester and the North West' }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url | canon }}">
-<meta property="og:image" content="{{ site.url }}/resources/brand/social/spike-security-share-1200x630.png">
+<meta property="og:image" content="{{ site.url }}/assets/og/{{ ogSlug }}.png?v={{ ogCard.v }}">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Spike Security shield and wordmark on obsidian.">
+<meta property="og:image:alt" content="{{ ogCard.alt }}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}/assets/og/{{ ogSlug }}.png?v={{ ogCard.v }}">
+<meta name="twitter:image:alt" content="{{ ogCard.alt }}">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">

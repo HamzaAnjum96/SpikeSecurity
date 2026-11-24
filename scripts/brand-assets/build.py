@@ -272,14 +272,8 @@ def compositions(H_):
         <p class="label" style="font-size:19px;color:{C['ash']}">Licensed security · Manchester &amp; the North West</p>
       </div>''', 1584, 396), 1584, 396)
 
-    # Link preview / Open Graph card
-    cmp['social/spike-security-share-1200x630'] = (page(f'''
-      {shield_svg(C['orange'], 'position:absolute;height:1320px;left:640px;top:-300px')}
-      <div style="position:absolute;left:72px;top:72px;bottom:66px;width:560px;display:flex;flex-direction:column;justify-content:space-between">
-        {lk(C['orange'], C['bone'], 52)}
-        <p class="disp" style="font-size:112px;line-height:.88">On site.<br>On time.<br><span class="o">On record.</span></p>
-        <p class="label" style="font-size:20px;color:{C['ash']}">{WEB}</p>
-      </div>''', 1200, 630), 1200, 630)
+    # The link preview (social/spike-security-share-1200x630) is the website's home card, drawn with
+    # the site's own cards by scripts/og/cards.cjs, so it is not composed here.
 
     # Signs: A3 portrait, vector PDF + PNG preview
     # A3 sign: orange message panel (top 62%) over an obsidian sign-off panel.

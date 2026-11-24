@@ -25,10 +25,11 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.textContent = open ? 'Close' : 'Menu';
       panel.hidden = !open;
-      if (open) { var first = panel.querySelector('a'); if (first) first.focus(); }
+      // the panel hangs from the sticky bar, so it is always in view: moving focus must not scroll the page behind it
+      if (open) { var first = panel.querySelector('a'); if (first) first.focus({ preventScroll: true }); }
     }
     btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
-    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { set(false); btn.focus(); } });
+    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { set(false); btn.focus({ preventScroll: true }); } });
     panel.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
     window.matchMedia('(min-width: 1100px)').addEventListener('change', function (m) { if (m.matches) set(false); });
   }
@@ -46,8 +47,9 @@
       el.setAttribute('aria-hidden', on ? 'false' : 'true');
       el.querySelectorAll('a').forEach(function (a) { a.tabIndex = on ? 0 : -1; });
     }
-    new IntersectionObserver(function (e) { gone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; set(); }).observe(target);
-    if (finale) new IntersectionObserver(function (e) { finaleIn = e[0].isIntersecting; set(); }).observe(finale);
+    // a fast scroll can queue several entries for one element: the last one is the current state
+    new IntersectionObserver(function (e) { var x = e[e.length - 1]; gone = !x.isIntersecting && x.boundingClientRect.top < 0; set(); }).observe(target);
+    if (finale) new IntersectionObserver(function (e) { finaleIn = e[e.length - 1].isIntersecting; set(); }).observe(finale);
   }
 
   /* ── Forms ───────────────────────────────────────────────── */
