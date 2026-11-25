@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if title %}{{ title }} | {% endif %}Spike Security</title>
+{# "About Spike Security", not "About Spike Security | Spike Security"; the home page says what Spike does #}
+{% set fullTitle = ((title + " | Spike Security") if not ("Spike Security" in title) else title) if title else "Spike Security | Licensed security officers in Manchester" %}
+<title>{{ fullTitle }}</title>
 <meta name="description" content="{{ description }}">
 <link rel="canonical" href="{{ site.url }}{{ page.url | canon }}">
 {% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
@@ -16,7 +18,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Spike Security">
 <meta property="og:locale" content="en_GB">
-<meta property="og:title" content="{{ (title + ' | Spike Security') if title else 'Spike Security: licensed security for Manchester and the North West' }}">
+<meta property="og:title" content="{{ fullTitle if title else 'Spike Security: licensed security for Manchester and the North West' }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url | canon }}">
 <meta property="og:image" content="{{ site.url }}/assets/og/{{ ogSlug }}.png?v={{ ogCard.v }}">
@@ -34,6 +36,7 @@
 <link rel="preload" href="/assets/fonts/martian-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v={{ build }}">
 {% if schemaPage %}<script type="application/ld+json">{{ schema[schemaPage] | json | safe }}</script>{% endif %}
+{% if crumb %}<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"}{% if crumbParent %},{"@type":"ListItem","position":2,"name":{{ crumbParent.name | json | safe }},"item":"{{ site.url }}{{ crumbParent.url }}"}{% endif %},{"@type":"ListItem","position":{{ 3 if crumbParent else 2 }},"name":{{ crumb | json | safe }},"item":"{{ site.url }}{{ page.url | canon }}"}]}</script>{% endif %}
 <script src="/assets/js/site.js?v={{ build }}" defer></script>
 </head>
 <body class="{{ bodyClass }}">

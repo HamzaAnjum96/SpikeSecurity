@@ -387,6 +387,7 @@ html:not(.js) .js-only { display: none !important; }
 .record { display: grid; gap: var(--s8); align-items: start; }
 .record .sec-head { margin-bottom: var(--s7); }
 .record .sec-title { max-width: 12ch; }
+.record--svc .sec-title { max-width: 17ch; }
 @media (min-width: 1000px) {
   .record { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s6); }
   .record > :first-child { grid-column: 1 / span 6; }
@@ -398,6 +399,7 @@ html:not(.js) .js-only { display: none !important; }
 .promises h3, .line-list h3 { font-size: 0.875rem; font-weight: 600; font-stretch: 100%; letter-spacing: 0; text-transform: none; color: var(--stone); margin-bottom: var(--s1); line-height: 1.4; }
 .promises p { font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.5; max-width: 40ch; }
 .record-more { margin-top: var(--s5); }
+.record-lede { font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.55; max-width: 40ch; }
 
 .line-list { display: grid; border-top: 2px solid var(--obsidian); }
 .line-list li { padding: var(--s5) 0; border-bottom: 1px solid var(--line); }

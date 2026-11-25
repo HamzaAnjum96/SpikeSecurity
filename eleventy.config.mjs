@@ -14,6 +14,11 @@ export default function (eleventyConfig) {
   // "/services.html" -> "/services"; "/index.html" or "/" -> "/"
   eleventyConfig.addFilter("canon", (url) => (url || "/").replace(/index\.html$/, "").replace(/\.html$/, ""));
   eleventyConfig.addFilter("json", (value) => JSON.stringify(value));
+  // The Record Rule in a filter: times (and, with "mono", counts) set in Martian Mono. Output is HTML.
+  const esc = (v) => String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const wrap = (m) => `<span class="data">${m}</span>`;
+  eleventyConfig.addFilter("mono", (v) => esc(v).replace(/\b\d{1,2}:\d{2}\b|\b\d+(?:\.\d+)?\b/g, wrap));
+  eleventyConfig.addFilter("monotimes", (v) => esc(v).replace(/\b\d{1,2}:\d{2}\b/g, wrap));
   eleventyConfig.addGlobalData("layout", "base.njk");
   eleventyConfig.addGlobalData("build", () => Date.now().toString(36));
   eleventyConfig.addGlobalData("year", () => new Date().getFullYear());

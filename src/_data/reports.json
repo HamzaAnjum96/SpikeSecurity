@@ -1,0 +1,122 @@
+{
+  "home": {
+    "title": "Shift report",
+    "ref": "SR-1411-03",
+    "recordTitle": "In writing, after every shift.",
+    "recordLede": "The morning after every shift: who worked, the hours, and every incident logged with the time.",
+    "meta": [
+      ["Site", "Bar, Northern Quarter"],
+      ["Date", "Sat 14 Nov", true],
+      ["Hours", "21:00 to 03:30"],
+      ["Officers", "2, licences checked 20:41"]
+    ],
+    "log": [
+      ["21:00", "On site. Briefing with the duty manager. Radios checked."],
+      ["22:47", "Refused entry: one guest, intoxicated. Left without incident."],
+      ["00:15", "First aid: small cut to a guest’s hand, cleaned and dressed. Venue accident book updated."],
+      ["02:58", "Venue clear. Doors locked with the manager."]
+    ],
+    "by": "Supervisor: J. M.",
+    "sent": "Sun 08:12"
+  },
+  "event-security": {
+    "title": "Event report",
+    "ref": "ER-1306-01",
+    "recordTitle": "In writing, after every event.",
+    "recordLede": "The team, the timings and anything that happened, the morning after, for you and anyone you answer to.",
+    "meta": [
+      ["Site", "Outdoor concert, Salford"],
+      ["Date", "Sat 13 Jun", true],
+      ["Hours", "14:00 to 23:30"],
+      ["Officers", "12, licences checked 13:40"]
+    ],
+    "log": [
+      ["14:30", "Team briefed. Gates, bars and stage front staffed to the plan."],
+      ["16:00", "Gates open. Ticket and bag checks running at both entrances."],
+      ["20:15", "Crowd building at the stage front: two officers moved from the bar."],
+      ["23:25", "Last guests out. Car park clear."]
+    ],
+    "by": "Supervisor: A. K.",
+    "sent": "Sun 09:40"
+  },
+  "retail-security": {
+    "title": "Shift report",
+    "ref": "SR-2210-07",
+    "recordTitle": "In writing, after every shift.",
+    "recordLede": "Every incident written up, so you have a record for the police and your insurer.",
+    "meta": [
+      ["Site", "Supermarket, Stockport"],
+      ["Date", "Thu 22 Oct", true],
+      ["Hours", "08:00 to 20:00"],
+      ["Officers", "1, licence checked 07:41"]
+    ],
+    "log": [
+      ["08:00", "On the floor at the entrance. Briefed by the store manager."],
+      ["11:40", "Customer helped to find a lost bag. Handed in at customer services."],
+      ["15:10", "Suspected theft of razor blades. Person approached, items returned, left the store."],
+      ["19:55", "Store closed with the duty manager."]
+    ],
+    "by": "Supervisor: R. S.",
+    "sent": "Fri 08:05"
+  },
+  "office-security": {
+    "title": "Shift report",
+    "ref": "SR-0911-12",
+    "recordTitle": "In writing, after every shift.",
+    "recordLede": "Visitors, patrols and anything out of the ordinary, logged with the time.",
+    "meta": [
+      ["Site", "Office building, city centre"],
+      ["Date", "Mon 9 Nov", true],
+      ["Hours", "07:00 to 19:00"],
+      ["Officers", "1, licence checked 06:48"]
+    ],
+    "log": [
+      ["07:00", "Reception open. Doors and fire exits checked."],
+      ["09:20", "Six visitors signed in. One without a booking: host called before entry."],
+      ["13:00", "Patrol: every floor, plant room and car park. All secure."],
+      ["18:55", "Building clear. Doors locked and alarm set."]
+    ],
+    "by": "Supervisor: T. B.",
+    "sent": "Tue 07:30"
+  },
+  "mobile-patrols": {
+    "title": "Patrol log",
+    "ref": "PL-0411-04",
+    "recordTitle": "In writing, after every visit.",
+    "recordLede": "Times, findings and photos for each visit, so you can see the work was done.",
+    "meta": [
+      ["Site", "Empty warehouse, Trafford Park"],
+      ["Date", "Wed 4 Nov", true],
+      ["Visits", "3, unannounced"],
+      ["Photos", "18"]
+    ],
+    "log": [
+      ["22:14", "Visit 1. Doors, shutters and fences checked. Photos taken."],
+      ["01:37", "Visit 2. Gate chain found loose: secured and photographed."],
+      ["03:05", "Alarm activation. Officer attended: no sign of entry. Site secured, alarm reset."],
+      ["05:48", "Visit 3. All secure."]
+    ],
+    "by": "Officer: D. P.",
+    "sent": "Thu 07:10"
+  },
+  "cctv-monitoring": {
+    "title": "Monitoring log",
+    "ref": "ML-2011-02",
+    "recordTitle": "In writing, after every incident.",
+    "recordLede": "A written report of every incident, with the footage times, for you and your insurer.",
+    "meta": [
+      ["Site", "Building site, Bolton"],
+      ["Date", "Fri 20 Nov", true],
+      ["Hours", "18:00 to 07:00"],
+      ["Cameras", "8, all online at 18:00"]
+    ],
+    "log": [
+      ["18:00", "Monitoring starts. All cameras checked."],
+      ["23:41", "Two people at the rear fence. Patrol sent."],
+      ["00:02", "Patrol on site. People gone, fence intact. Footage kept from 23:41 to 23:58."],
+      ["06:59", "No further activity. Monitoring ends."]
+    ],
+    "by": "Operator: S. H.",
+    "sent": "Sat 07:30"
+  }
+}

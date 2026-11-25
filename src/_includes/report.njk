@@ -1,22 +1,20 @@
-<article class="doc" aria-label="Sample shift report">
+{# A sample record, drawn from src/_data/reports.json. Set `report` before including it; the home sample is the default. #}
+{% set r = report or reports.home %}
+<article class="doc" aria-label="Sample {{ r.title | lower }}">
   <header class="doc-head">
-    <div class="doc-id"><svg viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg><b>Shift report</b></div>
-    <p class="doc-ref"><span class="nb">Ref. <span class="data" translate="no">SR-1411-03</span></span><br>Sample</p>
+    <div class="doc-id"><svg viewBox="0 0 351.64 453.19" aria-hidden="true" focusable="false"><use href="#ss-shield"/></svg><b>{{ r.title }}</b></div>
+    <p class="doc-ref"><span class="nb">Ref. <span class="data" translate="no">{{ r.ref }}</span></span><br>Sample</p>
   </header>
   <dl class="doc-meta">
-    <div><dt>Site</dt><dd>Bar, Northern Quarter</dd></div>
-    <div><dt>Date</dt><dd class="data">Sat 14 Nov</dd></div>
-    <div><dt>Hours</dt><dd><span class="data">21:00</span> to <span class="data">03:30</span></dd></div>
-    <div><dt>Officers</dt><dd><span class="data">2</span>, licences checked <span class="data">20:41</span></dd></div>
+    {% for m in r.meta %}<div><dt>{{ m[0] }}</dt>{% if m[2] %}<dd class="data">{{ m[1] }}</dd>{% else %}<dd>{{ m[1] | mono | safe }}</dd>{% endif %}</div>
+    {% endfor %}
   </dl>
   <table class="doc-log">
     <caption>Log</caption>
     <tbody>
-      <tr><th scope="row" class="data">21:00</th><td>On site. Briefing with the duty manager. Radios checked.</td></tr>
-      <tr><th scope="row" class="data">22:47</th><td>Refused entry: one guest, intoxicated. Left without incident.</td></tr>
-      <tr><th scope="row" class="data">00:15</th><td>First aid: small cut to a guest’s hand, cleaned and dressed. Venue accident book updated.</td></tr>
-      <tr><th scope="row" class="data">02:58</th><td>Venue clear. Doors locked with the manager.</td></tr>
+      {% for l in r.log %}<tr><th scope="row" class="data">{{ l[0] }}</th><td>{{ l[1] | monotimes | safe }}</td></tr>
+      {% endfor %}
     </tbody>
   </table>
-  <footer class="doc-foot"><span>Supervisor: J.&nbsp;M.</span><span>Sent <span class="data">Sun 08:12</span></span></footer>
+  <footer class="doc-foot"><span>{{ r.by | replace(". ", ".&nbsp;") | safe }}</span><span>Sent <span class="data">{{ r.sent }}</span></span></footer>
 </article>
