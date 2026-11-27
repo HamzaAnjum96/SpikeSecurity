@@ -1,11 +1,11 @@
 ---
-title: Contact and quotes
+title: Get a security quote in Manchester
 crumb: Contact
-description: Get a security quote from Spike Security. Call 020 3757 2767, answered 24 hours, or send the site, the dates and the hours. Office in Cheetham Hill, Manchester.
+description: "Get a security quote: send the site, the dates and the hours, or call 020 3757 2767, answered 24 hours. Office on Cheetham Hill Road, Manchester."
+pageType: ContactPage
 permalink: /contact.html
 section: Contact
 dock: false
-schemaPage: business
 ---
 {% from "macros.njk" import pagehead, faqs, map, phone %}
 {% set send = "Send" if site.formEndpoint else "Open in my email app" %}
@@ -112,11 +112,6 @@ schemaPage: business
     <div class="sec-head">
       <h2 class="sec-title" id="faq-title">Questions we get asked.</h2>
     </div>
-    {{ faqs([
-      { q: "How quickly can you send officers?", a: site.notice },
-      { q: "Are all your officers licensed?", a: "Yes. Every officer holds a valid SIA licence for their role. We check each licence before every deployment and send you the numbers before the shift." },
-      { q: "Do you offer flexible contracts?", a: "Yes: short-notice one-off cover, rolling monthly agreements and long-term contracts, all set out in a written agreement." },
-      { q: "Which areas do you cover?", a: "Mainly Manchester, Salford, Trafford, Stockport, Bolton and Bury, and across the North West. Further afield, call us and we’ll tell you straight away if we can cover it." }
-    ]) }}
+    {{ faqs(contactFaqs) }}
   </div>
 </section>

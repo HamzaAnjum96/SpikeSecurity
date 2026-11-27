@@ -7,9 +7,14 @@
 {% set fullTitle = ((title + " | Spike Security") if not ("Spike Security" in title) else title) if title else "Spike Security | Licensed security officers in Manchester" %}
 <title>{{ fullTitle }}</title>
 <meta name="description" content="{{ description }}">
-<link rel="canonical" href="{{ site.url }}{{ page.url | canon }}">
-{% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+{% set canonPath = page.url | canon %}
+<link rel="canonical" href="{{ site.url }}{{ canonPath }}">
+{% if noindex %}<meta name="robots" content="noindex, follow">{% else %}<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+{# the same page as plain Markdown, for AI tools and readers (written after the build by lib/markdown.mjs) #}
+<link rel="alternate" type="text/markdown" href="{{ '/index.md' if canonPath == '/' else canonPath + '.md' }}" title="{{ fullTitle }} (Markdown)">{% endif %}
 <meta name="theme-color" content="#0B0C0E">
+<meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
 {# Link previews (WhatsApp, iMessage, LinkedIn, Facebook, Slack, X): each main page has its own card,
    made by scripts/og/cards.cjs; every other page uses the home card #}
 {% set ogSlug = (page.url | canon | replace("/", "")) or "home" %}
@@ -32,11 +37,12 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/martian-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v={{ build }}">
-{% if schemaPage %}<script type="application/ld+json">{{ schema[schemaPage] | json | safe }}</script>{% endif %}
-{% if crumb %}<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"}{% if crumbParent %},{"@type":"ListItem","position":2,"name":{{ crumbParent.name | json | safe }},"item":"{{ site.url }}{{ crumbParent.url }}"}{% endif %},{"@type":"ListItem","position":{{ 3 if crumbParent else 2 }},"name":{{ crumb | json | safe }},"item":"{{ site.url }}{{ page.url | canon }}"}]}</script>{% endif %}
+{# One connected graph per page: business, website, page, breadcrumbs, service, questions (lib/jsonld.mjs) #}
+{% if not noindex %}<script type="application/ld+json">{{ { url: site.url + canonPath, title: fullTitle, description: description, pageType: pageType, crumb: crumb, crumbParent: crumbParent, svcSlug: (svc.slug if svc else null), faqs: (contactFaqs if pageType == "ContactPage" else null), image: site.url + "/assets/og/" + ogSlug + ".png", modified: page.date.toISOString().slice(0, 10) } | jsonld | safe }}</script>{% endif %}
 <script src="/assets/js/site.js?v={{ build }}" defer></script>
 </head>
 <body class="{{ bodyClass }}">

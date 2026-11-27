@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.8",
+    "htmlparser2": "7.2.0",
     "leaflet": "1.9.4"
   }
 }

@@ -3,8 +3,26 @@ permalink: /robots.txt
 eleventyExcludeFromCollections: true
 layout: false
 ---
+# {{ site.name }}: search engines and AI assistants are welcome to read this whole site.
+# A short guide for AI tools: {{ site.url }}/llms.txt (full text: {{ site.url }}/llms-full.txt)
+
 User-agent: *
 Allow: /
-Disallow: /join-us/
+
+# Named so the welcome is explicit, whatever a crawler's default
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: DuckAssistBot
+User-agent: CCBot
+Allow: /
 
 Sitemap: {{ site.url }}/sitemap.xml

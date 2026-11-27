@@ -3,6 +3,7 @@ pagination:
   data: services
   size: 1
   alias: svc
+  addAllPagesToCollections: true
 permalink: "/{{ svc.slug }}.html"
 section: Services
 crumbParent:
@@ -33,17 +34,6 @@ eleventyComputed:
     </div>
   </div>
 </section>
-
-<script type="application/ld+json">{{ {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": svc.name,
-  "serviceType": svc.name,
-  "description": svc.description,
-  "url": site.url + "/" + svc.slug,
-  "areaServed": site.areas,
-  "provider": { "@type": "LocalBusiness", "@id": site.url + "/#business", "name": site.name, "telephone": site.phoneE164, "url": site.url + "/" }
-} | json | safe }}</script>
 
 {% set report = reports[svc.slug] or reports.home %}
 <section class="sec sec--paper" aria-labelledby="record-title">

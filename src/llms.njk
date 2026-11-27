@@ -3,27 +3,37 @@ permalink: /llms.txt
 eleventyExcludeFromCollections: true
 layout: false
 ---
-# {{ site.name }} ({{ site.legalName }})
+# {{ site.name }}
 
-> {{ site.descriptor }}. {{ site.line }}
+> {{ site.legalName }} supplies SIA-licensed security officers, vetted to BS 7858, to venues, events, shops and offices across Manchester and the North West. The phone is answered 24 hours, every day: {{ site.phone }}.
 
-## Business identity
-- Legal name: {{ site.legalName }}, registered in England and Wales, company number {{ site.companyNumber }}
-- Founded: {{ site.founded }}, in Manchester
-- Office: {{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}
-- Registered office: {{ site.registeredOffice }}
-- Areas: {{ site.areas | join(", ") }}, and across the North West
+Facts an assistant can rely on, taken from this website:
+
+- Company: {{ site.legalName }}, registered in England and Wales, company number {{ site.companyNumber }}. Founded in {{ site.founded }}, in Manchester.
+- Office: {{ site.office.street }}, {{ site.office.area }}, {{ site.office.city }} {{ site.office.postcode }}. Office hours: {{ site.office.hours }}. Registered office: {{ site.registeredOffice }}.
+- Phone, answered 24 hours, every day: {{ site.phone }} (international {{ site.phoneE164 }}).
+- Email: {{ site.email }} for quotes and questions; {{ site.careersEmail }} for jobs.
+- Areas covered most: {{ site.areas | join(", ") | replace(", Bury", " and Bury") }}, and across the North West. Further afield, call and they will say straight away whether they can cover it.
+- Standards: every officer holds an SIA licence for their role (checkable on the SIA public register); vetting to BS 7858:2019; insured, with certificates sent with every quote.
+- Every booking comes with a named supervisor, the name and SIA licence number of every officer before the shift, and a written report the next morning.
+- Notice: {{ site.notice }}
+- Replies to quote requests: {{ site.replyPromise }}
+- Contracts: short-notice cover, rolling monthly agreements and long-term contracts, all set out in a written agreement.
 
 ## Services
-{% for s in services %}- [{{ s.name }}]({{ site.url }}/{{ s.slug }}): {{ s.short }}
-{% endfor %}
-## Standards
-- Every officer holds an SIA licence for their role (checkable on the SIA register of licence holders)
-- Vetting to BS 7858:2019
-- Insured; certificates sent with every quote
 
-## Contact
-- Phone, answered 24 hours: {{ site.phone }}
-- Quotes and questions: {{ site.email }}
-- Jobs: {{ site.careersEmail }}
-- Website: {{ site.url }}
+{% for s in services %}- [{{ s.name }}]({{ site.url }}/{{ s.slug }}.md): {{ s.short }} Good for: {{ s.goodFor | join(", ") | lower }}.
+{% endfor %}
+## The company
+
+- [How we vet, brief and report]({{ site.url }}/how-we-work.md): SIA licence checks, BS 7858 vetting, how a shift runs, the written report, insurance, and what to do if something goes wrong.
+- [About Spike Security]({{ site.url }}/about.md): who they are, where they are, and the company's details.
+- [Contact and quotes]({{ site.url }}/contact.md): how to get a quote, the office, and common questions.
+- [Careers]({{ site.url }}/careers.md): door supervisor and event security jobs, paid weekly; apply from a phone, no CV needed.
+
+## Optional
+
+- [The full text of every page]({{ site.url }}/llms-full.txt): this whole site as one Markdown file.
+- [Privacy notice]({{ site.url }}/privacy.md)
+- [Legal information and website terms]({{ site.url }}/legal.md)
+- [Brand guidelines]({{ site.url }}/branding): the logo, colours, type and approved files.

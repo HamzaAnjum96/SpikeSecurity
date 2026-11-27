@@ -60,7 +60,14 @@
 
 /* ── Base ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--bar-h) + 16px); }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--bar-h) + 16px); scrollbar-color: var(--line-strong) var(--obsidian); }
+/* Moving between pages: a short crossfade, with the bar held still (browsers that support it; none with reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; animation-timing-function: var(--ease); }
+}
+.bar { view-transition-name: bar; }
+::view-transition-group(bar) { animation-duration: 0s; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0; background: var(--obsidian); color: var(--bone);
