@@ -45,6 +45,10 @@
       {
         "q": "How much notice do you need?",
         "a": "For planned work, two to three days. For urgent cover, call <a class=\"link data nb\" translate=\"no\" href=\"tel:+442037572767\">020 3757 2767</a>: we can often send officers within hours."
+      },
+      {
+        "q": "Are your door supervisors first aid trained?",
+        "a": "Yes. They have first aid training, and every treatment is written up for your accident book."
       }
     ]
   },
@@ -94,6 +98,10 @@
       {
         "q": "How much notice do you need?",
         "a": "As much as you can give. For large events, talk to us early so we can plan the team properly."
+      },
+      {
+        "q": "Who runs the team on the day?",
+        "a": "A named supervisor, who is your single point of contact. Numbers, positions and timings are agreed with you before anyone is booked."
       }
     ]
   },
@@ -139,6 +147,14 @@
       {
         "q": "Can you cover several stores?",
         "a": "Yes. Tell us the sites and hours and we will plan the cover across them."
+      },
+      {
+        "q": "Can your officers stop a shoplifter?",
+        "a": "Our store detectives work to the law on stopping and detaining a suspect. Every incident is written up, so you have a record for the police and your insurer."
+      },
+      {
+        "q": "Will officers help our customers too?",
+        "a": "Yes. They help customers and staff, not just watch them, so the shop floor still feels friendly."
       }
     ]
   },
@@ -183,6 +199,14 @@
       {
         "q": "Do you provide cover for holidays and sickness?",
         "a": "Yes. If your regular officer is away, we send a replacement who has been briefed on your site."
+      },
+      {
+        "q": "Can you cover all of our buildings?",
+        "a": "Yes: one plan and one point of contact across all of your buildings."
+      },
+      {
+        "q": "What do officers check on patrol?",
+        "a": "Floors, plant rooms, car parks and fire exits, at regular times, and every check is logged with the time."
       }
     ]
   },
@@ -228,6 +252,14 @@
       {
         "q": "Is a patrol cheaper than a static officer?",
         "a": "Usually, yes. Patrols suit sites that need checking rather than constant presence. We will tell you honestly which one your site needs."
+      },
+      {
+        "q": "Can you hold our keys?",
+        "a": "Yes. We hold your keys securely, so you are not the one called out at 3am."
+      },
+      {
+        "q": "What happens when our alarm goes off?",
+        "a": "An officer attends, checks the site and secures it. The visit is logged with the time, what they found and photos."
       }
     ]
   },
@@ -273,6 +305,18 @@
       {
         "q": "Who handles the footage?",
         "a": "Footage is handled under UK data protection law and the ICO’s guidance on surveillance cameras, and only shared with you, your insurer or the police."
+      },
+      {
+        "q": "Which hours do you watch?",
+        "a": "The hours you choose. Tell us when the site needs watching and we plan around it."
+      },
+      {
+        "q": "What happens when something is spotted?",
+        "a": "We send a patrol officer or call the police, depending on what the incident needs, then write it up with the footage times for you and your insurer."
+      },
+      {
+        "q": "Can you combine monitoring with patrols?",
+        "a": "Yes. For sites that need both, we combine camera monitoring with mobile patrols."
       }
     ]
   }

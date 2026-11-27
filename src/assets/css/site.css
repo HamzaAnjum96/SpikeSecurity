@@ -766,7 +766,29 @@ html:not(.js) .js-only { display: none !important; }
 }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
+/* ── Print: a clean document for whoever files the quote. Black on white, the logo at the top, no buttons,
+   menus or maps, questions opened (site.js), nothing split across a page break that shouldn't be. ── */
 @media print {
-  .bar, .dock, .map, .skip { display: none !important; }
-  body { background: #fff; color: #000; }
+  @page { margin: 16mm 15mm; }
+  :root { color-scheme: light; --obsidian-2: #fff; --graphite: #fff; --bone: #111; --ash: #444; --stone: #444; --line: #ccc; --line-strong: #888; --line-light: #ccc; --line-strong-light: #888; --orange: #D94A0F; }
+  html, body { background: #fff !important; color: #111 !important; }
+  svg { --word: #111; }
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .bar { position: static; border: 0; padding-bottom: 8mm; background: #fff !important; }
+  .bar .brand svg { height: 9mm; }
+  .nav, .bar-actions, .menu, .dock, .consent, .skip, .map, .cover-art, .btn, form, .form-actions, .foot-nav, .foot-cookies, .finale-lockup, .record-more, .faq-mark, .svc .arrow { display: none !important; }
+  .sec, .page-head, .cover, .foot { padding-top: 6mm !important; padding-bottom: 6mm !important; border-color: #ccc !important; }
+  .sec--paper, .sec--signal, .foot { background: #fff !important; color: #111 !important; }
+  .display { font-size: 40pt !important; }
+  .page-title, .sec-title, .duo-title { font-size: 24pt !important; max-width: none !important; }
+  .dl--o, .sec--signal a, .finale-tel { color: #111 !important; }
+  .finale-tel { font-size: 24pt !important; white-space: normal; }
+  .sec-head { margin-bottom: 5mm !important; }
+  a { color: inherit !important; }
+  .doc, .faq details, .steps li, .svc li, .inc li, .roles li, .promises li, .ci-block, .facts li, .duo > *, .finale { break-inside: avoid; }
+  h1, h2, h3, .sec-head { break-after: avoid; }
+  .doc { border: 1px solid #888 !important; }
+  .faq summary { min-height: 0 !important; padding: 2mm 0 !important; }
+  /* phone numbers and the office stay as text; web links show where they go */
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #444; }
 }

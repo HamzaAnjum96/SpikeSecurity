@@ -366,5 +366,12 @@
     fig.querySelector('.map-off').addEventListener('click', function () { setChoice(false); button.focus(); });
     if (choice()) on(false);
   }
+  // Printing: open every question so its answer is on paper too, then put them back
+  var printOpened = [];
+  window.addEventListener('beforeprint', function () {
+    doc.querySelectorAll('details:not([open])').forEach(function (d) { d.open = true; printOpened.push(d); });
+  });
+  window.addEventListener('afterprint', function () { printOpened.splice(0).forEach(function (d) { d.open = false; }); });
+
   ready(init);
 })();
